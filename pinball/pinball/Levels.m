@@ -60,7 +60,13 @@
         title.text = @"Levels";
         title.fontSize = 50;
         title.position = CGPointMake(self.size.width/2, self.size.height - 65);
-    
+        
+        SKLabelNode *reset = [SKLabelNode labelNodeWithFontNamed:@"American Typewriter"];
+        reset.text = @"Reset";
+        reset.fontSize = 50;
+        reset.position = CGPointMake(self.size.width/2, self.size.height/3);
+        reset.name = @"reset";
+        
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         level = [data integerForKey:@"passed"];
         
@@ -74,6 +80,7 @@
         [self addChild:star1];
         [self addChild:star2];
         [self addChild:star3];
+        [self addChild:reset];
         
     }
     
@@ -107,6 +114,12 @@
             
         GameScene *game = [[GameScene alloc]initWithSize:self.size level:@"3"];
         [self.view presentScene:game transition:reveal];
+        
+    } else if([touched.name isEqualToString:@"reset"]){
+        
+        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+        [data setInteger:0 forKey:@"passed"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
         
     } else {
         NSLog(@"Locked!");
