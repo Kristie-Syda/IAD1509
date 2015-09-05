@@ -77,14 +77,15 @@
     CGPoint location = [touch locationInNode:self];
     touched = [self nodeAtPoint:location];
     
-    if ([touched.name isEqualToString:@"Play Again?"]) {
-        GameScene *scene = [GameScene sceneWithSize:self.size];
-        
-        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-        
-        [self.view presentScene:scene transition:reveal];
-        
-    } else if ([touched.name isEqualToString:@"Main Menu"]) {
+//    if ([touched.name isEqualToString:@"Play Again?"]) {
+//        GameScene *scene = [GameScene sceneWithSize:self.size];
+//        
+//        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
+//        
+//        [self.view presentScene:scene transition:reveal];
+//        
+//    } else
+    if ([touched.name isEqualToString:@"Main Menu"]) {
     
         Menu *scene = [Menu sceneWithSize:self.size];
         

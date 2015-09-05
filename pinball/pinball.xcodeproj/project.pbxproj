@@ -10,6 +10,9 @@
 		C912636D1B71E4C1006F59FE /* bumpers.caf in Resources */ = {isa = PBXBuildFile; fileRef = C912636C1B71E4C1006F59FE /* bumpers.caf */; };
 		C912636F1B740567006F59FE /* spring.caf in Resources */ = {isa = PBXBuildFile; fileRef = C912636E1B740567006F59FE /* spring.caf */; };
 		C948BEF21B89020600821C79 /* explosion.atlas in Resources */ = {isa = PBXBuildFile; fileRef = C948BEF11B89020600821C79 /* explosion.atlas */; };
+		C957653F1B98F8DA0058EDFB /* Levels.m in Sources */ = {isa = PBXBuildFile; fileRef = C957653E1B98F8DA0058EDFB /* Levels.m */; };
+		C95765461B9A5F030058EDFB /* 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95765441B9A5F030058EDFB /* 1.plist */; };
+		C95765471B9A5F030058EDFB /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95765451B9A5F030058EDFB /* 2.plist */; };
 		C98002AA1B7E715F0047DD4C /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = C98002A91B7E715F0047DD4C /* Score.m */; };
 		C98358F61B7D4396005BF70E /* target.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F51B7D4396005BF70E /* target.caf */; };
 		C98358F81B7D482A005BF70E /* lose.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F71B7D482A005BF70E /* lose.caf */; };
@@ -51,6 +54,10 @@
 		C912636C1B71E4C1006F59FE /* bumpers.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bumpers.caf; sourceTree = "<group>"; };
 		C912636E1B740567006F59FE /* spring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = spring.caf; sourceTree = "<group>"; };
 		C948BEF11B89020600821C79 /* explosion.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = explosion.atlas; sourceTree = "<group>"; };
+		C957653D1B98F8DA0058EDFB /* Levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Levels.h; sourceTree = "<group>"; };
+		C957653E1B98F8DA0058EDFB /* Levels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Levels.m; sourceTree = "<group>"; };
+		C95765441B9A5F030058EDFB /* 1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 1.plist; sourceTree = "<group>"; };
+		C95765451B9A5F030058EDFB /* 2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2.plist; sourceTree = "<group>"; };
 		C98002A81B7E715F0047DD4C /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		C98002A91B7E715F0047DD4C /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		C98358F51B7D4396005BF70E /* target.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = target.caf; sourceTree = "<group>"; };
@@ -134,6 +141,8 @@
 		C9FEA6111B70754100CE0E27 /* pinball */ = {
 			isa = PBXGroup;
 			children = (
+				C95765441B9A5F030058EDFB /* 1.plist */,
+				C95765451B9A5F030058EDFB /* 2.plist */,
 				C948BEF11B89020600821C79 /* explosion.atlas */,
 				C98358F71B7D482A005BF70E /* lose.caf */,
 				C98358F51B7D4396005BF70E /* target.caf */,
@@ -147,6 +156,8 @@
 				C9FEA6171B70754100CE0E27 /* AppDelegate.m */,
 				C9884B7C1B8BA896001994EE /* Menu.h */,
 				C9884B7D1B8BA896001994EE /* Menu.m */,
+				C957653D1B98F8DA0058EDFB /* Levels.h */,
+				C957653E1B98F8DA0058EDFB /* Levels.m */,
 				C9FEA6191B70754100CE0E27 /* GameScene.h */,
 				C9FEA61A1B70754100CE0E27 /* GameScene.m */,
 				C98002A81B7E715F0047DD4C /* Score.h */,
@@ -284,11 +295,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95765461B9A5F030058EDFB /* 1.plist in Resources */,
 				C9D2E9261B7CADA5008AE6F7 /* edge.caf in Resources */,
 				C9D2E9271B7CADA5008AE6F7 /* released.caf in Resources */,
 				C9FEA6281B70754100CE0E27 /* LaunchScreen.xib in Resources */,
 				C98358F81B7D482A005BF70E /* lose.caf in Resources */,
 				C912636F1B740567006F59FE /* spring.caf in Resources */,
+				C95765471B9A5F030058EDFB /* 2.plist in Resources */,
 				C9FEA6251B70754100CE0E27 /* Images.xcassets in Resources */,
 				C948BEF21B89020600821C79 /* explosion.atlas in Resources */,
 				C9FEA61D1B70754100CE0E27 /* GameScene.sks in Resources */,
@@ -318,6 +331,7 @@
 				C9FEA6201B70754100CE0E27 /* GameViewController.m in Sources */,
 				C9884B7E1B8BA896001994EE /* Menu.m in Sources */,
 				C98A1CF11B8CFCD700B25607 /* PinkBricks.m in Sources */,
+				C957653F1B98F8DA0058EDFB /* Levels.m in Sources */,
 				C98A1D411B8F128F00B25607 /* InstScene.m in Sources */,
 				C9FEA6181B70754100CE0E27 /* AppDelegate.m in Sources */,
 				C98002AA1B7E715F0047DD4C /* Score.m in Sources */,

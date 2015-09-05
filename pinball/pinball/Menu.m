@@ -11,6 +11,7 @@
 #import "Score.h"
 #import "InstScene.h"
 #import "Credits.h"
+#import "Levels.h"
 
 @implementation Menu
 
@@ -49,20 +50,25 @@
         mainLabel.position = CGPointMake(self.size.width/2, self.size.height - 200);
              
              //play button
-             play = [self button:@"Play Game" pos:CGPointMake(self.size.width/2 - 5, mainLabel.position.y - 100)];
-             play.name = @"Play Game";
-             
+             play = [self button:@"New Game" pos:CGPointMake(self.size.width/2 - 5, mainLabel.position.y - 100)];
+             play.name = @"New Game";
+        
+             //Levels button
+             levels = [self button:@"Levels" pos:CGPointMake(play.position.x, play.position.y - 100)];
+             levels.name = @"Levels";
+        
              //instructions button
-             instructions = [self button:@"Instructions" pos:CGPointMake(play.position.x, play.position.y - 100)];
+             instructions = [self button:@"Instructions" pos:CGPointMake(levels.position.x, levels.position.y - 100)];
              instructions.name = @"Instructions";
              
              //credits button
              credits = [self button:@"Credits" pos:CGPointMake(instructions.position.x, instructions.position.y - 100)];
              credits.name = @"Credits";
-             
+        
         [self addChild:background];
         [self addChild:mainLabel];
         [self addChild:play];
+        [self addChild:levels];
         [self addChild:instructions];
         [self addChild:credits];
     }
@@ -77,14 +83,23 @@
     SKNode *touched = [self nodeAtPoint:location];
     
     //Game transition
-    if ([touched.name isEqualToString:@"Play Game"]) {
+    if ([touched.name isEqualToString:@"New Game"]) {
         
-        GameScene *scene = [GameScene sceneWithSize:self.size];
+        GameScene *scene = [[GameScene alloc]initWithSize:self.size level:@"1"];
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         
         [self.view presentScene:scene transition:reveal];
     
+    //Levels transition
+    } else if ([touched.name isEqualToString:@"Levels"]){
+        
+        Levels *scene = [Levels sceneWithSize:self.size];
+        
+        SKTransition *trans = [SKTransition doorsOpenHorizontalWithDuration:2];
+        
+        [self.view presentScene:scene transition:trans];
+        
     //Instruction transition
     } else if ([touched.name isEqualToString:@"Instructions"]){
         

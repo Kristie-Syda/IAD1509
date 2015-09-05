@@ -38,7 +38,7 @@
         SKAction *explosionChild = [SKAction runAction:[SKAction animateWithTextures:expArray timePerFrame:0.05] onChildWithName:@"child_pink"];
         
         //explodes the child node then makes the whole node disappear
-        explosion = [SKAction sequence:@[explosionChild,[SKAction waitForDuration:1],[SKAction removeFromParent]]];
+        explosion = [SKAction sequence:@[explosionChild,[SKAction waitForDuration:0.05],[SKAction removeFromParent]]];
     }
     
     return self;
@@ -57,7 +57,7 @@
     [self.parent runAction:brick];
     
     //update pink brick count
-    [Score shared].pinkCount = -1;
+    [Score shared].pinkCount -= 1;
   
     return YES;
 }

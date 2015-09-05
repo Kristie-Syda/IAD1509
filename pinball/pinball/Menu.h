@@ -13,5 +13,6 @@
     SKSpriteNode *play;
     SKSpriteNode *instructions;
     SKSpriteNode *credits;
+    SKSpriteNode *levels;
 }
 @end

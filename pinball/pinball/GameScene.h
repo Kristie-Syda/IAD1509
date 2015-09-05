@@ -11,4 +11,5 @@
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
 
 
+-(id)initWithSize:(CGSize)size level:(NSString*)lvlNum;
 @end
