@@ -55,8 +55,7 @@ static const uint32_t ballCat = 0x1;
 static const uint32_t pinkCat = 0x1 << 1;
 static const uint32_t worldCat = 0x1 << 2;
 static const uint32_t bounceCat = 0x1 << 3;
-static const uint32_t targetCat = 0x1 << 4;
-static const uint32_t bottomCat = 0x1 << 5;
+static const uint32_t bottomCat = 0x1 << 4;
 
 
 @implementation GameScene
@@ -71,7 +70,7 @@ static const uint32_t bottomCat = 0x1 << 5;
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.size.width/2];
     ball.physicsBody.dynamic = YES;
     ball.physicsBody.categoryBitMask = ballCat;
-    ball.physicsBody.contactTestBitMask = pinkCat|worldCat|bounceCat|bottomCat|targetCat;
+    ball.physicsBody.contactTestBitMask = pinkCat|worldCat|bounceCat|bottomCat;
     ball.physicsBody.collisionBitMask = worldCat|pinkCat|bounceCat;
     ball.physicsBody.friction = 0.0;
     ball.physicsBody.restitution = 0.5;
@@ -466,11 +465,6 @@ static const uint32_t bottomCat = 0x1 << 5;
         
         [self runAction:edge];
        
-    //ball hits target
-    } else if (importantContact.categoryBitMask == targetCat){
-        
-        update = [(TableMaker *)importantContact.node collision:ball];
-        
     //ball hits bottom
     } else if (importantContact.categoryBitMask == bottomCat){
         

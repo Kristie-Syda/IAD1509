@@ -20,7 +20,6 @@
 		C9884B871B8C0E13001994EE /* TableMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C9884B861B8C0E13001994EE /* TableMaker.m */; };
 		C98A1CF11B8CFCD700B25607 /* PinkBricks.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1CF01B8CFCD700B25607 /* PinkBricks.m */; };
 		C98A1CF71B8D324A00B25607 /* Bouncer.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1CF61B8D324A00B25607 /* Bouncer.m */; };
-		C98A1CFA1B8D416A00B25607 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1CF91B8D416A00B25607 /* Target.m */; };
 		C98A1CFD1B8D4E7400B25607 /* BottomNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1CFC1B8D4E7400B25607 /* BottomNode.m */; };
 		C98A1D411B8F128F00B25607 /* InstScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1D401B8F128F00B25607 /* InstScene.m */; };
 		C98A1D441B8FB2C700B25607 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1D431B8FB2C700B25607 /* Credits.m */; };
@@ -70,8 +69,6 @@
 		C98A1CF01B8CFCD700B25607 /* PinkBricks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinkBricks.m; sourceTree = "<group>"; };
 		C98A1CF51B8D324A00B25607 /* Bouncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bouncer.h; sourceTree = "<group>"; };
 		C98A1CF61B8D324A00B25607 /* Bouncer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bouncer.m; sourceTree = "<group>"; };
-		C98A1CF81B8D416A00B25607 /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
-		C98A1CF91B8D416A00B25607 /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
 		C98A1CFB1B8D4E7400B25607 /* BottomNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomNode.h; sourceTree = "<group>"; };
 		C98A1CFC1B8D4E7400B25607 /* BottomNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomNode.m; sourceTree = "<group>"; };
 		C98A1D3F1B8F128F00B25607 /* InstScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstScene.h; sourceTree = "<group>"; };
@@ -181,8 +178,6 @@
 				C98A1CF01B8CFCD700B25607 /* PinkBricks.m */,
 				C98A1CF51B8D324A00B25607 /* Bouncer.h */,
 				C98A1CF61B8D324A00B25607 /* Bouncer.m */,
-				C98A1CF81B8D416A00B25607 /* Target.h */,
-				C98A1CF91B8D416A00B25607 /* Target.m */,
 				C98A1CFB1B8D4E7400B25607 /* BottomNode.h */,
 				C98A1CFC1B8D4E7400B25607 /* BottomNode.m */,
 			);
@@ -341,7 +336,6 @@
 				C9FEA6151B70754100CE0E27 /* main.m in Sources */,
 				C9884B871B8C0E13001994EE /* TableMaker.m in Sources */,
 				C98A1CFD1B8D4E7400B25607 /* BottomNode.m in Sources */,
-				C98A1CFA1B8D416A00B25607 /* Target.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
