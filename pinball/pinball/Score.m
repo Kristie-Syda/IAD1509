@@ -47,5 +47,4 @@
     currentScore = 0;    
 }
 
-
 @end

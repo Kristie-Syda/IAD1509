@@ -12,6 +12,40 @@
 
 @implementation Levels
 
+//button creator
+-(SKSpriteNode *)star:(NSString*)title pos:(CGPoint)position {
+    
+    int levelNum = [title intValue];
+    SKSpriteNode *nodeImg;
+    
+    SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
+    titleLabel.text = title;
+    titleLabel.fontColor = [SKColor blackColor];
+    titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+    titleLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+    
+    //The levels that are not saved in userdefaults are not unlocked.
+    //checks to see what levels are not saved
+    //if the number saved in userdefaults is less than the total number of levels
+    
+    if (levelNum > (level + 1)) {
+        
+        nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star2.png"];
+
+    } else {
+        
+        nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star.png"];
+        nodeImg.name = title;
+        titleLabel.name = title;
+    }
+    
+    [nodeImg addChild:titleLabel];
+    [nodeImg setPosition:position];
+
+    return nodeImg;
+}
+
+
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -27,15 +61,21 @@
         title.text = @"Levels";
         title.fontSize = 50;
         title.position = CGPointMake(self.size.width/2, self.size.height - 65);
+    
+        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+        level = [data integerForKey:@"passed"];
         
-        SKSpriteNode *star1 = [SKSpriteNode spriteNodeWithImageNamed:@"star1.png"];
-        star1.position = CGPointMake(80, self.size.height - 150);
-        star1.name = @"star1";
+        star1 = [self star:@"1" pos:CGPointMake(80, self.size.height - 150)];
+        star2 = [self star:@"2" pos:CGPointMake(150, self.size.height - 150)];
+        star3 = [self star:@"3" pos:CGPointMake(220, self.size.height - 150)];
         
         [self addChild:background];
         [self addChild:back];
         [self addChild:title];
         [self addChild:star1];
+        [self addChild:star2];
+        [self addChild:star3];
+        
     }
     
     return self;
@@ -48,31 +88,31 @@
     SKNode *touched = [self nodeAtPoint:location];
     SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
     
+    NSLog(@"%@",touched);
+    
     //Menu
     if ([touched.name isEqualToString:@"menu"]) {
-        Menu *scene = [Menu sceneWithSize:self.size];
         
+        Menu *scene = [Menu sceneWithSize:self.size];
         [self.view presentScene:scene transition:reveal];
         
-    } else {
+    } else if ([touched.name isEqualToString:@"1"]){
         
-        //levels
-        NSString *lvl;
-        
-        
-        if ([touched.name isEqualToString:@"star1"]){
-            
-            lvl = @"1";
-            
-        } else if ([touched.name isEqualToString:@"star2"]){
-            
-            lvl = @"2";
-            
-        }
-        
-        GameScene *game = [[GameScene alloc]initWithSize:self.size level:lvl];
+        GameScene *game = [[GameScene alloc]initWithSize:self.size level:@"1"];
         [self.view presentScene:game transition:reveal];
         
+    } else if ([touched.name isEqualToString:@"2"]){
+        
+        GameScene *game = [[GameScene alloc]initWithSize:self.size level:@"2"];
+        [self.view presentScene:game transition:reveal];
+        
+    } else if ([touched.name isEqualToString:@"3"]){
+            
+        GameScene *game = [[GameScene alloc]initWithSize:self.size level:@"3"];
+        [self.view presentScene:game transition:reveal];
+        
+    } else {
+        NSLog(@"Locked!");
     }
     
 }

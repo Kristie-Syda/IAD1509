@@ -113,7 +113,7 @@ static const uint32_t bottomCat = 0x1 << 4;
     leftBump.anchorPoint = CGPointMake(0, 0.5);
     leftBump.physicsBody.dynamic = NO;
     leftBump.name = @"left";
-    leftBump.physicsBody.restitution = 3.0;
+    leftBump.physicsBody.restitution = 2.0;
     leftBump.position = CGPointMake(375/3 - 60, 150);
     
     self.LFlipper = leftBump;
@@ -145,7 +145,7 @@ static const uint32_t bottomCat = 0x1 << 4;
     rightBump.anchorPoint = CGPointMake(1, 0.5);
     rightBump.physicsBody.dynamic = NO;
     rightBump.name = @"right";
-    rightBump.physicsBody.restitution = 3.0;
+    rightBump.physicsBody.restitution = 2.0;
     rightBump.position = CGPointMake(375/3 - 60 + (rightBump.size.width * 2) + 20, 150);
     
     self.RFlipper = rightBump;

@@ -10,5 +10,11 @@
 
 @interface Levels : SKScene
 
-
+{
+    NSInteger level;
+    BOOL unlocked;
+    SKSpriteNode *star1;
+    SKSpriteNode *star2;
+    SKSpriteNode *star3;
+}
 @end

@@ -206,6 +206,11 @@ static const uint32_t bottomCat = 0x1 << 4;
     
     NSString *nextlvl = [NSString stringWithFormat:@"%i", lvl + 1];
     
+    //save level number to user defaults
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    [data setInteger:lvl forKey:@"passed"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
     SKTransition *close= [SKTransition doorsCloseHorizontalWithDuration:2];
     GameScene *scene = [[GameScene alloc]initWithSize:self.size level:nextlvl];
     [self.view presentScene:scene transition:close];
@@ -232,7 +237,6 @@ static const uint32_t bottomCat = 0x1 << 4;
     SKAction *flashText = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.3],[SKAction waitForDuration:0.3],[SKAction fadeInWithDuration:0.3]]];
     keepFlashing = [SKAction repeatAction:flashText count:5];
 }
-
 
 //create pink bricks
 -(PinkBricks *)addBricks:(CGPoint)position {
@@ -280,12 +284,12 @@ static const uint32_t bottomCat = 0x1 << 4;
 
     [bouncerNode addChild:bouncer];
     [bouncerNode setPosition:pos];
-    bouncerNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:bouncer.size.width/2];
-    bouncerNode.physicsBody.dynamic = NO;
-    bouncerNode.physicsBody.restitution = 0.2;
-    bouncerNode.physicsBody.categoryBitMask = bounceCat;
+     bouncerNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:bouncer.size.width/2];
+     bouncerNode.physicsBody.dynamic = NO;
+     bouncerNode.physicsBody.restitution = 1;
+     bouncerNode.physicsBody.categoryBitMask = bounceCat;
 
-    return bouncerNode;
+     return bouncerNode;
 }
 
 //init
@@ -341,7 +345,7 @@ static const uint32_t bottomCat = 0x1 << 4;
             CGFloat y = [info[@"y"] floatValue];
             NSString *type = info[@"type"];
             
-            //add to scene
+            //add bouncers to scene
             Bouncer *bouncer = [self createBouncer:type position:CGPointMake(x, y)];
             [self addChild:bouncer];
         }
@@ -352,7 +356,7 @@ static const uint32_t bottomCat = 0x1 << 4;
             CGFloat x = [info[@"x"] floatValue];
             CGFloat y = [info[@"y"] floatValue];
             
-            //add to scene
+            //add bricks to scene
             PinkBricks *brick = [self addBricks:CGPointMake(x, y)];
             [self addChild:brick];
         }
@@ -408,7 +412,6 @@ static const uint32_t bottomCat = 0x1 << 4;
     } else if(gameOver == YES) {
     
         [self gameOver];
-        
     }
     
 }
@@ -479,8 +482,6 @@ static const uint32_t bottomCat = 0x1 << 4;
         //updates score
         score.text = [NSString stringWithFormat:@"%i",[Score shared].currentScore];
         
-        NSLog(@"%i",[Score shared].pinkCount);
-        
         //if out of balls -- game over
         if ([Score shared].ball == 0) {
             
@@ -496,7 +497,7 @@ static const uint32_t bottomCat = 0x1 << 4;
             
         } else if([Score shared].pinkCount == 0) {
             nextLevel = YES;
-            [self next];
+           [self next];
         }        
     }
 }

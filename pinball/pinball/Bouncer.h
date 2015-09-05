@@ -16,7 +16,6 @@
 }
 
 
-
 - (BOOL) collision:(SKNode *)ball;
 
 @end
