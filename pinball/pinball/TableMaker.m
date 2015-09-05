@@ -12,7 +12,7 @@
 #import "BottomNode.h"
 #import "GameScene.h"
 
-static const uint32_t bottomCat = 0x1 << 5;
+static const uint32_t bottomCat = 0x1 << 4;
 
 @implementation TableMaker
 @synthesize plunger,RFlipper,LFlipper;
