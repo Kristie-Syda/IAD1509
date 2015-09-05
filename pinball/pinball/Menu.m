@@ -50,8 +50,8 @@
         mainLabel.position = CGPointMake(self.size.width/2, self.size.height - 200);
              
              //play button
-             play = [self button:@"New Game" pos:CGPointMake(self.size.width/2 - 5, mainLabel.position.y - 100)];
-             play.name = @"New Game";
+             play = [self button:@"Play Game" pos:CGPointMake(self.size.width/2 - 5, mainLabel.position.y - 100)];
+             play.name = @"Play Game";
         
              //Levels button
              levels = [self button:@"Levels" pos:CGPointMake(play.position.x, play.position.y - 100)];
@@ -82,10 +82,14 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
     
+    //grab level that is saved in userdefaults
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    NSString *level = [NSString stringWithFormat:@"%li",(long)[data integerForKey:@"passed"] + 1];
+    
     //Game transition
-    if ([touched.name isEqualToString:@"New Game"]) {
+    if ([touched.name isEqualToString:@"Play Game"]) {
         
-        GameScene *scene = [[GameScene alloc]initWithSize:self.size level:@"1"];
+        GameScene *scene = [[GameScene alloc]initWithSize:self.size level:level];
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         

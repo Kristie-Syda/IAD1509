@@ -141,12 +141,12 @@ static const uint32_t bottomCat = 0x1 << 4;
     
     pauseButton = [SKSpriteNode spriteNodeWithImageNamed:@"pause.png"];
     pauseButton.name = @"pause";
-    pauseButton.position = CGPointMake(self.size.width - 50, self.size.height - 40);
+    pauseButton.position = CGPointMake(self.size.width - 45, self.size.height - 40);
     
     //initialize play btn -- but not add it yet
     playBtn = [SKSpriteNode spriteNodeWithImageNamed:@"play.png"];
     playBtn.name = @"play";
-    playBtn.position = CGPointMake(self.size.width - 50, self.size.height - 40);
+    playBtn.position = CGPointMake(self.size.width - 45, self.size.height - 40);
     
     [self addChild:pauseButton];
 }
@@ -210,10 +210,22 @@ static const uint32_t bottomCat = 0x1 << 4;
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     [data setInteger:lvl forKey:@"passed"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
+    
+    //load in game scene with next level
     SKTransition *close= [SKTransition doorsCloseHorizontalWithDuration:2];
     GameScene *scene = [[GameScene alloc]initWithSize:self.size level:nextlvl];
     [self.view presentScene:scene transition:close];
+}
+
+-(void)levelLabel {
+    
+    SKLabelNode *lvlLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
+    lvlLabel.text = [NSString stringWithFormat: @"Level: %i",lvl];
+    lvlLabel.fontColor = [SKColor whiteColor];
+    lvlLabel.position = CGPointMake(self.size.width/2 - 20, self.size.height/3 - 140);
+    lvlLabel.fontSize = 25;
+    
+    [self addChild:lvlLabel];
 }
 
 //All SKActions
@@ -323,6 +335,7 @@ static const uint32_t bottomCat = 0x1 << 4;
         [self ballLabel];
         [self actions];
         [self addPause];
+        [self levelLabel];
     
         //had to connect by properties so I could use in touches
         rightBump = table.RFlipper;

@@ -12,22 +12,21 @@
 
 @implementation Levels
 
-//button creator
+//star creator
 -(SKSpriteNode *)star:(NSString*)title pos:(CGPoint)position {
-    
+   
+    //title is the level number
     int levelNum = [title intValue];
     SKSpriteNode *nodeImg;
     
     SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     titleLabel.text = title;
     titleLabel.fontColor = [SKColor blackColor];
-    titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-    titleLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+    titleLabel.position = CGPointMake(0, -15);
     
-    //The levels that are not saved in userdefaults are not unlocked.
-    //checks to see what levels are not saved
-    //if the number saved in userdefaults is less than the total number of levels
-    
+/* if the level number is greater than the level number
+    saved in userdefaults than its not unlocked */
+
     if (levelNum > (level + 1)) {
         
         nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star2.png"];
@@ -87,9 +86,7 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
     SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-    
-    NSLog(@"%@",touched);
-    
+  
     //Menu
     if ([touched.name isEqualToString:@"menu"]) {
         
