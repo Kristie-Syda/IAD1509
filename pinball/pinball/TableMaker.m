@@ -13,6 +13,8 @@
 #import "GameScene.h"
 
 static const uint32_t bottomCat = 0x1 << 4;
+static const uint32_t rightFlip = 0x1 << 5;
+static const uint32_t leftFlip = 0x1 << 6;
 
 @implementation TableMaker
 @synthesize plunger,RFlipper,LFlipper;
@@ -113,8 +115,9 @@ static const uint32_t bottomCat = 0x1 << 4;
     leftBump.anchorPoint = CGPointMake(0, 0.5);
     leftBump.physicsBody.dynamic = NO;
     leftBump.name = @"left";
-    leftBump.physicsBody.restitution = 2.0;
+    leftBump.physicsBody.restitution = 0.0;
     leftBump.position = CGPointMake(375/3 - 60, 150);
+    leftBump.physicsBody.categoryBitMask = leftFlip;
     
     self.LFlipper = leftBump;
     
@@ -145,8 +148,9 @@ static const uint32_t bottomCat = 0x1 << 4;
     rightBump.anchorPoint = CGPointMake(1, 0.5);
     rightBump.physicsBody.dynamic = NO;
     rightBump.name = @"right";
-    rightBump.physicsBody.restitution = 2.0;
+    rightBump.physicsBody.restitution = 0.0;
     rightBump.position = CGPointMake(375/3 - 60 + (rightBump.size.width * 2) + 20, 150);
+    rightBump.physicsBody.categoryBitMask = rightFlip;
     
     self.RFlipper = rightBump;
     

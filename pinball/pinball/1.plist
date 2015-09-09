@@ -34,138 +34,184 @@
 	<key>PinkBricks</key>
 	<array>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>240</string>
 			<key>y</key>
 			<string>520</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>180</string>
 			<key>y</key>
 			<string>520</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>120</string>
 			<key>y</key>
 			<string>520</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>60</string>
 			<key>y</key>
 			<string>520</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>270</string>
 			<key>y</key>
 			<string>550</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>y</key>
 			<string>550</string>
 			<key>x</key>
 			<string>210</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>150</string>
 			<key>y</key>
 			<string>550</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>30</string>
 			<key>y</key>
 			<string>550</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>90</string>
 			<key>y</key>
 			<string>550</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>270</string>
 			<key>y</key>
 			<string>490</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>210</string>
 			<key>y</key>
 			<string>490</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>150</string>
 			<key>y</key>
 			<string>490</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>30</string>
 			<key>y</key>
 			<string>490</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>90</string>
 			<key>y</key>
 			<string>490</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>60</string>
 			<key>y</key>
 			<string>460</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>120</string>
 			<key>y</key>
 			<string>460</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>180</string>
 			<key>y</key>
 			<string>460</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>240</string>
 			<key>y</key>
 			<string>460</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>270</string>
 			<key>y</key>
 			<string>430</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>210</string>
 			<key>y</key>
 			<string>430</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>150</string>
 			<key>y</key>
 			<string>430</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>30</string>
 			<key>y</key>
 			<string>430</string>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>pink</string>
 			<key>x</key>
 			<string>90</string>
 			<key>y</key>

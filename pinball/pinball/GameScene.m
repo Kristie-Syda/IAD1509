@@ -14,48 +14,16 @@
 #import "PinkBricks.h"
 #import "Bouncer.h"
 #import "Levels.h"
+#import "Menu.h"
 
-@interface GameScene()
-
-//Variables
-{
-    SKSpriteNode *ball;
-    SKSpriteNode *plunger;
-    SKSpriteNode *leftBump;
-    SKSpriteNode *rightBump;
-    SKSpriteNode *pauseButton;
-    SKSpriteNode *playBtn;
-    SKLabelNode *pauseLbl;
-    SKLabelNode *scoreLabel;
-    SKNode *touched;
-    NSString *plungBall;
-    SKAction *springs;
-    SKAction *bumpers;
-    SKAction *released;
-    SKAction *edge;
-    SKAction *flippedLeft;
-    SKAction *flippedRight;
-    SKAction *movingTarget;
-    SKAction *keepFlashing;
-    CGFloat plungerPressed;
-    CGFloat plungerReleased;
-    NSTimeInterval current;
-    NSTimeInterval previous;
-    SKLabelNode *score;
-    SKLabelNode *ballLabel;
-    int lvl;
-
-    BOOL gameOver;
-    BOOL nextLevel;
-}
-
-@end
 
 static const uint32_t ballCat = 0x1;
 static const uint32_t pinkCat = 0x1 << 1;
 static const uint32_t worldCat = 0x1 << 2;
 static const uint32_t bounceCat = 0x1 << 3;
 static const uint32_t bottomCat = 0x1 << 4;
+static const uint32_t rightFlip = 0x1 << 5;
+static const uint32_t leftFlip = 0x1 << 6;
 
 
 @implementation GameScene
@@ -70,8 +38,8 @@ static const uint32_t bottomCat = 0x1 << 4;
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.size.width/2];
     ball.physicsBody.dynamic = YES;
     ball.physicsBody.categoryBitMask = ballCat;
-    ball.physicsBody.contactTestBitMask = pinkCat|worldCat|bounceCat|bottomCat;
-    ball.physicsBody.collisionBitMask = worldCat|pinkCat|bounceCat;
+    ball.physicsBody.contactTestBitMask = pinkCat|worldCat|bounceCat|bottomCat|rightFlip|leftFlip;
+    ball.physicsBody.collisionBitMask = worldCat|pinkCat|bounceCat|rightFlip|leftFlip;
     ball.physicsBody.friction = 0.0;
     ball.physicsBody.restitution = 0.5;
     ball.name = @"ball";
@@ -151,16 +119,25 @@ static const uint32_t bottomCat = 0x1 << 4;
     [self addChild:pauseButton];
 }
 
-//pause Label
--(void)pauseLabel {
+-(void)addMenu {
     
-    pauseLbl = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
-    pauseLbl.text = @"Game Paused";
-    pauseLbl.fontColor = [SKColor whiteColor];
-    pauseLbl.position = CGPointMake(self.size.width/2, self.size.height/3);
-    pauseLbl.fontSize = 25;
-  
-    [self addChild:pauseLbl];
+    menuNode = [SKNode node];
+    menuNode.position = CGPointMake(self.size.width/2, self.size.height/2);
+    
+    SKSpriteNode *menuImg = [SKSpriteNode spriteNodeWithImageNamed:@"pauseMenu.png"];
+    
+    SKSpriteNode *resume = [SKSpriteNode spriteNodeWithImageNamed:@"resume.png"];
+    resume.position = CGPointMake(0, 20);
+    resume.name = @"resume";
+    
+    SKSpriteNode *menu = [SKSpriteNode spriteNodeWithImageNamed:@"menuBtn.png"];
+    menu.name = @"menu";
+    menu.position = CGPointMake(0, -50);
+    
+    [menuNode addChild:menuImg];
+    [menuNode addChild:resume];
+    [menuNode addChild:menu];
+    [self addChild:menuNode];
 }
 
 //pause game
@@ -169,12 +146,12 @@ static const uint32_t bottomCat = 0x1 << 4;
     self.paused = !self.scene.paused;
     
     if (self.scene.paused == YES) {
-        [self pauseLabel];
+        [self addMenu];
         [pauseButton removeFromParent];
         [self addChild:playBtn];
         
     } else if (self.scene.paused == NO) {
-        [pauseLbl removeFromParent];
+        [menuNode removeFromParent];
         [playBtn removeFromParent];
         [self addChild:pauseButton];
     }
@@ -217,6 +194,7 @@ static const uint32_t bottomCat = 0x1 << 4;
     [self.view presentScene:scene transition:close];
 }
 
+//level label
 -(void)levelLabel {
     
     SKLabelNode *lvlLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
@@ -228,6 +206,17 @@ static const uint32_t bottomCat = 0x1 << 4;
     [self addChild:lvlLabel];
 }
 
+//key image
+-(void)keyImg {
+    
+    key = [SKSpriteNode spriteNodeWithImageNamed:@"key.png"];
+    key.name = @"key";
+    
+    key.position = CGPointMake(self.size.width/2 - 20, self.size.height);
+    
+    [self addChild:key];
+}
+
 //All SKActions
 -(void)actions {
     
@@ -236,27 +225,52 @@ static const uint32_t bottomCat = 0x1 << 4;
     bumpers = [SKAction playSoundFileNamed:@"bumpers.caf" waitForCompletion:NO];
     edge = [SKAction playSoundFileNamed:@"edge.caf" waitForCompletion:NO];
     released = [SKAction playSoundFileNamed:@"released.caf" waitForCompletion:NO];
+    done = [SKAction playSoundFileNamed:@"target.caf" waitForCompletion:NO];
     
     //flipper SKActions
     SKAction *Left = [SKAction rotateByAngle:1.2 duration:0.2];
     SKAction *Right = [SKAction rotateByAngle:-1.2 duration:0.2];
-    NSArray *flipLeft = @[Left,Right];
-    NSArray *flipRight = @[Right,Left];
+    SKAction *ballHit = [SKAction runBlock:^{
+        if (ballTouch == YES) {
+            
+            [ball.physicsBody applyImpulse:CGVectorMake(0, 10)];
+            NSLog(@"ball touching flipper");
+            ballTouch = NO;
+        } else {
+            NSLog(@"ball not touching flipper");
+        }
+        
+    }];
+    
+    NSArray *flipLeft = @[Left,ballHit,Right];
+    NSArray *flipRight = @[Right,ballHit,Left];
     flippedLeft = [SKAction sequence:flipLeft];
     flippedRight = [SKAction sequence:flipRight];
     
     //Label SKAction
     SKAction *flashText = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.3],[SKAction waitForDuration:0.3],[SKAction fadeInWithDuration:0.3]]];
     keepFlashing = [SKAction repeatAction:flashText count:5];
+    
+    keyDrop = [SKAction moveTo:CGPointMake(self.size.width/2 - 20, self.size.height/3 - 40) duration:2];
 }
 
 //create pink bricks
--(PinkBricks *)addBricks:(CGPoint)position {
+-(PinkBricks *)addBricks:(NSString*)type pos:(CGPoint)position {
     
     PinkBricks *bricks = [PinkBricks node];
     
-    SKSpriteNode *pink = [SKSpriteNode spriteNodeWithImageNamed:@"hotPink.png"];
+    SKSpriteNode *pink;
     pink.name = @"child_pink";
+    
+    if ([type isEqualToString:@"pink"]) {
+        
+        pink = [SKSpriteNode spriteNodeWithImageNamed:@"hotPink.png"];
+        
+    } else {
+        
+        pink = [SKSpriteNode spriteNodeWithImageNamed:@"purple.png"];
+        
+    }
     
     [bricks addChild:pink];
     
@@ -354,9 +368,9 @@ static const uint32_t bottomCat = 0x1 << 4;
         //grab the bouncer array information
         NSArray *bouncerArray = data[@"Bouncers"];
         for (NSDictionary *info in bouncerArray) {
-            CGFloat x = [info[@"x"] floatValue];
-            CGFloat y = [info[@"y"] floatValue];
-            NSString *type = info[@"type"];
+             NSString *type = info[@"type"];
+             CGFloat x = [info[@"x"] floatValue];
+             CGFloat y = [info[@"y"] floatValue];
             
             //add bouncers to scene
             Bouncer *bouncer = [self createBouncer:type position:CGPointMake(x, y)];
@@ -366,11 +380,12 @@ static const uint32_t bottomCat = 0x1 << 4;
         //grab the pink brick info from plist
         NSArray *brickArray = data[@"PinkBricks"];
         for (NSDictionary *info in brickArray) {
-            CGFloat x = [info[@"x"] floatValue];
-            CGFloat y = [info[@"y"] floatValue];
-            
+             NSString *type = info[@"type"];
+             CGFloat x = [info[@"x"] floatValue];
+             CGFloat y = [info[@"y"] floatValue];
+  
             //add bricks to scene
-            PinkBricks *brick = [self addBricks:CGPointMake(x, y)];
+            PinkBricks *brick = [self addBricks:type pos:CGPointMake(x, y)];
             [self addChild:brick];
         }
     }
@@ -384,7 +399,7 @@ static const uint32_t bottomCat = 0x1 << 4;
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     touched = [self nodeAtPoint:location];
-    
+
     //game is not over
     if (gameOver == NO){
         
@@ -399,25 +414,43 @@ static const uint32_t bottomCat = 0x1 << 4;
                 
                 //left flipper is touched
             } else if ([touched.name isEqualToString:@"left"]){
+                
                 [self runAction:bumpers];
                 [leftBump runAction:flippedLeft];
                 
                 //right flipper is touched
             } else if([touched.name isEqualToString:@"right"]){
+                
                 [self runAction:bumpers];
                 [rightBump runAction:flippedRight];
                 
                 //pause button
             } else if ([touched.name isEqualToString:@"pause"]){
+                
                 [self pauseGame];
+             
+            //key is touched
+            } else if ([touched.name isEqualToString:@"key"]){
+                
+                [self next];
             }
             
             //game is paused
         } else if (self.scene.paused == YES) {
             
             //play button is pressed unpause game
-            if ([touched.name isEqualToString:@"play"]) {
+            if ([touched.name isEqualToString:@"play"] ^ [touched.name isEqualToString:@"resume"]) {
+                
                 [self pauseGame];
+                
+            } else if ([touched.name isEqualToString:@"menu"]) {
+                
+                Menu *scene = [Menu sceneWithSize:self.size];
+                
+                SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
+                
+                [self.view presentScene:scene transition:reveal];
+                [[Score shared]reset];
             }
         }
     
@@ -448,7 +481,6 @@ static const uint32_t bottomCat = 0x1 << 4;
         
         //resets plunger
         plungerReleased = 0;
-        
     }
 }
 
@@ -457,8 +489,6 @@ static const uint32_t bottomCat = 0x1 << 4;
     
     BOOL update = NO;
    
-    SKPhysicsBody *importantContact;
-    
     //whatever contact that is not the ball is important
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
         importantContact = contact.bodyB;
@@ -489,7 +519,19 @@ static const uint32_t bottomCat = 0x1 << 4;
 
         ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
         [self addBall];
+        
+    //right flipper
+    } else if (importantContact.categoryBitMask == rightFlip){
+        
+        ballTouch = YES;
+        
+    //left flipper
+    } else if (importantContact.categoryBitMask == leftFlip){
+        
+        ballTouch = YES;
+        
     }
+
     
     if(update) {
         //updates score
@@ -509,23 +551,23 @@ static const uint32_t bottomCat = 0x1 << 4;
             gameOver = YES;
             
         } else if([Score shared].pinkCount == 0) {
+            [self runAction:done];
             nextLevel = YES;
-           [self next];
+            
+            //removes ball
+            [ball removeFromParent];
+            
+            //adds key to scene
+            [self keyImg];
+            [key runAction:keyDrop];
         }        
     }
 }
 
+
+
 //update
 -(void)update:(CFTimeInterval)currentTime {
-    
-    //interpolation??
-    if (previous == 0) {
-        current = 0;
-    } else {
-        current = ((currentTime - previous) * 60);
-    }
-    previous = currentTime;
-    
     
     //spring goes down on plunger
     if ([plungBall isEqualToString:@"pressed"]) {
@@ -539,7 +581,6 @@ static const uint32_t bottomCat = 0x1 << 4;
         else {
             //plunger do nothing
         }
-   
     }
 }
 

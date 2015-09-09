@@ -24,8 +24,8 @@
     titleLabel.fontColor = [SKColor blackColor];
     titleLabel.position = CGPointMake(0, -15);
     
-/* if the level number is greater than the level number
-    saved in userdefaults than its not unlocked */
+/* if the level number is greater than the level number 
+   that is saved in userdefaults than its not unlocked */
 
     if (levelNum > (level + 1)) {
         
