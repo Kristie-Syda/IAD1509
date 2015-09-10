@@ -28,6 +28,7 @@
 		C9D2E9261B7CADA5008AE6F7 /* edge.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9241B7CADA5008AE6F7 /* edge.caf */; };
 		C9D2E9271B7CADA5008AE6F7 /* released.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9251B7CADA5008AE6F7 /* released.caf */; };
 		C9D2E9291B7CB81E008AE6F7 /* brick.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9281B7CB81E008AE6F7 /* brick.caf */; };
+		C9E3472B1BA0197C0094EE00 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9E3472A1BA0197C0094EE00 /* 3.plist */; };
 		C9FEA6151B70754100CE0E27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA6141B70754100CE0E27 /* main.m */; };
 		C9FEA6181B70754100CE0E27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA6171B70754100CE0E27 /* AppDelegate.m */; };
 		C9FEA61B1B70754100CE0E27 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA61A1B70754100CE0E27 /* GameScene.m */; };
@@ -81,6 +82,7 @@
 		C9D2E9241B7CADA5008AE6F7 /* edge.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = edge.caf; path = ../edge.caf; sourceTree = "<group>"; };
 		C9D2E9251B7CADA5008AE6F7 /* released.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = released.caf; path = ../released.caf; sourceTree = "<group>"; };
 		C9D2E9281B7CB81E008AE6F7 /* brick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brick.caf; sourceTree = "<group>"; };
+		C9E3472A1BA0197C0094EE00 /* 3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 3.plist; sourceTree = "<group>"; };
 		C9FEA60F1B70754100CE0E27 /* pinball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pinball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FEA6131B70754100CE0E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9FEA6141B70754100CE0E27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,8 +140,6 @@
 		C9FEA6111B70754100CE0E27 /* pinball */ = {
 			isa = PBXGroup;
 			children = (
-				C95765441B9A5F030058EDFB /* 1.plist */,
-				C95765451B9A5F030058EDFB /* 2.plist */,
 				C948BEF11B89020600821C79 /* explosion.atlas */,
 				C98358F71B7D482A005BF70E /* lose.caf */,
 				C98358F51B7D4396005BF70E /* target.caf */,
@@ -180,6 +180,9 @@
 				C98A1CF61B8D324A00B25607 /* Bouncer.m */,
 				C98A1CFB1B8D4E7400B25607 /* BottomNode.h */,
 				C98A1CFC1B8D4E7400B25607 /* BottomNode.m */,
+				C95765441B9A5F030058EDFB /* 1.plist */,
+				C95765451B9A5F030058EDFB /* 2.plist */,
+				C9E3472A1BA0197C0094EE00 /* 3.plist */,
 			);
 			path = pinball;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				C9D2E9261B7CADA5008AE6F7 /* edge.caf in Resources */,
 				C9D2E9271B7CADA5008AE6F7 /* released.caf in Resources */,
 				C9FEA6281B70754100CE0E27 /* LaunchScreen.xib in Resources */,
+				C9E3472B1BA0197C0094EE00 /* 3.plist in Resources */,
 				C98358F81B7D482A005BF70E /* lose.caf in Resources */,
 				C912636F1B740567006F59FE /* spring.caf in Resources */,
 				C95765471B9A5F030058EDFB /* 2.plist in Resources */,
