@@ -42,7 +42,6 @@
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"menuBg.png"];
         background.anchorPoint = CGPointMake(0, 0);
 
-        
         lbl = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
         lbl.text = @"Game Over";
         lbl.position = CGPointMake(self.size.width/2, self.size.height - 200);
@@ -54,12 +53,12 @@
         score.position = CGPointMake(self.size.width/2, lbl.position.y - 40);
         score.fontColor = [SKColor whiteColor];
         
-        SKSpriteNode *again = [self button:@"Play Again?" pos:CGPointMake(lbl.position.x, lbl.position.y - 120)];
-        again.name = @"Play Again?";
+        SKSpriteNode *again = [self button:@"Try Again?" pos:CGPointMake(lbl.position.x, lbl.position.y - 120)];
+        again.name = @"Try Again?";
         
         SKSpriteNode *menu = [self button:@"Main Menu" pos:CGPointMake(again.position.x, again.position.y - 100)];
         menu.name = @"Main Menu";
-        
+        NSLog(@"%i",[Score shared].currentLevel);
         [self addChild:background];
         [self addChild:lbl];
         [self addChild:again];
@@ -77,15 +76,15 @@
     CGPoint location = [touch locationInNode:self];
     touched = [self nodeAtPoint:location];
     
-//    if ([touched.name isEqualToString:@"Play Again?"]) {
-//        GameScene *scene = [GameScene sceneWithSize:self.size];
-//        
-//        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-//        
-//        [self.view presentScene:scene transition:reveal];
-//        
-//    } else
-    if ([touched.name isEqualToString:@"Main Menu"]) {
+    if ([touched.name isEqualToString:@"Try Again?"]) {
+        GameScene *scene = [[GameScene alloc]initWithSize:self.size level:[NSString stringWithFormat:@"%i", [Score shared].currentLevel]];
+        
+        NSLog(@"%i", [Score shared].currentLevel);
+        
+        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
+        [self.view presentScene:scene transition:reveal];
+        
+    } else if ([touched.name isEqualToString:@"Main Menu"]) {
     
         Menu *scene = [Menu sceneWithSize:self.size];
         

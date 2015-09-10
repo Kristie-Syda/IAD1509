@@ -16,5 +16,7 @@
     SKSpriteNode *star1;
     SKSpriteNode *star2;
     SKSpriteNode *star3;
+    SKSpriteNode *star4;
+    SKSpriteNode *star5;
 }
 @end

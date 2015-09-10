@@ -14,6 +14,7 @@
 @property (nonatomic,assign) int totalScore;
 @property (nonatomic, assign) int ball;
 @property(nonatomic,assign)int pinkCount;
+@property(nonatomic,assign)int currentLevel;
 
 + (instancetype)shared;
 

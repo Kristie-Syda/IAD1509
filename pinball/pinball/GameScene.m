@@ -70,7 +70,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     //Score label
     score = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypewriter"];
     score.fontColor = [SKColor whiteColor];
-    score.text = @"0";
+    score.text = [NSString stringWithFormat:@"%i",[Score shared].currentScore];
     score.position = CGPointMake(self.size.width/2, self.size.height-65);
     
     //score title label
@@ -89,7 +89,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     ballLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     ballLabel.fontColor = [SKColor whiteColor];
-    ballLabel.text = @"3";
+    ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
     ballLabel.position = CGPointMake(self.size.width/3 - 90, self.size.height-65);
     
     SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
@@ -171,7 +171,7 @@ static const uint32_t leftFlip = 0x1 << 6;
 
 //Game OVer
 -(void)gameOver {
-    
+
     SKTransition *close= [SKTransition doorsCloseHorizontalWithDuration:2];
     GameOver *scene = [GameOver sceneWithSize:self.size];
     [self.view presentScene:scene transition:close];
@@ -329,6 +329,8 @@ static const uint32_t leftFlip = 0x1 << 6;
         gameOver = NO;
         nextLevel = NO;
         lvl = [lvlNum intValue];
+        [Score shared].currentLevel = lvl;
+        NSLog(@"%i",[Score shared].currentLevel);
         
         //physics of the world
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
@@ -344,13 +346,13 @@ static const uint32_t leftFlip = 0x1 << 6;
         [self addChild:background];
         [self addTop];
         [self addChild:tableNode];
+        [self levelLabel];
         [self addBall];
         [self addScore];
         [self ballLabel];
         [self actions];
         [self addPause];
-        [self levelLabel];
-    
+        
         //had to connect by properties so I could use in touches
         rightBump = table.RFlipper;
         leftBump = table.LFlipper;
@@ -459,7 +461,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
         [self gameOver];
     }
-    
 }
 
 //touches ended
@@ -532,7 +533,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         
     }
 
-    
     if(update) {
         //updates score
         score.text = [NSString stringWithFormat:@"%i",[Score shared].currentScore];
@@ -550,6 +550,7 @@ static const uint32_t leftFlip = 0x1 << 6;
             [scoreLabel runAction:keepFlashing];
             gameOver = YES;
             
+            
         } else if([Score shared].pinkCount == 0) {
             [self runAction:done];
             nextLevel = YES;
@@ -563,8 +564,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         }        
     }
 }
-
-
 
 //update
 -(void)update:(CFTimeInterval)currentTime {

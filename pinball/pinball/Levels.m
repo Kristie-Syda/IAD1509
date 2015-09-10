@@ -22,7 +22,7 @@
     SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     titleLabel.text = title;
     titleLabel.fontColor = [SKColor blackColor];
-    titleLabel.position = CGPointMake(0, -15);
+    titleLabel.position = CGPointMake(-2, -15);
     
 /* if the level number is greater than the level number 
    that is saved in userdefaults than its not unlocked */
@@ -38,6 +38,7 @@
         titleLabel.name = title;
     }
     
+    nodeImg.size = CGSizeMake(70, 70);
     [nodeImg addChild:titleLabel];
     [nodeImg setPosition:position];
 
@@ -70,9 +71,12 @@
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         level = [data integerForKey:@"passed"];
         
-        star1 = [self star:@"1" pos:CGPointMake(80, self.size.height - 150)];
-        star2 = [self star:@"2" pos:CGPointMake(150, self.size.height - 150)];
-        star3 = [self star:@"3" pos:CGPointMake(220, self.size.height - 150)];
+        star1 = [self star:@"1" pos:CGPointMake(55, self.size.height - 150)];
+        star2 = [self star:@"2" pos:CGPointMake(140, self.size.height - 150)];
+        star3 = [self star:@"3" pos:CGPointMake(225, self.size.height - 150)];
+        star4 = [self star:@"4" pos:CGPointMake(315, self.size.height - 150)];
+        star5 = [self star:@"5" pos:CGPointMake(55, self.size.height - 250)];
+        
         
         [self addChild:background];
         [self addChild:back];
@@ -80,6 +84,8 @@
         [self addChild:star1];
         [self addChild:star2];
         [self addChild:star3];
+        [self addChild:star4];
+        [self addChild:star5];
         [self addChild:reset];
         
     }
@@ -93,28 +99,35 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
     SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
+    GameScene *game = [[GameScene alloc]initWithSize:self.size level:touched.name];
   
     //Menu
     if ([touched.name isEqualToString:@"menu"]) {
         
         Menu *scene = [Menu sceneWithSize:self.size];
         [self.view presentScene:scene transition:reveal];
-        
+    
+    //Level 1
     } else if ([touched.name isEqualToString:@"1"]){
         
-        GameScene *game = [[GameScene alloc]initWithSize:self.size level:@"1"];
         [self.view presentScene:game transition:reveal];
-        
+    
+    //Level 2
     } else if ([touched.name isEqualToString:@"2"]){
         
-        GameScene *game = [[GameScene alloc]initWithSize:self.size level:@"2"];
         [self.view presentScene:game transition:reveal];
-        
+    
+    //Level 3
     } else if ([touched.name isEqualToString:@"3"]){
-            
-        GameScene *game = [[GameScene alloc]initWithSize:self.size level:@"3"];
-        [self.view presentScene:game transition:reveal];
         
+        [self.view presentScene:game transition:reveal];
+    
+    //Level 4
+    } else if([touched.name isEqualToString:@"4"]){
+        
+         [self.view presentScene:game transition:reveal];
+    
+    //reset
     } else if([touched.name isEqualToString:@"reset"]){
         
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];

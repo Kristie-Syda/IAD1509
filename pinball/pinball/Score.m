@@ -9,7 +9,7 @@
 #import "Score.h"
 
 @implementation Score
-@synthesize currentScore,ball,totalScore,pinkCount;
+@synthesize currentScore,ball,totalScore,pinkCount,currentLevel;
 
 +(instancetype)shared {
     
