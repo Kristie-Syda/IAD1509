@@ -28,7 +28,7 @@
 /* if the level number is greater than the level number 
    that is saved in userdefaults than its not unlocked */
 
-    if (levelNum > (level + 1)) {
+    if (levelNum > (level + 5)) {
         
         nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star2.png"];
 
@@ -104,8 +104,6 @@
     SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
     GameScene *game = [[GameScene alloc]initWithSize:self.size level:touched.name];
   
-    NSLog(@"%@",touched.name);
-    
     //Menu
     if ([touched.name isEqualToString:@"menu"]) {
         
@@ -142,7 +140,7 @@
     
         [self.view presentScene:game transition:reveal];
     
-    //reset
+    //reset level to 0 in NSDefaults
     }else if([touched.name isEqualToString:@"reset"]){
         
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];

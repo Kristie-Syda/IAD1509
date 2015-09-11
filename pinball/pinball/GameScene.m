@@ -212,7 +212,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     key = [SKSpriteNode spriteNodeWithImageNamed:@"key.png"];
     key.name = @"key";
     
-    key.position = CGPointMake(self.size.width/2 - 20, self.size.height);
+    key.position = CGPointMake(self.size.width/2 - 20, self.size.height - 50);
     
     [self addChild:key];
 }
@@ -251,10 +251,11 @@ static const uint32_t leftFlip = 0x1 << 6;
     SKAction *flashText = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.3],[SKAction waitForDuration:0.3],[SKAction fadeInWithDuration:0.3]]];
     keepFlashing = [SKAction repeatAction:flashText count:5];
     
+    //key image dropping from the top to the bottom
     keyDrop = [SKAction moveTo:CGPointMake(self.size.width/2 - 20, self.size.height/3 - 40) duration:2];
 }
 
-//create pink bricks
+//create pink + purple bricks
 -(PinkBricks *)addBricks:(NSString*)type pos:(CGPoint)position {
     
     PinkBricks *bricks = [PinkBricks node];
@@ -325,7 +326,8 @@ static const uint32_t leftFlip = 0x1 << 6;
         //background
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:size];
         background.anchorPoint = CGPointMake(0, 0);
-
+        
+        //reset game
         gameOver = NO;
         nextLevel = NO;
         lvl = [lvlNum intValue];
@@ -418,19 +420,19 @@ static const uint32_t leftFlip = 0x1 << 6;
                 plungBall = @"pressed";
                 [self runAction:springs];
                 
-                //left flipper is touched
+            //left flipper is touched
             } else if ([touched.name isEqualToString:@"left"]){
                 
                 [self runAction:bumpers];
                 [leftBump runAction:flippedLeft];
                 
-                //right flipper is touched
+            //right flipper is touched
             } else if([touched.name isEqualToString:@"right"]){
                 
                 [self runAction:bumpers];
                 [rightBump runAction:flippedRight];
                 
-                //pause button
+            //pause button
             } else if ([touched.name isEqualToString:@"pause"]){
                 
                 [self pauseGame];
@@ -441,14 +443,15 @@ static const uint32_t leftFlip = 0x1 << 6;
                 [self next];
             }
             
-            //game is paused
+        //game is paused
         } else if (self.scene.paused == YES) {
             
             //play button is pressed unpause game
             if ([touched.name isEqualToString:@"play"] ^ [touched.name isEqualToString:@"resume"]) {
                 
                 [self pauseGame];
-                
+            
+            //menu button is pressed
             } else if ([touched.name isEqualToString:@"menu"]) {
                 
                 Menu *scene = [Menu sceneWithSize:self.size];
@@ -553,19 +556,23 @@ static const uint32_t leftFlip = 0x1 << 6;
             [score runAction:keepFlashing];
             [scoreLabel runAction:keepFlashing];
             gameOver = YES;
-            
-            
+        
+        //when all bricks are gone
         } else if([Score shared].pinkCount == 0) {
-            [self runAction:done];
+            
             nextLevel = YES;
             
+            //done sound effect
+            [self runAction:done];
+
             //removes ball
             [ball removeFromParent];
             
             //adds key to scene
             [self keyImg];
             [key runAction:keyDrop];
-            
+        
+        //when score hits 5000, player get extra life
         } else if([Score shared].currentScore == 5000) {
             
             [Score shared].ball += 1;
