@@ -330,7 +330,11 @@ static const uint32_t leftFlip = 0x1 << 6;
         nextLevel = NO;
         lvl = [lvlNum intValue];
         [Score shared].currentLevel = lvl;
-        NSLog(@"%i",[Score shared].currentLevel);
+        
+        //if first level get 3 balls
+        if (lvl == 1) {
+            [Score shared].ball = 3;
+        }
         
         //physics of the world
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
@@ -561,13 +565,19 @@ static const uint32_t leftFlip = 0x1 << 6;
             //adds key to scene
             [self keyImg];
             [key runAction:keyDrop];
-        }        
+            
+        } else if([Score shared].currentScore == 5000) {
+            
+            [Score shared].ball += 1;
+            ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
+            NSLog(@"extra life!");
+        }
     }
 }
 
 //update
 -(void)update:(CFTimeInterval)currentTime {
-    
+  
     //spring goes down on plunger
     if ([plungBall isEqualToString:@"pressed"]) {
         

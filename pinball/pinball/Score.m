@@ -29,7 +29,7 @@
         
         totalScore = 0;
         currentScore = 0;
-        ball = 3;
+        ball = 1;
     }
     
     return self;
@@ -42,7 +42,7 @@
 }
 
 -(void)reset {
-    ball = 3;
+    ball = 1;
     totalScore = 0;
     currentScore = 0;    
 }

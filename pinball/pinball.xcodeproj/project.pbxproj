@@ -23,6 +23,8 @@
 		C98A1CFD1B8D4E7400B25607 /* BottomNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1CFC1B8D4E7400B25607 /* BottomNode.m */; };
 		C98A1D411B8F128F00B25607 /* InstScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1D401B8F128F00B25607 /* InstScene.m */; };
 		C98A1D441B8FB2C700B25607 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1D431B8FB2C700B25607 /* Credits.m */; };
+		C9B73E9C1BA22DDD00F1FF13 /* 5.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B73E9B1BA22DDD00F1FF13 /* 5.plist */; };
+		C9B73E9E1BA2468A00F1FF13 /* 6.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B73E9D1BA2468A00F1FF13 /* 6.plist */; };
 		C9BEC6701BA159CD00AD4441 /* 4.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9BEC66F1BA159CD00AD4441 /* 4.plist */; };
 		C9C906341B834EE9000FFD03 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C906331B834EE9000FFD03 /* GameOver.m */; };
 		C9D2E9231B7CA9ED008AE6F7 /* bouncer.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9221B7CA9ED008AE6F7 /* bouncer.caf */; };
@@ -77,6 +79,8 @@
 		C98A1D401B8F128F00B25607 /* InstScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstScene.m; sourceTree = "<group>"; };
 		C98A1D421B8FB2C700B25607 /* Credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credits.h; sourceTree = "<group>"; };
 		C98A1D431B8FB2C700B25607 /* Credits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credits.m; sourceTree = "<group>"; };
+		C9B73E9B1BA22DDD00F1FF13 /* 5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 5.plist; sourceTree = "<group>"; };
+		C9B73E9D1BA2468A00F1FF13 /* 6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 6.plist; sourceTree = "<group>"; };
 		C9BEC66F1BA159CD00AD4441 /* 4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 4.plist; sourceTree = "<group>"; };
 		C9C906321B834EE9000FFD03 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
 		C9C906331B834EE9000FFD03 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				C95765451B9A5F030058EDFB /* 2.plist */,
 				C9E3472A1BA0197C0094EE00 /* 3.plist */,
 				C9BEC66F1BA159CD00AD4441 /* 4.plist */,
+				C9B73E9B1BA22DDD00F1FF13 /* 5.plist */,
+				C9B73E9D1BA2468A00F1FF13 /* 6.plist */,
 			);
 			path = pinball;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B73E9C1BA22DDD00F1FF13 /* 5.plist in Resources */,
 				C95765461B9A5F030058EDFB /* 1.plist in Resources */,
 				C9D2E9261B7CADA5008AE6F7 /* edge.caf in Resources */,
 				C9D2E9271B7CADA5008AE6F7 /* released.caf in Resources */,
@@ -305,6 +312,7 @@
 				C912636F1B740567006F59FE /* spring.caf in Resources */,
 				C95765471B9A5F030058EDFB /* 2.plist in Resources */,
 				C9FEA6251B70754100CE0E27 /* Images.xcassets in Resources */,
+				C9B73E9E1BA2468A00F1FF13 /* 6.plist in Resources */,
 				C948BEF21B89020600821C79 /* explosion.atlas in Resources */,
 				C9BEC6701BA159CD00AD4441 /* 4.plist in Resources */,
 				C9FEA61D1B70754100CE0E27 /* GameScene.sks in Resources */,

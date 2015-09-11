@@ -58,7 +58,7 @@
         
         SKSpriteNode *menu = [self button:@"Main Menu" pos:CGPointMake(again.position.x, again.position.y - 100)];
         menu.name = @"Main Menu";
-        NSLog(@"%i",[Score shared].currentLevel);
+        
         [self addChild:background];
         [self addChild:lbl];
         [self addChild:again];
@@ -78,8 +78,6 @@
     
     if ([touched.name isEqualToString:@"Try Again?"]) {
         GameScene *scene = [[GameScene alloc]initWithSize:self.size level:[NSString stringWithFormat:@"%i", [Score shared].currentLevel]];
-        
-        NSLog(@"%i", [Score shared].currentLevel);
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         [self.view presentScene:scene transition:reveal];

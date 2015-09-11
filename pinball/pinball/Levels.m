@@ -9,6 +9,7 @@
 #import "Levels.h"
 #import "Menu.h"
 #import "GameScene.h"
+#import "Score.h"
 
 @implementation Levels
 
@@ -76,6 +77,7 @@
         star3 = [self star:@"3" pos:CGPointMake(225, self.size.height - 150)];
         star4 = [self star:@"4" pos:CGPointMake(315, self.size.height - 150)];
         star5 = [self star:@"5" pos:CGPointMake(55, self.size.height - 250)];
+        star6 = [self star:@"6" pos:CGPointMake(140, self.size.height - 250)];
         
         
         [self addChild:background];
@@ -86,6 +88,7 @@
         [self addChild:star3];
         [self addChild:star4];
         [self addChild:star5];
+        [self addChild:star6];
         [self addChild:reset];
         
     }
@@ -101,6 +104,8 @@
     SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
     GameScene *game = [[GameScene alloc]initWithSize:self.size level:touched.name];
   
+    NSLog(@"%@",touched.name);
+    
     //Menu
     if ([touched.name isEqualToString:@"menu"]) {
         
@@ -127,12 +132,25 @@
         
          [self.view presentScene:game transition:reveal];
     
+    //lLevel 5
+    }else if([touched.name isEqualToString:@"5"]){
+    
+        [self.view presentScene:game transition:reveal];
+        
+    //Level 6
+    }else if([touched.name isEqualToString:@"6"]){
+    
+        [self.view presentScene:game transition:reveal];
+    
     //reset
-    } else if([touched.name isEqualToString:@"reset"]){
+    }else if([touched.name isEqualToString:@"reset"]){
         
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         [data setInteger:0 forKey:@"passed"];
         [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        Levels *scene = [[Levels alloc]initWithSize:self.size];
+        [self.view presentScene:scene];
         
     } else {
         NSLog(@"Locked!");

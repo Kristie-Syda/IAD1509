@@ -82,14 +82,10 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
     
-    //grab level that is saved in userdefaults
-    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-    NSString *level = [NSString stringWithFormat:@"%li",(long)[data integerForKey:@"passed"] + 1];
-    
-    //Game transition
+    //Game transition on level 1 -- player gets 3 balls
     if ([touched.name isEqualToString:@"Play Game"]) {
         
-        GameScene *scene = [[GameScene alloc]initWithSize:self.size level:level];
+        GameScene *scene = [[GameScene alloc]initWithSize:self.size level:@"1"];
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         
