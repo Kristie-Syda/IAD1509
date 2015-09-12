@@ -116,7 +116,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:titleLabel];
 }
 
-//pause
+//pause button
 -(void)addPause {
     
     pauseButton = [SKSpriteNode spriteNodeWithImageNamed:@"pause.png"];
@@ -131,6 +131,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:pauseButton];
 }
 
+//Pause menu
 -(void)addMenu {
     
     menuNode = [SKNode node];
@@ -239,7 +240,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     [self addChild:key];
 }
-
 
 //All SKActions
 -(void)actions {
