@@ -18,6 +18,7 @@
     SKSpriteNode *pauseButton;
     SKSpriteNode *playBtn;
     SKSpriteNode *key;
+    SKSpriteNode *gateImg;
     SKNode *menuNode;
     SKLabelNode *pauseLbl;
     SKLabelNode *scoreLabel;
@@ -33,6 +34,8 @@
     SKAction *movingTarget;
     SKAction *keepFlashing;
     SKAction *keyDrop;
+    SKAction *gateDrop;
+    SKAction *openGate;
     CGFloat plungerPressed;
     CGFloat plungerReleased;
     NSTimeInterval current;

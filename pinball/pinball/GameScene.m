@@ -64,6 +64,18 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:topCurve];
 }
 
+-(void)addGate{
+    
+    gateImg = [SKSpriteNode spriteNodeWithImageNamed:@"gate.png"];
+    gateImg.position = CGPointMake(480, 218);
+    
+    CGPoint A = CGPointMake(60, gateImg.size.height);
+    CGPoint B = CGPointMake(-35, -40);
+    gateImg.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:A toPoint:B];
+    
+    [self addChild:gateImg];
+}
+
 //adding score
 -(void)addScore {
     
@@ -239,7 +251,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         } else {
             NSLog(@"ball not touching flipper");
         }
-        
     }];
     
     NSArray *flipLeft = @[Left,ballHit,Right];
@@ -253,6 +264,10 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     //key image dropping from the top to the bottom
     keyDrop = [SKAction moveTo:CGPointMake(self.size.width/2 - 20, self.size.height/3 - 40) duration:2];
+    
+    //gate action
+    gateDrop = [SKAction moveTo:CGPointMake(348, 218) duration:0.5];
+    openGate = [SKAction moveTo:CGPointMake(480, 218) duration:0.5];
 }
 
 //create pink + purple bricks
@@ -358,6 +373,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         [self ballLabel];
         [self actions];
         [self addPause];
+        [self addGate];
         
         //had to connect by properties so I could use in touches
         rightBump = table.RFlipper;
@@ -484,9 +500,10 @@ static const uint32_t leftFlip = 0x1 << 6;
         
         //if plunger is low enough make plunging sound
         if (plungerReleased > 15){
+            
             [self runAction:released];
+            
         }
-        
         //resets plunger
         plungerReleased = 0;
     }
@@ -527,6 +544,7 @@ static const uint32_t leftFlip = 0x1 << 6;
 
         ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
         [self addBall];
+        [gateImg runAction:openGate];
         
     //right flipper
     } else if (importantContact.categoryBitMask == rightFlip){
@@ -549,6 +567,9 @@ static const uint32_t leftFlip = 0x1 << 6;
             
             //game over Label shows
             [self addEndLabel];
+            
+            //removes ball
+            [ball removeFromParent];
             
             //changes label to show total score and flashes
             score.text = [NSString stringWithFormat:@"%i", [Score shared].totalScore];
@@ -597,6 +618,10 @@ static const uint32_t leftFlip = 0x1 << 6;
         else {
             //plunger do nothing
         }
+    }
+    
+    if (ball.position.y > 200){
+        return [gateImg runAction:gateDrop];
     }
 }
 
