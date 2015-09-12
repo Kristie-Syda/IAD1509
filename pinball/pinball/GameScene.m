@@ -200,10 +200,21 @@ static const uint32_t leftFlip = 0x1 << 6;
     [data setInteger:lvl forKey:@"passed"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
-    //load in game scene with next level
-    SKTransition *close= [SKTransition doorsCloseHorizontalWithDuration:2];
-    GameScene *scene = [[GameScene alloc]initWithSize:self.size level:nextlvl];
-    [self.view presentScene:scene transition:close];
+    //if next level is 11 got to menu bc there is no level 11
+    if ([nextlvl isEqualToString:@"11"]) {
+        
+        Menu *scene = [Menu sceneWithSize:self.size];
+        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
+        [self.view presentScene:scene transition:reveal];
+        [[Score shared]reset];
+        
+    } else {
+        
+        //load in game scene with next level
+        SKTransition *close= [SKTransition doorsCloseHorizontalWithDuration:2];
+        GameScene *scene = [[GameScene alloc]initWithSize:self.size level:nextlvl];
+        [self.view presentScene:scene transition:close];
+    }
 }
 
 //level label
@@ -229,6 +240,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:key];
 }
 
+
 //All SKActions
 -(void)actions {
     
@@ -246,10 +258,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         if (ballTouch == YES) {
             
             [ball.physicsBody applyImpulse:CGVectorMake(0, 10)];
-            NSLog(@"ball touching flipper");
             ballTouch = NO;
-        } else {
-            NSLog(@"ball not touching flipper");
         }
     }];
     
@@ -544,6 +553,7 @@ static const uint32_t leftFlip = 0x1 << 6;
 
         ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
         [self addBall];
+        gateClose = NO;
         [gateImg runAction:openGate];
         
     //right flipper
@@ -556,6 +566,9 @@ static const uint32_t leftFlip = 0x1 << 6;
         
         ballTouch = YES;
         
+    } else {
+        
+        ballTouch = NO;
     }
 
     if(update) {
@@ -593,13 +606,23 @@ static const uint32_t leftFlip = 0x1 << 6;
             [self keyImg];
             [key runAction:keyDrop];
         
-        //when score hits 5000, player get extra life
+        //when score hits 5000, player gets extra life
         } else if([Score shared].currentScore == 5000) {
             
             [Score shared].ball += 1;
             ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
             NSLog(@"extra life!");
+        
+        //if the ball is over 200 then close the gate
+        } else if (ball.position.y > 250){
+            
+            //if gateClose is already true -- disregard this condition
+            if (gateClose) return;
+            
+            gateClose = YES;
+            [gateImg runAction:gateDrop];
         }
+
     }
 }
 
@@ -618,10 +641,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         else {
             //plunger do nothing
         }
-    }
-    
-    if (ball.position.y > 200){
-        return [gateImg runAction:gateDrop];
     }
 }
 

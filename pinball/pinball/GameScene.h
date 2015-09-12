@@ -48,6 +48,7 @@
     BOOL gameOver;
     BOOL nextLevel;
     BOOL ballTouch;
+    BOOL gateClose;
 }
 
 -(id)initWithSize:(CGSize)size level:(NSString*)lvlNum;

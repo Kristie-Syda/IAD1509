@@ -23,7 +23,7 @@
     SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     titleLabel.text = title;
     titleLabel.fontColor = [SKColor blackColor];
-    titleLabel.position = CGPointMake(-2, -15);
+    titleLabel.position = CGPointMake(0, -15);
     
 /* if the level number is greater than the level number 
    that is saved in userdefaults than its not unlocked */
@@ -39,7 +39,7 @@
         titleLabel.name = title;
     }
     
-    nodeImg.size = CGSizeMake(70, 70);
+    nodeImg.size = CGSizeMake(75, 75);
     [nodeImg addChild:titleLabel];
     [nodeImg setPosition:position];
 
@@ -80,8 +80,8 @@
         star6 = [self star:@"6" pos:CGPointMake(140, self.size.height - 250)];
         star7 = [self star:@"7" pos:CGPointMake(225, self.size.height - 250)];
         star8 = [self star:@"8" pos:CGPointMake(315, self.size.height - 250)];
-       // star9 = [self star:@"9" pos:CGPointMake(55, self.size.height - 350)];
-       // star10 = [self star:@"10" pos:CGPointMake(140, self.size.height - 350)];
+        star9 = [self star:@"9" pos:CGPointMake(55, self.size.height - 350)];
+        star10 = [self star:@"10" pos:CGPointMake(140, self.size.height - 350)];
         
         
         [self addChild:background];
@@ -95,8 +95,8 @@
         [self addChild:star6];
         [self addChild:star7];
         [self addChild:star8];
-        //[self addChild:star9];
-        //[self addChild:star10];
+        [self addChild:star9];
+        [self addChild:star10];
         [self addChild:reset];
         
     }
@@ -139,34 +139,34 @@
          [self.view presentScene:game transition:reveal];
     
     //lLevel 5
-    }else if([touched.name isEqualToString:@"5"]){
+    } else if([touched.name isEqualToString:@"5"]){
     
         [self.view presentScene:game transition:reveal];
         
     //Level 6
-    }else if([touched.name isEqualToString:@"6"]){
+    } else if([touched.name isEqualToString:@"6"]){
     
         [self.view presentScene:game transition:reveal];
     
     //Level 7
-    }else if([touched.name isEqualToString:@"7"]){
+    } else if([touched.name isEqualToString:@"7"]){
         
         [self.view presentScene:game transition:reveal];
         
     //Level 8
-    }else if([touched.name isEqualToString:@"8"]){
+    } else if([touched.name isEqualToString:@"8"]){
         
         [self.view presentScene:game transition:reveal];
         
-//    //Level 9
-//    }else if([touched.name isEqualToString:@"9"]){
-//        
-//        [self.view presentScene:game transition:reveal];
-//        
-//    //Level 10
-//    }else if([touched.name isEqualToString:@"10"]){
-//        
-//        [self.view presentScene:game transition:reveal];
+    //Level 9
+    } else if([touched.name isEqualToString:@"9"]){
+        
+        [self.view presentScene:game transition:reveal];
+        
+    //Level 10
+    } else if([touched.name isEqualToString:@"10"]){
+        
+        [self.view presentScene:game transition:reveal];
         
     //reset level to 0 in NSDefaults
     }else if([touched.name isEqualToString:@"reset"]){

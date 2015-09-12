@@ -3,24 +3,67 @@
 <plist version="1.0">
 <dict>
 	<key>brickCount</key>
-	<string>50</string>
+	<string>29</string>
+	<key>Bouncers</key>
+	<array>
+		<dict>
+			<key>x</key>
+			<integer>60</integer>
+			<key>y</key>
+			<integer>540</integer>
+			<key>type</key>
+			<string>bouncer3</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>bouncer1</string>
+			<key>x</key>
+			<integer>280</integer>
+			<key>y</key>
+			<integer>540</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>bouncer2</string>
+			<key>x</key>
+			<integer>115</integer>
+			<key>y</key>
+			<integer>465</integer>
+		</dict>
+		<dict>
+			<key>x</key>
+			<integer>225</integer>
+			<key>y</key>
+			<integer>465</integer>
+			<key>type</key>
+			<string>bouncer3</string>
+		</dict>
+	</array>
 	<key>PinkBricks</key>
 	<array>
 		<dict>
 			<key>type</key>
 			<string>pink</string>
 			<key>x</key>
-			<string>60</string>
+			<string>115</string>
 			<key>y</key>
-			<string>400</string>
+			<string>525</string>
 		</dict>
 		<dict>
 			<key>type</key>
-			<string>purple</string>
+			<string>pink</string>
 			<key>x</key>
-			<string>115</string>
+			<string>170</string>
 			<key>y</key>
-			<string>400</string>
+			<string>550</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>225</string>
+			<key>y</key>
+			<string>525</string>
 		</dict>
 		<dict>
 			<key>type</key>
@@ -28,7 +71,15 @@
 			<key>x</key>
 			<string>170</string>
 			<key>y</key>
-			<string>400</string>
+			<string>525</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>purple</string>
+			<key>x</key>
+			<string>115</string>
+			<key>y</key>
+			<string>550</string>
 		</dict>
 		<dict>
 			<key>type</key>
@@ -36,125 +87,21 @@
 			<key>x</key>
 			<string>225</string>
 			<key>y</key>
-			<string>400</string>
+			<string>550</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>60</string>
+			<key>y</key>
+			<string>500</string>
 		</dict>
 		<dict>
 			<key>type</key>
 			<string>pink</string>
 			<key>x</key>
 			<string>280</string>
-			<key>y</key>
-			<string>400</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>425</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>450</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>475</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>500</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>525</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>170</string>
-			<key>y</key>
-			<string>525</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>170</string>
-			<key>y</key>
-			<string>500</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>525</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>500</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>60</string>
-			<key>y</key>
-			<string>525</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>475</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>450</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>425</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>60</string>
 			<key>y</key>
 			<string>500</string>
 		</dict>
@@ -186,193 +133,9 @@
 			<key>type</key>
 			<string>pink</string>
 			<key>x</key>
-			<string>60</string>
-			<key>y</key>
-			<string>400</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>60</string>
-			<key>y</key>
-			<string>375</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>60</string>
-			<key>y</key>
-			<string>350</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>60</string>
-			<key>y</key>
-			<string>325</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>60</string>
-			<key>y</key>
-			<string>300</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>60</string>
-			<key>y</key>
-			<string>275</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>375</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>350</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>325</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>300</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>170</string>
-			<key>y</key>
-			<string>300</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>300</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>325</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>350</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>purple</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>375</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>115</string>
-			<key>y</key>
-			<string>275</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>170</string>
-			<key>y</key>
-			<string>275</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>225</string>
-			<key>y</key>
-			<string>275</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
 			<string>280</string>
 			<key>y</key>
-			<string>275</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>280</string>
-			<key>y</key>
-			<string>300</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>280</string>
-			<key>y</key>
-			<string>325</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>280</string>
-			<key>y</key>
-			<string>350</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>280</string>
-			<key>y</key>
-			<string>375</string>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>pink</string>
-			<key>x</key>
-			<string>280</string>
-			<key>y</key>
-			<string>425</string>
+			<string>475</string>
 		</dict>
 		<dict>
 			<key>type</key>
@@ -388,13 +151,21 @@
 			<key>x</key>
 			<string>280</string>
 			<key>y</key>
-			<string>475</string>
+			<string>425</string>
 		</dict>
 		<dict>
 			<key>type</key>
-			<string>pink</string>
+			<string>purple</string>
 			<key>x</key>
-			<string>280</string>
+			<string>115</string>
+			<key>y</key>
+			<string>500</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>purple</string>
+			<key>x</key>
+			<string>225</string>
 			<key>y</key>
 			<string>500</string>
 		</dict>
@@ -402,9 +173,105 @@
 			<key>type</key>
 			<string>pink</string>
 			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>500</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>475</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>450</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>425</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>400</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>375</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>350</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>pink</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>325</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>purple</string>
+			<key>x</key>
+			<string>170</string>
+			<key>y</key>
+			<string>300</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>purple</string>
+			<key>x</key>
+			<string>225</string>
+			<key>y</key>
+			<string>300</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>purple</string>
+			<key>x</key>
+			<string>115</string>
+			<key>y</key>
+			<string>300</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>purple</string>
+			<key>x</key>
+			<string>60</string>
+			<key>y</key>
+			<string>300</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>purple</string>
+			<key>x</key>
 			<string>280</string>
 			<key>y</key>
-			<string>525</string>
+			<string>300</string>
 		</dict>
 	</array>
 </dict>
