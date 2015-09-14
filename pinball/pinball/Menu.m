@@ -9,7 +9,7 @@
 #import "Menu.h"
 #import "GameScene.h"
 #import "Score.h"
-#import "InstScene.h"
+#import "Leader.h"
 #import "Credits.h"
 #import "Levels.h"
 
@@ -58,18 +58,18 @@
              levels.name = @"Levels";
         
              //instructions button
-             instructions = [self button:@"Instructions" pos:CGPointMake(levels.position.x, levels.position.y - 100)];
-             instructions.name = @"Instructions";
+             leader = [self button:@"LeaderBoards" pos:CGPointMake(levels.position.x, levels.position.y - 100)];
+             leader.name = @"LeaderBoards";
              
              //credits button
-             credits = [self button:@"Credits" pos:CGPointMake(instructions.position.x, instructions.position.y - 100)];
+             credits = [self button:@"Credits" pos:CGPointMake(leader.position.x, leader.position.y - 100)];
              credits.name = @"Credits";
         
         [self addChild:background];
         [self addChild:mainLabel];
         [self addChild:play];
         [self addChild:levels];
-        [self addChild:instructions];
+        [self addChild:leader];
         [self addChild:credits];
     }
     
@@ -101,9 +101,9 @@
         [self.view presentScene:scene transition:trans];
         
     //Instruction transition
-    } else if ([touched.name isEqualToString:@"Instructions"]){
+    } else if ([touched.name isEqualToString:@"LeaderBoards"]){
         
-        InstScene *scene = [InstScene sceneWithSize:self.size];
+        Leader *scene = [Leader sceneWithSize:self.size];
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         

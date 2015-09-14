@@ -1,22 +1,21 @@
 //
-//  InstScene.m
+//  Leader.m
 //  pinball
 //
-//  Created by Kristie Syda on 8/27/15.
+//  Created by Kristie Syda on 9/13/15.
 //  Copyright (c) 2015 ___ksyda___. All rights reserved.
 //
 
-#import "InstScene.h"
+#import "Leader.h"
 #import "Menu.h"
 
-@implementation InstScene
-
+@implementation Leader
 
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
         
-        SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"instBg.png"];
+        SKSpriteNode *background = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:self.size];
         background.anchorPoint = CGPointMake(0, 0);
         
         SKSpriteNode *back = [SKSpriteNode spriteNodeWithImageNamed:@"back.png"];
@@ -43,9 +42,10 @@
         SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
         
         [self.view presentScene:scene transition:reveal];
-
+        
     }
     
 }
+
 
 @end

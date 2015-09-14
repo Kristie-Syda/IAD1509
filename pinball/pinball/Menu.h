@@ -11,7 +11,7 @@
 @interface Menu : SKScene
 {
     SKSpriteNode *play;
-    SKSpriteNode *instructions;
+    SKSpriteNode *leader;
     SKSpriteNode *credits;
     SKSpriteNode *levels;
 }
