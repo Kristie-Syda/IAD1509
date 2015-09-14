@@ -18,6 +18,22 @@
 		C95765461B9A5F030058EDFB /* 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95765441B9A5F030058EDFB /* 1.plist */; };
 		C95765471B9A5F030058EDFB /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95765451B9A5F030058EDFB /* 2.plist */; };
 		C9650E421BA62EB100AA0783 /* Leader.m in Sources */ = {isa = PBXBuildFile; fileRef = C9650E411BA62EB100AA0783 /* Leader.m */; };
+		C9650E631BA6619E00AA0783 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E611BA6619E00AA0783 /* Bolts.framework */; };
+		C9650E641BA6619E00AA0783 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E621BA6619E00AA0783 /* Parse.framework */; };
+		C9650E661BA661B300AA0783 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E651BA661B300AA0783 /* Accounts.framework */; };
+		C9650E681BA661C400AA0783 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E671BA661C400AA0783 /* Social.framework */; };
+		C9650E6A1BA6620E00AA0783 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E691BA6620E00AA0783 /* SystemConfiguration.framework */; };
+		C9650E6C1BA6621500AA0783 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E6B1BA6621500AA0783 /* StoreKit.framework */; };
+		C9650E6E1BA6621E00AA0783 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E6D1BA6621E00AA0783 /* QuartzCore.framework */; };
+		C9650E701BA6622600AA0783 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E6F1BA6622600AA0783 /* CoreLocation.framework */; };
+		C9650E721BA6623100AA0783 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E711BA6623100AA0783 /* CoreGraphics.framework */; };
+		C9650E741BA6624100AA0783 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E731BA6624100AA0783 /* AudioToolbox.framework */; };
+		C9650E761BA6624B00AA0783 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E751BA6624B00AA0783 /* CFNetwork.framework */; };
+		C9650E781BA6626400AA0783 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E771BA6626400AA0783 /* libsqlite3.dylib */; };
+		C9650E7A1BA6627300AA0783 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E791BA6627300AA0783 /* libz.dylib */; };
+		C9650E7C1BA6628200AA0783 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E7B1BA6628200AA0783 /* Security.framework */; };
+		C9650E7F1BA69F4500AA0783 /* SignUP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9650E7E1BA69F4500AA0783 /* SignUP.m */; };
+		C9650E821BA6C05700AA0783 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = C9650E811BA6C05700AA0783 /* Login.m */; };
 		C98002AA1B7E715F0047DD4C /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = C98002A91B7E715F0047DD4C /* Score.m */; };
 		C98358F61B7D4396005BF70E /* target.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F51B7D4396005BF70E /* target.caf */; };
 		C98358F81B7D482A005BF70E /* lose.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F71B7D482A005BF70E /* lose.caf */; };
@@ -71,6 +87,24 @@
 		C95765451B9A5F030058EDFB /* 2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2.plist; sourceTree = "<group>"; };
 		C9650E401BA62EB100AA0783 /* Leader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leader.h; sourceTree = "<group>"; };
 		C9650E411BA62EB100AA0783 /* Leader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leader.m; sourceTree = "<group>"; };
+		C9650E611BA6619E00AA0783 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		C9650E621BA6619E00AA0783 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		C9650E651BA661B300AA0783 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		C9650E671BA661C400AA0783 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C9650E691BA6620E00AA0783 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C9650E6B1BA6621500AA0783 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C9650E6D1BA6621E00AA0783 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C9650E6F1BA6622600AA0783 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C9650E711BA6623100AA0783 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C9650E731BA6624100AA0783 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C9650E751BA6624B00AA0783 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C9650E771BA6626400AA0783 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C9650E791BA6627300AA0783 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C9650E7B1BA6628200AA0783 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C9650E7D1BA69F4500AA0783 /* SignUP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUP.h; sourceTree = "<group>"; };
+		C9650E7E1BA69F4500AA0783 /* SignUP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUP.m; sourceTree = "<group>"; };
+		C9650E801BA6C05700AA0783 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = ../Login.h; sourceTree = "<group>"; };
+		C9650E811BA6C05700AA0783 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = ../Login.m; sourceTree = "<group>"; };
 		C98002A81B7E715F0047DD4C /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		C98002A91B7E715F0047DD4C /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		C98358F51B7D4396005BF70E /* target.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = target.caf; sourceTree = "<group>"; };
@@ -120,6 +154,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9650E7C1BA6628200AA0783 /* Security.framework in Frameworks */,
+				C9650E7A1BA6627300AA0783 /* libz.dylib in Frameworks */,
+				C9650E781BA6626400AA0783 /* libsqlite3.dylib in Frameworks */,
+				C9650E761BA6624B00AA0783 /* CFNetwork.framework in Frameworks */,
+				C9650E741BA6624100AA0783 /* AudioToolbox.framework in Frameworks */,
+				C9650E721BA6623100AA0783 /* CoreGraphics.framework in Frameworks */,
+				C9650E701BA6622600AA0783 /* CoreLocation.framework in Frameworks */,
+				C9650E6E1BA6621E00AA0783 /* QuartzCore.framework in Frameworks */,
+				C9650E6C1BA6621500AA0783 /* StoreKit.framework in Frameworks */,
+				C9650E6A1BA6620E00AA0783 /* SystemConfiguration.framework in Frameworks */,
+				C9650E681BA661C400AA0783 /* Social.framework in Frameworks */,
+				C9650E661BA661B300AA0783 /* Accounts.framework in Frameworks */,
+				C9650E641BA6619E00AA0783 /* Parse.framework in Frameworks */,
+				C9650E631BA6619E00AA0783 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +184,18 @@
 		C9FEA6061B70754000CE0E27 = {
 			isa = PBXGroup;
 			children = (
+				C9650E7B1BA6628200AA0783 /* Security.framework */,
+				C9650E791BA6627300AA0783 /* libz.dylib */,
+				C9650E771BA6626400AA0783 /* libsqlite3.dylib */,
+				C9650E751BA6624B00AA0783 /* CFNetwork.framework */,
+				C9650E731BA6624100AA0783 /* AudioToolbox.framework */,
+				C9650E711BA6623100AA0783 /* CoreGraphics.framework */,
+				C9650E6F1BA6622600AA0783 /* CoreLocation.framework */,
+				C9650E6D1BA6621E00AA0783 /* QuartzCore.framework */,
+				C9650E6B1BA6621500AA0783 /* StoreKit.framework */,
+				C9650E691BA6620E00AA0783 /* SystemConfiguration.framework */,
+				C9650E671BA661C400AA0783 /* Social.framework */,
+				C9650E651BA661B300AA0783 /* Accounts.framework */,
 				C9FEA6111B70754100CE0E27 /* pinball */,
 				C9FEA6301B70754100CE0E27 /* pinballTests */,
 				C9FEA6101B70754100CE0E27 /* Products */,
@@ -154,6 +214,8 @@
 		C9FEA6111B70754100CE0E27 /* pinball */ = {
 			isa = PBXGroup;
 			children = (
+				C9650E611BA6619E00AA0783 /* Bolts.framework */,
+				C9650E621BA6619E00AA0783 /* Parse.framework */,
 				C948BEF11B89020600821C79 /* explosion.atlas */,
 				C98358F71B7D482A005BF70E /* lose.caf */,
 				C98358F51B7D4396005BF70E /* target.caf */,
@@ -179,6 +241,10 @@
 				C98A1D431B8FB2C700B25607 /* Credits.m */,
 				C9650E401BA62EB100AA0783 /* Leader.h */,
 				C9650E411BA62EB100AA0783 /* Leader.m */,
+				C9650E7D1BA69F4500AA0783 /* SignUP.h */,
+				C9650E7E1BA69F4500AA0783 /* SignUP.m */,
+				C9650E801BA6C05700AA0783 /* Login.h */,
+				C9650E811BA6C05700AA0783 /* Login.m */,
 				C9FEA61C1B70754100CE0E27 /* GameScene.sks */,
 				C9FEA61E1B70754100CE0E27 /* GameViewController.h */,
 				C9FEA61F1B70754100CE0E27 /* GameViewController.m */,
@@ -355,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9650E421BA62EB100AA0783 /* Leader.m in Sources */,
+				C9650E7F1BA69F4500AA0783 /* SignUP.m in Sources */,
 				C98A1CF71B8D324A00B25607 /* Bouncer.m in Sources */,
 				C9FEA6201B70754100CE0E27 /* GameViewController.m in Sources */,
 				C9884B7E1B8BA896001994EE /* Menu.m in Sources */,
@@ -364,6 +431,7 @@
 				C98002AA1B7E715F0047DD4C /* Score.m in Sources */,
 				C9C906341B834EE9000FFD03 /* GameOver.m in Sources */,
 				C98A1D441B8FB2C700B25607 /* Credits.m in Sources */,
+				C9650E821BA6C05700AA0783 /* Login.m in Sources */,
 				C9FEA61B1B70754100CE0E27 /* GameScene.m in Sources */,
 				C9FEA6151B70754100CE0E27 /* main.m in Sources */,
 				C9884B871B8C0E13001994EE /* TableMaker.m in Sources */,
@@ -494,6 +562,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jennifer McCarrick (VET4496F2Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jennifer McCarrick (VET4496F2Z)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pinball",
+				);
 				INFOPLIST_FILE = pinball/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -510,6 +582,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jennifer McCarrick (VET4496F2Z)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pinball",
+				);
 				INFOPLIST_FILE = pinball/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

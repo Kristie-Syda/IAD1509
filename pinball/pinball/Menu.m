@@ -12,6 +12,8 @@
 #import "Leader.h"
 #import "Credits.h"
 #import "Levels.h"
+#import "SignUP.h"
+#import "Login.h"
 
 @implementation Menu
 
@@ -47,10 +49,11 @@
         SKLabelNode *mainLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
         mainLabel.text = @"Main Menu";
         mainLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-        mainLabel.position = CGPointMake(self.size.width/2, self.size.height - 200);
+        mainLabel.position = CGPointMake(self.size.width/2, self.size.height - 60);
+        mainLabel.fontSize = 50;
              
              //play button
-             play = [self button:@"Play Game" pos:CGPointMake(self.size.width/2 - 5, mainLabel.position.y - 100)];
+             play = [self button:@"Play Game" pos:CGPointMake(self.size.width/2 - 5, mainLabel.position.y - 200)];
              play.name = @"Play Game";
         
              //Levels button
@@ -65,12 +68,22 @@
              credits = [self button:@"Credits" pos:CGPointMake(leader.position.x, leader.position.y - 100)];
              credits.name = @"Credits";
         
+        SKSpriteNode *login = [SKSpriteNode spriteNodeWithImageNamed:@"login.png"];
+        login.position = CGPointMake(self.size.width - 60, self.size.height - 105);
+        login.name = @"login";
+        
+        SKSpriteNode *signUp = [SKSpriteNode spriteNodeWithImageNamed:@"signUp.png"];
+        signUp.position = CGPointMake(self.size.width - 170, self.size.height - 105);
+        signUp.name = @"signUp";
+        
         [self addChild:background];
         [self addChild:mainLabel];
         [self addChild:play];
         [self addChild:levels];
         [self addChild:leader];
         [self addChild:credits];
+        [self addChild:login];
+        [self addChild:signUp];
     }
     
     return self;
@@ -100,7 +113,7 @@
         
         [self.view presentScene:scene transition:trans];
         
-    //Instruction transition
+    //LeaderBoard transition
     } else if ([touched.name isEqualToString:@"LeaderBoards"]){
         
         Leader *scene = [Leader sceneWithSize:self.size];
@@ -116,7 +129,25 @@
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         
-        [self.view presentScene:scene transition:reveal];        
+        [self.view presentScene:scene transition:reveal];
+        
+    //Sign Up
+    } else if ([touched.name isEqualToString:@"signUp"]){
+        
+        SignUP *scene = [SignUP sceneWithSize:self.size];
+        
+        SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
+        
+        [self.view presentScene:scene transition:reveal];
+
+        
+    } else if ([touched.name isEqualToString:@"login"]){
+        
+        Login *scene = [Login sceneWithSize:self.size];
+        
+        SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
+        
+        [self.view presentScene:scene transition:reveal];
     }
 }
 

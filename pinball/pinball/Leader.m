@@ -8,6 +8,7 @@
 
 #import "Leader.h"
 #import "Menu.h"
+#import <Parse/Parse.h>
 
 @implementation Leader
 
@@ -40,7 +41,11 @@
         Menu *scene = [Menu sceneWithSize:self.size];
         
         SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
-        
+//        PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+//        testObject[@"foo"] = @"bar";
+//        [testObject saveInBackground];
+//        NSLog(@"ran test");
+
         [self.view presentScene:scene transition:reveal];
         
     }
