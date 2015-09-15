@@ -9,8 +9,9 @@
 #import "Login.h"
 #import "Menu.h"
 #import <Parse/Parse.h>
+#import "Score.h"
 
-@implementation Login
+@implementation Login 
 
 
 -(void)didMoveToView:(SKView *)view {
@@ -23,6 +24,7 @@
     userName.borderStyle = UITextBorderStyleRoundedRect;
     userName.backgroundColor = [UIColor lightGrayColor];
     userName.textColor = [UIColor blackColor];
+    userName.delegate = self;
     
     //Password
     password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 110, 150, 30)];
@@ -31,15 +33,17 @@
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.backgroundColor = [UIColor lightGrayColor];
     password.textColor = [UIColor blackColor];
+    password.delegate = self;
     
     alertView = [[UIAlertView alloc] initWithTitle:@"Please leave no blank boxess" message:@"Your message is this message" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    
 
     [self.view addSubview:userName];
     [self.view addSubview:password];
     
 }
 
+
+//label maker
 -(SKLabelNode *)labelMaker:(NSString *)title position:(CGPoint)pos {
     
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
@@ -51,10 +55,39 @@
     return label;
 }
 
+//clear view
+-(void)resetView {
+    
+    [userName removeFromSuperview];
+    [password removeFromSuperview];
+}
+
+//loggin in method
+-(void)loggedIn{
+    
+    //shows a pop up alert thats lets user know they are logging in
+    UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:nil message:@"Logging in..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    toastMsg.backgroundColor = [UIColor blackColor];
+    [toastMsg show];
+    
+    int duration = 1;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
+                   ^{
+                       [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
+                   });
+    //opens menu
+    Menu *scene = [Menu sceneWithSize:self.size];
+    SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
+    
+    [self resetView];
+    [self.view presentScene:scene transition:reveal];
+}
 
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
+        
         
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"menuBg.png"];
         background.anchorPoint = CGPointMake(0, 0);
@@ -69,9 +102,8 @@
         back.name = @"menu";
         back.position = CGPointMake(40, self.size.height-50);
         
-        
         //Introduction label
-        SKLabelNode *intro = [self labelMaker:@"Please fill out form to register" position:CGPointMake(self.size.width/2, self.size.height - 160)];
+        SKLabelNode *intro = [self labelMaker:@"Please fill out form to login" position:CGPointMake(self.size.width/2, self.size.height - 160)];
         intro.fontSize = 20;
         
         //labels
@@ -93,8 +125,7 @@
         
         //add label to button
         [submit addChild:submitLabel];
-
-        
+    
         [self addChild:background];
         [self addChild:lbl];
         [self addChild:back];
@@ -102,12 +133,23 @@
         [self addChild:submit];
         [self addChild:userLabel];
         [self addChild:passwordLabel];
-        
-        
     }
     
     return self;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+}
+
+-(BOOL) textFieldShouldReturn: (UITextField *) textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -116,6 +158,9 @@
     SKNode *touched = [self nodeAtPoint:location];
     
     if ([touched.name isEqualToString:@"menu"]) {
+        
+        [self resetView];
+        
         Menu *scene = [Menu sceneWithSize:self.size];
         
         SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
@@ -123,22 +168,33 @@
         [self.view presentScene:scene transition:reveal];
         
     } else if ([touched.name isEqualToString:@"submit"]){
-        
+       
+        //log in
         [PFUser logInWithUsernameInBackground:userName.text password:password.text
                 block:^(PFUser *user, NSError *error) {
                         if (user) {
                             
+                            //set current user
+                            [PFUser becomeInBackground:[user sessionToken] block:^(PFUser *user, NSError *error) {
+                                if (error) {
+                                    
+                                    UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:[error userInfo][@"error"] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+                                    
+                                    [errorMsg show];
+                                    
+                                } else {
+                                    
+                                    [self loggedIn];
+                                }
+                            }];
                             
-                            NSLog(@"logged in");
-                            
-                            } else {
+                        } else {
                                 
-                               UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"wrong username or password, please try again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+                            UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"wrong username or password, please try again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
                                 
                                 [errorMsg show];
-                                
-                            }
-                        }];
+                        }
+        }];
     }
     
 }

@@ -9,6 +9,7 @@
 #import "SignUP.h"
 #import "Menu.h"
 #import <Parse/Parse.h>
+#import "Score.h"
 
 @implementation SignUP
 
@@ -21,6 +22,7 @@
     firstName.borderStyle = UITextBorderStyleRoundedRect;
     firstName.backgroundColor = [UIColor lightGrayColor];
     firstName.textColor = [UIColor blackColor];
+    firstName.delegate = self;
     
     //Lastname
     lastName = [[UITextField alloc]initWithFrame:CGRectMake(205, self.size.height/2 - 100, 120, 30)];
@@ -29,6 +31,7 @@
     lastName.borderStyle = UITextBorderStyleRoundedRect;
     lastName.backgroundColor = [UIColor lightGrayColor];
     lastName.textColor = [UIColor blackColor];
+    lastName.delegate = self;
     
     //Email
     email = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 30, 250, 30)];
@@ -37,6 +40,7 @@
     email.borderStyle = UITextBorderStyleRoundedRect;
     email.backgroundColor = [UIColor lightGrayColor];
     email.textColor = [UIColor blackColor];
+    email.delegate = self;
     
     //Username
     userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 40, 150, 30)];
@@ -45,6 +49,7 @@
     userName.borderStyle = UITextBorderStyleRoundedRect;
     userName.backgroundColor = [UIColor lightGrayColor];
     userName.textColor = [UIColor blackColor];
+    userName.delegate = self;
     
     //Password
     password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 110, 150, 30)];
@@ -53,6 +58,7 @@
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.backgroundColor = [UIColor lightGrayColor];
     password.textColor = [UIColor blackColor];
+    password.delegate = self;
 
     alertView = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Please leave no boxes empty" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
     
@@ -66,6 +72,19 @@
     
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+}
+
+-(BOOL) textFieldShouldReturn: (UITextField *) textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+
 -(void)resetView {
     
     [firstName removeFromSuperview];
@@ -73,15 +92,6 @@
     [email removeFromSuperview];
     [userName removeFromSuperview];
     [password removeFromSuperview];
-}
-
--(void)resetText {
-    
-    firstName.text = @"";
-    lastName.text = @"";
-    email.text = @"";
-    userName.text = @"";
-    password.text = @"";
 }
 
 -(SKLabelNode *)labelMaker:(NSString *)title position:(CGPoint)pos {
@@ -194,6 +204,7 @@
         } else {
             
             PFUser *player = [PFUser user];
+            player = [PFUser currentUser];
             
             player[@"First"] = firstName.text;
             player[@"Last"] = lastName.text;
@@ -204,9 +215,7 @@
             [player signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     
-                    [self resetText];
-                    NSLog(@"ran test");
-                    
+
                     [saved show];
 
                 } else {

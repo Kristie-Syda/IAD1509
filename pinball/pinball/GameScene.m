@@ -622,7 +622,6 @@ static const uint32_t leftFlip = 0x1 << 6;
             gateClose = YES;
             [gateImg runAction:gateDrop];
         }
-
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <Parse/Parse.h>
 
 @interface Menu : SKScene
 {
@@ -14,5 +15,6 @@
     SKSpriteNode *leader;
     SKSpriteNode *credits;
     SKSpriteNode *levels;
+    PFUser *currentUser;
 }
 @end

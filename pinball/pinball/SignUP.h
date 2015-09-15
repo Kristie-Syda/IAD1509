@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface SignUP : SKScene
+@interface SignUP : SKScene <UITextFieldDelegate>
 {
     UITextField *firstName;
     UITextField *lastName;

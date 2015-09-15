@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface Login : SKScene
+@interface Login : SKScene <UITextFieldDelegate>
 {
     SKLabelNode *lbl;
     UITextField *firstName;

@@ -13,6 +13,7 @@
 #import "Credits.h"
 #import "Levels.h"
 #import "SignUP.h"
+#import <Parse/Parse.h>
 #import "Login.h"
 
 @implementation Menu
@@ -51,7 +52,12 @@
         mainLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         mainLabel.position = CGPointMake(self.size.width/2, self.size.height - 60);
         mainLabel.fontSize = 50;
-             
+        
+        SKLabelNode *welcome = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
+        welcome.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+        welcome.position = CGPointMake(30, self.size.height - 105);
+        welcome.fontSize = 20;
+
              //play button
              play = [self button:@"Play Game" pos:CGPointMake(self.size.width/2 - 5, mainLabel.position.y - 200)];
              play.name = @"Play Game";
@@ -68,22 +74,41 @@
              credits = [self button:@"Credits" pos:CGPointMake(leader.position.x, leader.position.y - 100)];
              credits.name = @"Credits";
         
-        SKSpriteNode *login = [SKSpriteNode spriteNodeWithImageNamed:@"login.png"];
-        login.position = CGPointMake(self.size.width - 60, self.size.height - 105);
-        login.name = @"login";
-        
-        SKSpriteNode *signUp = [SKSpriteNode spriteNodeWithImageNamed:@"signUp.png"];
-        signUp.position = CGPointMake(self.size.width - 170, self.size.height - 105);
-        signUp.name = @"signUp";
-        
         [self addChild:background];
         [self addChild:mainLabel];
         [self addChild:play];
         [self addChild:levels];
         [self addChild:leader];
         [self addChild:credits];
-        [self addChild:login];
-        [self addChild:signUp];
+        
+        currentUser = [PFUser currentUser];
+        NSLog(@"current user = %@",currentUser);
+        
+        if (currentUser) {
+            NSLog(@"should show welcome");
+            SKSpriteNode *logOff = [SKSpriteNode spriteNodeWithImageNamed:@"logOut"];
+            logOff.position = CGPointMake(self.size.width - 60, self.size.height - 105);
+            logOff.name = @"logOff";
+            
+            welcome.text = [NSString stringWithFormat:@"Welcome %@, ", [currentUser username]];
+            
+            [self addChild:logOff];
+            [self addChild:welcome];
+            
+        } else if (!currentUser) {
+            
+            SKSpriteNode *login = [SKSpriteNode spriteNodeWithImageNamed:@"login.png"];
+            login.position = CGPointMake(self.size.width - 60, self.size.height - 105);
+            login.name = @"login";
+            
+            SKSpriteNode *signUp = [SKSpriteNode spriteNodeWithImageNamed:@"signUp.png"];
+            signUp.position = CGPointMake(self.size.width - 170, self.size.height - 105);
+            signUp.name = @"signUp";
+            
+            [self addChild:login];
+            [self addChild:signUp];
+        }
+        
     }
     
     return self;
@@ -139,8 +164,7 @@
         SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
         
         [self.view presentScene:scene transition:reveal];
-
-        
+  
     } else if ([touched.name isEqualToString:@"login"]){
         
         Login *scene = [Login sceneWithSize:self.size];
@@ -148,6 +172,19 @@
         SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
         
         [self.view presentScene:scene transition:reveal];
+        
+    } else if ([touched.name isEqualToString:@"logOff"]){
+        
+        [PFUser logOut];
+        
+        currentUser = [PFUser currentUser];
+        
+        Menu *scene = [Menu sceneWithSize:self.size];
+        
+        SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
+        
+        [self.view presentScene:scene transition:reveal];
+       
     }
 }
 

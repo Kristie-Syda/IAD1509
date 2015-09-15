@@ -32,8 +32,6 @@
 		C9650E781BA6626400AA0783 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E771BA6626400AA0783 /* libsqlite3.dylib */; };
 		C9650E7A1BA6627300AA0783 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E791BA6627300AA0783 /* libz.dylib */; };
 		C9650E7C1BA6628200AA0783 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E7B1BA6628200AA0783 /* Security.framework */; };
-		C9650E7F1BA69F4500AA0783 /* SignUP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9650E7E1BA69F4500AA0783 /* SignUP.m */; };
-		C9650E821BA6C05700AA0783 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = C9650E811BA6C05700AA0783 /* Login.m */; };
 		C98002AA1B7E715F0047DD4C /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = C98002A91B7E715F0047DD4C /* Score.m */; };
 		C98358F61B7D4396005BF70E /* target.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F51B7D4396005BF70E /* target.caf */; };
 		C98358F81B7D482A005BF70E /* lose.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F71B7D482A005BF70E /* lose.caf */; };
@@ -52,6 +50,8 @@
 		C9D2E9271B7CADA5008AE6F7 /* released.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9251B7CADA5008AE6F7 /* released.caf */; };
 		C9D2E9291B7CB81E008AE6F7 /* brick.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9281B7CB81E008AE6F7 /* brick.caf */; };
 		C9E3472B1BA0197C0094EE00 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9E3472A1BA0197C0094EE00 /* 3.plist */; };
+		C9EAA6281BA8929F008731F4 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA6271BA8929F008731F4 /* Login.m */; };
+		C9EAA62B1BA892C3008731F4 /* SignUP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA62A1BA892C3008731F4 /* SignUP.m */; };
 		C9FEA6151B70754100CE0E27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA6141B70754100CE0E27 /* main.m */; };
 		C9FEA6181B70754100CE0E27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA6171B70754100CE0E27 /* AppDelegate.m */; };
 		C9FEA61B1B70754100CE0E27 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA61A1B70754100CE0E27 /* GameScene.m */; };
@@ -101,10 +101,6 @@
 		C9650E771BA6626400AA0783 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C9650E791BA6627300AA0783 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C9650E7B1BA6628200AA0783 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C9650E7D1BA69F4500AA0783 /* SignUP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUP.h; sourceTree = "<group>"; };
-		C9650E7E1BA69F4500AA0783 /* SignUP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUP.m; sourceTree = "<group>"; };
-		C9650E801BA6C05700AA0783 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = ../Login.h; sourceTree = "<group>"; };
-		C9650E811BA6C05700AA0783 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = ../Login.m; sourceTree = "<group>"; };
 		C98002A81B7E715F0047DD4C /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		C98002A91B7E715F0047DD4C /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		C98358F51B7D4396005BF70E /* target.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = target.caf; sourceTree = "<group>"; };
@@ -131,6 +127,10 @@
 		C9D2E9251B7CADA5008AE6F7 /* released.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = released.caf; path = ../released.caf; sourceTree = "<group>"; };
 		C9D2E9281B7CB81E008AE6F7 /* brick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brick.caf; sourceTree = "<group>"; };
 		C9E3472A1BA0197C0094EE00 /* 3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 3.plist; sourceTree = "<group>"; };
+		C9EAA6261BA8929F008731F4 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		C9EAA6271BA8929F008731F4 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		C9EAA6291BA892C3008731F4 /* SignUP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUP.h; sourceTree = "<group>"; };
+		C9EAA62A1BA892C3008731F4 /* SignUP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUP.m; sourceTree = "<group>"; };
 		C9FEA60F1B70754100CE0E27 /* pinball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pinball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FEA6131B70754100CE0E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9FEA6141B70754100CE0E27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -214,6 +214,10 @@
 		C9FEA6111B70754100CE0E27 /* pinball */ = {
 			isa = PBXGroup;
 			children = (
+				C9EAA6291BA892C3008731F4 /* SignUP.h */,
+				C9EAA62A1BA892C3008731F4 /* SignUP.m */,
+				C9EAA6261BA8929F008731F4 /* Login.h */,
+				C9EAA6271BA8929F008731F4 /* Login.m */,
 				C9650E611BA6619E00AA0783 /* Bolts.framework */,
 				C9650E621BA6619E00AA0783 /* Parse.framework */,
 				C948BEF11B89020600821C79 /* explosion.atlas */,
@@ -241,10 +245,6 @@
 				C98A1D431B8FB2C700B25607 /* Credits.m */,
 				C9650E401BA62EB100AA0783 /* Leader.h */,
 				C9650E411BA62EB100AA0783 /* Leader.m */,
-				C9650E7D1BA69F4500AA0783 /* SignUP.h */,
-				C9650E7E1BA69F4500AA0783 /* SignUP.m */,
-				C9650E801BA6C05700AA0783 /* Login.h */,
-				C9650E811BA6C05700AA0783 /* Login.m */,
 				C9FEA61C1B70754100CE0E27 /* GameScene.sks */,
 				C9FEA61E1B70754100CE0E27 /* GameViewController.h */,
 				C9FEA61F1B70754100CE0E27 /* GameViewController.m */,
@@ -420,8 +420,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9EAA6281BA8929F008731F4 /* Login.m in Sources */,
 				C9650E421BA62EB100AA0783 /* Leader.m in Sources */,
-				C9650E7F1BA69F4500AA0783 /* SignUP.m in Sources */,
 				C98A1CF71B8D324A00B25607 /* Bouncer.m in Sources */,
 				C9FEA6201B70754100CE0E27 /* GameViewController.m in Sources */,
 				C9884B7E1B8BA896001994EE /* Menu.m in Sources */,
@@ -429,9 +429,9 @@
 				C957653F1B98F8DA0058EDFB /* Levels.m in Sources */,
 				C9FEA6181B70754100CE0E27 /* AppDelegate.m in Sources */,
 				C98002AA1B7E715F0047DD4C /* Score.m in Sources */,
+				C9EAA62B1BA892C3008731F4 /* SignUP.m in Sources */,
 				C9C906341B834EE9000FFD03 /* GameOver.m in Sources */,
 				C98A1D441B8FB2C700B25607 /* Credits.m in Sources */,
-				C9650E821BA6C05700AA0783 /* Login.m in Sources */,
 				C9FEA61B1B70754100CE0E27 /* GameScene.m in Sources */,
 				C9FEA6151B70754100CE0E27 /* main.m in Sources */,
 				C9884B871B8C0E13001994EE /* TableMaker.m in Sources */,

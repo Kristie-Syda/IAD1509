@@ -10,11 +10,15 @@
 #import "GameScene.h"
 #import "Menu.h"
 #import "Score.h"
+#import <Parse/Parse.h>
 
 @implementation GameOver
 {
     SKLabelNode *lbl;
     SKNode *touched;
+    NSNumber *level;
+    //NSString *player;
+    NSNumber *totalScore;
 }
 
 //button creator
@@ -38,6 +42,11 @@
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
+        
+        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+        
+        level = [NSNumber numberWithFloat:[data integerForKey:@"passed"]];
+        totalScore = [NSNumber numberWithInt:[Score shared].totalScore];
         
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"menuBg.png"];
         background.anchorPoint = CGPointMake(0, 0);
@@ -64,7 +73,6 @@
         [self addChild:again];
         [self addChild:menu];
         [self addChild:score];
-        
     }
     
     return self;
@@ -83,6 +91,23 @@
         [self.view presentScene:scene transition:reveal];
         
     } else if ([touched.name isEqualToString:@"Main Menu"]) {
+        
+        //grab data from current user
+        PFUser *current = [PFUser currentUser];
+        
+        //add in game info to HighScore and pass current user data also
+        PFObject *data = [PFObject objectWithClassName:@"HighScore"];
+        data[@"Score"] = totalScore;
+        data[@"Player"] = current;
+        data[@"Level"] = level;
+        [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                
+                NSLog(@"did it");
+            } else {
+                
+            }
+        }];
     
         Menu *scene = [Menu sceneWithSize:self.size];
         
