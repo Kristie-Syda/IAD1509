@@ -8,6 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface Leader : SKScene
+@interface Leader : SKScene <UITableViewDelegate, UITableViewDataSource>
+{
+    UITableView *myTable;
+}
 
 @end

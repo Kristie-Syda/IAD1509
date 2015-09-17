@@ -16,16 +16,17 @@
 -(void)didMoveToView:(SKView *)view {
     
     //Firstname
-    firstName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 100, 130, 30)];
+    firstName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 130, 130, 30)];
     firstName.placeholder = @"First Name";
     firstName.clearButtonMode = UITextFieldViewModeWhileEditing;
     firstName.borderStyle = UITextBorderStyleRoundedRect;
     firstName.backgroundColor = [UIColor lightGrayColor];
     firstName.textColor = [UIColor blackColor];
     firstName.delegate = self;
+    firstName.tag = 1;
     
     //Lastname
-    lastName = [[UITextField alloc]initWithFrame:CGRectMake(205, self.size.height/2 - 100, 120, 30)];
+    lastName = [[UITextField alloc]initWithFrame:CGRectMake(205, self.size.height/2 - 130, 120, 30)];
     lastName.placeholder = @"Last Name";
     lastName.clearButtonMode = UITextFieldViewModeWhileEditing;
     lastName.borderStyle = UITextBorderStyleRoundedRect;
@@ -34,7 +35,7 @@
     lastName.delegate = self;
     
     //Email
-    email = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 30, 250, 30)];
+    email = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 60, 250, 30)];
     email.placeholder = @"Email Address";
     email.clearButtonMode = UITextFieldViewModeWhileEditing;
     email.borderStyle = UITextBorderStyleRoundedRect;
@@ -43,7 +44,7 @@
     email.delegate = self;
     
     //Username
-    userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 40, 150, 30)];
+    userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 10, 150, 30)];
     userName.placeholder = @"UserName";
     userName.clearButtonMode = UITextFieldViewModeWhileEditing;
     userName.borderStyle = UITextBorderStyleRoundedRect;
@@ -52,17 +53,16 @@
     userName.delegate = self;
     
     //Password
-    password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 110, 150, 30)];
+    password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 75, 150, 30)];
     password.placeholder = @"Password";
     password.clearButtonMode = UITextFieldViewModeWhileEditing;
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.backgroundColor = [UIColor lightGrayColor];
     password.textColor = [UIColor blackColor];
     password.delegate = self;
+    password.tag = 5;
 
     alertView = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Please leave no boxes empty" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    
-    saved = [[UIAlertView alloc]initWithTitle:@"Information Saved!" message:@"You are now a member of Flip Ball" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
     
     [self.view addSubview:firstName];
     [self.view addSubview:lastName];
@@ -74,6 +74,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    
     
 }
 
@@ -120,15 +121,15 @@
         mainLabel.fontSize = 50;
         
         //Introduction label
-        intro = [self labelMaker:@"Please fill out form to register" position:CGPointMake(self.size.width/2, self.size.height - 160)];
+        intro = [self labelMaker:@"Please fill out form to register" position:CGPointMake(self.size.width/2, self.size.height - 145)];
         intro.fontSize = 20;
         
         //title labels
-        first = [self labelMaker:@"First Name:" position:CGPointMake(82, self.size.height/2 + 106)];
-        last = [self labelMaker:@"Last Name:" position:CGPointMake(242, self.size.height/2 + 106)];
-        emailLabel = [self labelMaker:@"Email:" position:CGPointMake(65, self.size.height/2 + 36)];
-        userLabel = [self labelMaker:@"Username:" position:CGPointMake(82, self.size.height/2 - 35)];
-        passwordLabel = [self labelMaker:@"Password:" position:CGPointMake(82, self.size.height/2 - 105)];
+        first = [self labelMaker:@"First Name:" position:CGPointMake(82, self.size.height/2 + 136)];
+        last = [self labelMaker:@"Last Name:" position:CGPointMake(242, self.size.height/2 + 136)];
+        emailLabel = [self labelMaker:@"Email:" position:CGPointMake(65, self.size.height/2 + 66)];
+        userLabel = [self labelMaker:@"Username:" position:CGPointMake(82, self.size.height/2 - 5)];
+        passwordLabel = [self labelMaker:@"Password:" position:CGPointMake(82, self.size.height/2 - 65)];
         
         //back button
         SKSpriteNode *back = [SKSpriteNode spriteNodeWithImageNamed:@"back.png"];
@@ -166,12 +167,35 @@
     return self;
 }
 
+//player is signed up and ready to use account
+-(void)SignedIn{
+    
+    saved = [[UIAlertView alloc]initWithTitle:@"Information Saved!" message:@"You can now use your Flipball account" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    saved.backgroundColor = [UIColor blackColor];
+    [saved show];
+    
+    int duration = 3;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
+                   ^{
+                       [saved dismissWithClickedButtonIndex:0 animated:YES];
+                   });
+
+    //opens menu
+    Menu *scene = [Menu sceneWithSize:self.size];
+    SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
+    
+    [self resetView];
+    [self.view presentScene:scene transition:reveal];
+}
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
+    
     
     //menu transition
     if ([touched.name isEqualToString:@"menu"]) {
@@ -204,7 +228,6 @@
         } else {
             
             PFUser *player = [PFUser user];
-            player = [PFUser currentUser];
             
             player[@"First"] = firstName.text;
             player[@"Last"] = lastName.text;
@@ -215,9 +238,27 @@
             [player signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     
-
-                    [saved show];
-
+                    //create highscore object for new user
+                    PFUser *current = [PFUser currentUser];
+                    if (current) {
+                        
+                        //add in game info to HighScore and pass current user data also
+                        PFObject *data = [PFObject objectWithClassName:@"HighScore"];
+                        data[@"Score"] = [NSNumber numberWithInt:0];
+                        data[@"Player"] = current;
+                        data[@"Level"] = [NSNumber numberWithInt:0];
+                        data[@"playerId"] = [current objectId];
+                        
+                        [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            NSLog(@"highscore object created");
+                        }];
+                        
+                    } else {
+                        NSLog(@"highscore object Not created");
+                    }
+                    
+                    [self SignedIn];
+                    
                 } else {
                     
                     errorString = [error userInfo][@"error"];

@@ -12,6 +12,14 @@
 
 @implementation Leader
 
+-(void)didMoveToView:(SKView *)view{
+    
+    myTable = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 500, 100)];
+    myTable.delegate = self;
+    [self.view addSubview:myTable];
+    
+}
+
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {

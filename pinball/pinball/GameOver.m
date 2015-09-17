@@ -11,14 +11,15 @@
 #import "Menu.h"
 #import "Score.h"
 #import <Parse/Parse.h>
+#import "Login.h"
 
 @implementation GameOver
 {
     SKLabelNode *lbl;
     SKNode *touched;
     NSNumber *level;
-    //NSString *player;
     NSNumber *totalScore;
+    NSString *playerId;
 }
 
 //button creator
@@ -78,6 +79,45 @@
     return self;
 }
 
+-(void)updateScore{
+    
+    
+    PFUser *currentUser = [PFUser currentUser];
+    
+    //grab current user data
+    if(currentUser) {
+        
+        //Find the player id that matches current user object id
+        PFQuery *query = [PFQuery queryWithClassName:@"HighScore"];
+        [query whereKey:@"playerId" equalTo:[currentUser objectId]];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *players, NSError *error) {
+            if (!error) {
+                
+                //grab the player's objectId
+                for (PFObject *data in players) {
+                    
+                    //store id 
+                    playerId = [data objectId];
+                }
+                
+                
+                //update info
+                PFQuery *data = [PFQuery queryWithClassName:@"HighScore"];
+                [data getObjectInBackgroundWithId:playerId block:^(PFObject *player, NSError *error) {
+                    
+                    player[@"Score"] = totalScore;
+                    player[@"Level"] = level;
+                    [player saveInBackground];
+                    
+                }];
+                
+            }
+        }];
+    }
+    
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -92,27 +132,10 @@
         
     } else if ([touched.name isEqualToString:@"Main Menu"]) {
         
-        //grab data from current user
-        PFUser *current = [PFUser currentUser];
-        
-        //add in game info to HighScore and pass current user data also
-        PFObject *data = [PFObject objectWithClassName:@"HighScore"];
-        data[@"Score"] = totalScore;
-        data[@"Player"] = current;
-        data[@"Level"] = level;
-        [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                
-                NSLog(@"did it");
-            } else {
-                
-            }
-        }];
-    
+        [self updateScore];
+        //go to menu
         Menu *scene = [Menu sceneWithSize:self.size];
-        
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-        
         [self.view presentScene:scene transition:reveal];
     }
     

@@ -55,7 +55,7 @@
         
         SKLabelNode *welcome = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
         welcome.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-        welcome.position = CGPointMake(30, self.size.height - 105);
+        welcome.position = CGPointMake(30, self.size.height - 115);
         welcome.fontSize = 20;
 
              //play button
@@ -82,10 +82,9 @@
         [self addChild:credits];
         
         currentUser = [PFUser currentUser];
-        NSLog(@"current user = %@",currentUser);
-        
+       
         if (currentUser) {
-            NSLog(@"should show welcome");
+           
             SKSpriteNode *logOff = [SKSpriteNode spriteNodeWithImageNamed:@"logOut"];
             logOff.position = CGPointMake(self.size.width - 60, self.size.height - 105);
             logOff.name = @"logOff";
@@ -108,7 +107,6 @@
             [self addChild:login];
             [self addChild:signUp];
         }
-        
     }
     
     return self;

@@ -10,6 +10,7 @@
 #import "Menu.h"
 #import "GameScene.h"
 #import "Score.h"
+#import <Parse/Parse.h>
 
 @implementation Levels
 
@@ -18,6 +19,8 @@
    
     //title is the level number
     int levelNum = [title intValue];
+    int savedlevel = [level intValue];
+    
     SKSpriteNode *nodeImg;
     
     SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
@@ -25,11 +28,11 @@
     titleLabel.fontColor = [SKColor blackColor];
     titleLabel.position = CGPointMake(0, -15);
     
-/* if the level number is greater than the level number 
-   that is saved in userdefaults than its not unlocked */
+/* if the level number is greater than the saved level
+    in userdefaults/user account than its not unlocked */
 
-    if (levelNum > (level + 1)) {
-        
+    if (levelNum > (savedlevel + 1)) {
+        NSLog(@" %i > %i ", levelNum , savedlevel);
         nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star2.png"];
 
     } else {
@@ -69,36 +72,93 @@
         reset.position = CGPointMake(self.size.width/2, self.size.height/3);
         reset.name = @"reset";
         
-        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-        level = [data integerForKey:@"passed"];
+        PFUser *currentUser = [PFUser currentUser];
         
-        star1 = [self star:@"1" pos:CGPointMake(55, self.size.height - 150)];
-        star2 = [self star:@"2" pos:CGPointMake(140, self.size.height - 150)];
-        star3 = [self star:@"3" pos:CGPointMake(225, self.size.height - 150)];
-        star4 = [self star:@"4" pos:CGPointMake(315, self.size.height - 150)];
-        star5 = [self star:@"5" pos:CGPointMake(55, self.size.height - 250)];
-        star6 = [self star:@"6" pos:CGPointMake(140, self.size.height - 250)];
-        star7 = [self star:@"7" pos:CGPointMake(225, self.size.height - 250)];
-        star8 = [self star:@"8" pos:CGPointMake(315, self.size.height - 250)];
-        star9 = [self star:@"9" pos:CGPointMake(55, self.size.height - 350)];
-        star10 = [self star:@"10" pos:CGPointMake(140, self.size.height - 350)];
-        
-        
-        [self addChild:background];
-        [self addChild:back];
-        [self addChild:title];
-        [self addChild:star1];
-        [self addChild:star2];
-        [self addChild:star3];
-        [self addChild:star4];
-        [self addChild:star5];
-        [self addChild:star6];
-        [self addChild:star7];
-        [self addChild:star8];
-        [self addChild:star9];
-        [self addChild:star10];
-        [self addChild:reset];
-        
+        //grab current user data
+        if(currentUser) {
+            
+            //Find the player id that matches current user object id
+            PFQuery *queryId = [PFQuery queryWithClassName:@"HighScore"];
+            [queryId whereKey:@"playerId" equalTo:[currentUser objectId]];
+
+            [queryId findObjectsInBackgroundWithBlock:^(NSArray *players, NSError *error) {
+                if (!error) {
+                    
+                    //grab the player's objectId
+                    for (PFObject *data in players) {
+                        
+                        //store id and level
+                        playerId = [data objectId];
+                        level = data[@"Level"];
+                    }
+                    
+                    //add stars to scene -- have to add code to completion block
+                    star1 = [self star:@"1" pos:CGPointMake(55, self.size.height - 150)];
+                    star2 = [self star:@"2" pos:CGPointMake(140, self.size.height - 150)];
+                    star3 = [self star:@"3" pos:CGPointMake(225, self.size.height - 150)];
+                    star4 = [self star:@"4" pos:CGPointMake(315, self.size.height - 150)];
+                    star5 = [self star:@"5" pos:CGPointMake(55, self.size.height - 250)];
+                    star6 = [self star:@"6" pos:CGPointMake(140, self.size.height - 250)];
+                    star7 = [self star:@"7" pos:CGPointMake(225, self.size.height - 250)];
+                    star8 = [self star:@"8" pos:CGPointMake(315, self.size.height - 250)];
+                    star9 = [self star:@"9" pos:CGPointMake(55, self.size.height - 350)];
+                    star10 = [self star:@"10" pos:CGPointMake(140, self.size.height - 350)];
+                    
+                    [self addChild:background];
+                    [self addChild:back];
+                    [self addChild:title];
+                    [self addChild:reset];
+                    [self addChild:star1];
+                    [self addChild:star2];
+                    [self addChild:star3];
+                    [self addChild:star4];
+                    [self addChild:star5];
+                    [self addChild:star6];
+                    [self addChild:star7];
+                    [self addChild:star8];
+                    [self addChild:star9];
+                    [self addChild:star10];
+                    
+                } else {
+                    
+                    NSLog(@"Error");
+                }
+            }];
+            
+            
+        //guest user
+        } else if (!currentUser) {
+            NSLog(@"guest user");
+            
+            NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+            level = [NSNumber numberWithFloat:[data integerForKey:@"passed"]];
+            
+            star1 = [self star:@"1" pos:CGPointMake(55, self.size.height - 150)];
+            star2 = [self star:@"2" pos:CGPointMake(140, self.size.height - 150)];
+            star3 = [self star:@"3" pos:CGPointMake(225, self.size.height - 150)];
+            star4 = [self star:@"4" pos:CGPointMake(315, self.size.height - 150)];
+            star5 = [self star:@"5" pos:CGPointMake(55, self.size.height - 250)];
+            star6 = [self star:@"6" pos:CGPointMake(140, self.size.height - 250)];
+            star7 = [self star:@"7" pos:CGPointMake(225, self.size.height - 250)];
+            star8 = [self star:@"8" pos:CGPointMake(315, self.size.height - 250)];
+            star9 = [self star:@"9" pos:CGPointMake(55, self.size.height - 350)];
+            star10 = [self star:@"10" pos:CGPointMake(140, self.size.height - 350)];
+            
+            [self addChild:background];
+            [self addChild:back];
+            [self addChild:title];
+            [self addChild:reset];
+            [self addChild:star1];
+            [self addChild:star2];
+            [self addChild:star3];
+            [self addChild:star4];
+            [self addChild:star5];
+            [self addChild:star6];
+            [self addChild:star7];
+            [self addChild:star8];
+            [self addChild:star9];
+            [self addChild:star10];
+        }
     }
     
     return self;
@@ -183,17 +243,6 @@
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 @end

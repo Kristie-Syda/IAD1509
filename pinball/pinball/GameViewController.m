@@ -56,7 +56,6 @@
     Menu *scene = [[Menu alloc]initWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     
-    
     NSLog(@"%f",skView.bounds.size.width);
     NSLog(@"%f",skView.bounds.size.height);
    

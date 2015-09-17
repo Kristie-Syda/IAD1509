@@ -11,7 +11,7 @@
 @interface Levels : SKScene
 
 {
-    NSInteger level;
+    NSNumber *level;
     BOOL unlocked;
     SKSpriteNode *star1;
     SKSpriteNode *star2;
@@ -23,5 +23,6 @@
     SKSpriteNode *star8;
     SKSpriteNode *star9;
     SKSpriteNode *star10;
+    NSString *playerId;
 }
 @end

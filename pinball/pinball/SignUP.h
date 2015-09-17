@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <Parse/Parse.h>
 
 @interface SignUP : SKScene <UITextFieldDelegate>
 {
@@ -26,4 +27,6 @@
     UIAlertView *errorMsg;
     NSString *errorString;
 }
+
+
 @end

@@ -11,14 +11,15 @@
 #import <Parse/Parse.h>
 #import "Score.h"
 
-@implementation Login 
+@implementation Login
+
 
 
 -(void)didMoveToView:(SKView *)view {
     
    
     //Username
-    userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 40, 150, 30)];
+    userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 60, 150, 30)];
     userName.placeholder = @"UserName";
     userName.clearButtonMode = UITextFieldViewModeWhileEditing;
     userName.borderStyle = UITextBorderStyleRoundedRect;
@@ -27,7 +28,7 @@
     userName.delegate = self;
     
     //Password
-    password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 110, 150, 30)];
+    password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 10, 150, 30)];
     password.placeholder = @"Password";
     password.clearButtonMode = UITextFieldViewModeWhileEditing;
     password.borderStyle = UITextBorderStyleRoundedRect;
@@ -107,12 +108,12 @@
         intro.fontSize = 20;
         
         //labels
-        userLabel = [self labelMaker:@"Username:" position:CGPointMake(82, self.size.height/2 - 35)];
-        passwordLabel = [self labelMaker:@"Password:" position:CGPointMake(82, self.size.height/2 - 105)];
+        userLabel = [self labelMaker:@"Username:" position:CGPointMake(82, self.size.height/2 + 65)];
+        passwordLabel = [self labelMaker:@"Password:" position:CGPointMake(82, self.size.height/2 - 5)];
 
         //submit button
         SKSpriteNode *submit = [SKSpriteNode spriteNodeWithImageNamed:@"buttons.png"];
-        submit.position = CGPointMake(self.size.width/2, self.size.height/2 - 200);
+        submit.position = CGPointMake(self.size.width/2, self.size.height/2 - 100);
         submit.size = CGSizeMake(200, 65);
         submit.name = @"submit";
         
@@ -158,7 +159,7 @@
     SKNode *touched = [self nodeAtPoint:location];
     
     if ([touched.name isEqualToString:@"menu"]) {
-        
+    
         [self resetView];
         
         Menu *scene = [Menu sceneWithSize:self.size];
@@ -171,29 +172,31 @@
        
         //log in
         [PFUser logInWithUsernameInBackground:userName.text password:password.text
-                block:^(PFUser *user, NSError *error) {
-                        if (user) {
-                            
-                            //set current user
-                            [PFUser becomeInBackground:[user sessionToken] block:^(PFUser *user, NSError *error) {
-                                if (error) {
+                block:^(PFUser *player, NSError *error) {
+                    
+                    if (player) {
+                        
+                        //set current user
+                        [PFUser becomeInBackground:[player sessionToken] block:^(PFUser *user, NSError *error) {
+                            if (error) {
                                     
-                                    UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:[error userInfo][@"error"] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+                                UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:[error userInfo][@"error"] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
                                     
-                                    [errorMsg show];
-                                    
-                                } else {
-                                    
-                                    [self loggedIn];
-                                }
-                            }];
-                            
-                        } else {
-                                
-                            UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"wrong username or password, please try again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-                                
                                 [errorMsg show];
-                        }
+                                    
+                            } else {
+                                
+                                [self loggedIn];
+                                
+                            }
+                        }];
+                            
+                    } else {
+                                
+                        UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"wrong username or password, please try again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+                                
+                        [errorMsg show];
+                    }
         }];
     }
     

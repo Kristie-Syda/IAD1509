@@ -7,6 +7,7 @@
 //
 
 #import "Score.h"
+#import <Parse/Parse.h>
 
 @implementation Score
 @synthesize currentScore,ball,totalScore,pinkCount,currentLevel;

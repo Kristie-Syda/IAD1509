@@ -21,4 +21,5 @@
     SKLabelNode *userLabel;
     SKLabelNode *passwordLabel;
 }
+
 @end
