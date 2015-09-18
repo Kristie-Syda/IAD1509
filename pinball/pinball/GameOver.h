@@ -7,7 +7,13 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
-@interface GameOver : SKScene
+@interface GameOver : SKScene <FBSDKSharingDelegate>
+{
+    
+}
 
 @end

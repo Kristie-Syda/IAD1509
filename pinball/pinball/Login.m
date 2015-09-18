@@ -187,7 +187,6 @@
                             } else {
                                 
                                 [self loggedIn];
-                                
                             }
                         }];
                             

@@ -9,7 +9,7 @@
 #import "Menu.h"
 #import "GameScene.h"
 #import "Score.h"
-#import "Leader.h"
+#import "LeaderBoard.h"
 #import "Credits.h"
 #import "Levels.h"
 #import "SignUP.h"
@@ -139,11 +139,10 @@
     //LeaderBoard transition
     } else if ([touched.name isEqualToString:@"LeaderBoards"]){
         
-        Leader *scene = [Leader sceneWithSize:self.size];
-        
-        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-        
-        [self.view presentScene:scene transition:reveal];
+
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LeaderBoard *vc = [storyboard instantiateViewControllerWithIdentifier:@"Leader"];
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
 
     //Credits transition
     } else if ([touched.name isEqualToString:@"Credits"]){

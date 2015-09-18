@@ -32,7 +32,7 @@
     in userdefaults/user account than its not unlocked */
 
     if (levelNum > (savedlevel + 1)) {
-        NSLog(@" %i > %i ", levelNum , savedlevel);
+
         nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star2.png"];
 
     } else {
@@ -65,12 +65,6 @@
         title.text = @"Levels";
         title.fontSize = 50;
         title.position = CGPointMake(self.size.width/2, self.size.height - 65);
-        
-        SKLabelNode *reset = [SKLabelNode labelNodeWithFontNamed:@"American Typewriter"];
-        reset.text = @"Reset";
-        reset.fontSize = 50;
-        reset.position = CGPointMake(self.size.width/2, self.size.height/3);
-        reset.name = @"reset";
         
         PFUser *currentUser = [PFUser currentUser];
         
@@ -107,7 +101,6 @@
                     [self addChild:background];
                     [self addChild:back];
                     [self addChild:title];
-                    [self addChild:reset];
                     [self addChild:star1];
                     [self addChild:star2];
                     [self addChild:star3];
@@ -147,7 +140,6 @@
             [self addChild:background];
             [self addChild:back];
             [self addChild:title];
-            [self addChild:reset];
             [self addChild:star1];
             [self addChild:star2];
             [self addChild:star3];
@@ -227,16 +219,6 @@
     } else if([touched.name isEqualToString:@"10"]){
         
         [self.view presentScene:game transition:reveal];
-        
-    //reset level to 0 in NSDefaults
-    }else if([touched.name isEqualToString:@"reset"]){
-        
-        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-        [data setInteger:0 forKey:@"passed"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        
-        Levels *scene = [[Levels alloc]initWithSize:self.size];
-        [self.view presentScene:scene];
         
     } else {
         NSLog(@"Locked!");

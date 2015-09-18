@@ -17,7 +17,6 @@
 		C957653F1B98F8DA0058EDFB /* Levels.m in Sources */ = {isa = PBXBuildFile; fileRef = C957653E1B98F8DA0058EDFB /* Levels.m */; };
 		C95765461B9A5F030058EDFB /* 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95765441B9A5F030058EDFB /* 1.plist */; };
 		C95765471B9A5F030058EDFB /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95765451B9A5F030058EDFB /* 2.plist */; };
-		C9650E421BA62EB100AA0783 /* Leader.m in Sources */ = {isa = PBXBuildFile; fileRef = C9650E411BA62EB100AA0783 /* Leader.m */; };
 		C9650E631BA6619E00AA0783 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E611BA6619E00AA0783 /* Bolts.framework */; };
 		C9650E641BA6619E00AA0783 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E621BA6619E00AA0783 /* Parse.framework */; };
 		C9650E661BA661B300AA0783 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E651BA661B300AA0783 /* Accounts.framework */; };
@@ -52,6 +51,13 @@
 		C9E3472B1BA0197C0094EE00 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9E3472A1BA0197C0094EE00 /* 3.plist */; };
 		C9EAA6281BA8929F008731F4 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA6271BA8929F008731F4 /* Login.m */; };
 		C9EAA62B1BA892C3008731F4 /* SignUP.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA62A1BA892C3008731F4 /* SignUP.m */; };
+		C9EAA62E1BAABA16008731F4 /* LeaderBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA62D1BAABA16008731F4 /* LeaderBoard.m */; };
+		C9EAA6311BAACD7F008731F4 /* LBData.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA6301BAACD7F008731F4 /* LBData.m */; };
+		C9EAA6341BAAD4D2008731F4 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA6331BAAD4D2008731F4 /* CustomCell.m */; };
+		C9EAA63D1BAB85A4008731F4 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EAA63B1BAB85A4008731F4 /* FBSDKCoreKit.framework */; };
+		C9EAA63E1BAB85A4008731F4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EAA63C1BAB85A4008731F4 /* FBSDKLoginKit.framework */; };
+		C9EAA6401BAB85B1008731F4 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EAA63F1BAB85B1008731F4 /* FBSDKShareKit.framework */; };
+		C9EAA6421BAB9318008731F4 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EAA6411BAB9318008731F4 /* ParseFacebookUtilsV4.framework */; };
 		C9FEA6151B70754100CE0E27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA6141B70754100CE0E27 /* main.m */; };
 		C9FEA6181B70754100CE0E27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA6171B70754100CE0E27 /* AppDelegate.m */; };
 		C9FEA61B1B70754100CE0E27 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FEA61A1B70754100CE0E27 /* GameScene.m */; };
@@ -85,8 +91,6 @@
 		C957653E1B98F8DA0058EDFB /* Levels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Levels.m; sourceTree = "<group>"; };
 		C95765441B9A5F030058EDFB /* 1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 1.plist; sourceTree = "<group>"; };
 		C95765451B9A5F030058EDFB /* 2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2.plist; sourceTree = "<group>"; };
-		C9650E401BA62EB100AA0783 /* Leader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leader.h; sourceTree = "<group>"; };
-		C9650E411BA62EB100AA0783 /* Leader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leader.m; sourceTree = "<group>"; };
 		C9650E611BA6619E00AA0783 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		C9650E621BA6619E00AA0783 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		C9650E651BA661B300AA0783 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -131,6 +135,16 @@
 		C9EAA6271BA8929F008731F4 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		C9EAA6291BA892C3008731F4 /* SignUP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUP.h; sourceTree = "<group>"; };
 		C9EAA62A1BA892C3008731F4 /* SignUP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUP.m; sourceTree = "<group>"; };
+		C9EAA62C1BAABA16008731F4 /* LeaderBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderBoard.h; sourceTree = "<group>"; };
+		C9EAA62D1BAABA16008731F4 /* LeaderBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderBoard.m; sourceTree = "<group>"; };
+		C9EAA62F1BAACD7F008731F4 /* LBData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBData.h; sourceTree = "<group>"; };
+		C9EAA6301BAACD7F008731F4 /* LBData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBData.m; sourceTree = "<group>"; };
+		C9EAA6321BAAD4D2008731F4 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		C9EAA6331BAAD4D2008731F4 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		C9EAA63B1BAB85A4008731F4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		C9EAA63C1BAB85A4008731F4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		C9EAA63F1BAB85B1008731F4 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		C9EAA6411BAB9318008731F4 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../../../Downloads/parse-library-1/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		C9FEA60F1B70754100CE0E27 /* pinball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pinball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FEA6131B70754100CE0E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9FEA6141B70754100CE0E27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -156,6 +170,7 @@
 			files = (
 				C9650E7C1BA6628200AA0783 /* Security.framework in Frameworks */,
 				C9650E7A1BA6627300AA0783 /* libz.dylib in Frameworks */,
+				C9EAA6401BAB85B1008731F4 /* FBSDKShareKit.framework in Frameworks */,
 				C9650E781BA6626400AA0783 /* libsqlite3.dylib in Frameworks */,
 				C9650E761BA6624B00AA0783 /* CFNetwork.framework in Frameworks */,
 				C9650E741BA6624100AA0783 /* AudioToolbox.framework in Frameworks */,
@@ -164,9 +179,12 @@
 				C9650E6E1BA6621E00AA0783 /* QuartzCore.framework in Frameworks */,
 				C9650E6C1BA6621500AA0783 /* StoreKit.framework in Frameworks */,
 				C9650E6A1BA6620E00AA0783 /* SystemConfiguration.framework in Frameworks */,
+				C9EAA63D1BAB85A4008731F4 /* FBSDKCoreKit.framework in Frameworks */,
 				C9650E681BA661C400AA0783 /* Social.framework in Frameworks */,
 				C9650E661BA661B300AA0783 /* Accounts.framework in Frameworks */,
+				C9EAA6421BAB9318008731F4 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				C9650E641BA6619E00AA0783 /* Parse.framework in Frameworks */,
+				C9EAA63E1BAB85A4008731F4 /* FBSDKLoginKit.framework in Frameworks */,
 				C9650E631BA6619E00AA0783 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,10 +232,10 @@
 		C9FEA6111B70754100CE0E27 /* pinball */ = {
 			isa = PBXGroup;
 			children = (
-				C9EAA6291BA892C3008731F4 /* SignUP.h */,
-				C9EAA62A1BA892C3008731F4 /* SignUP.m */,
-				C9EAA6261BA8929F008731F4 /* Login.h */,
-				C9EAA6271BA8929F008731F4 /* Login.m */,
+				C9EAA6411BAB9318008731F4 /* ParseFacebookUtilsV4.framework */,
+				C9EAA63F1BAB85B1008731F4 /* FBSDKShareKit.framework */,
+				C9EAA63B1BAB85A4008731F4 /* FBSDKCoreKit.framework */,
+				C9EAA63C1BAB85A4008731F4 /* FBSDKLoginKit.framework */,
 				C9650E611BA6619E00AA0783 /* Bolts.framework */,
 				C9650E621BA6619E00AA0783 /* Parse.framework */,
 				C948BEF11B89020600821C79 /* explosion.atlas */,
@@ -233,6 +251,16 @@
 				C9FEA6171B70754100CE0E27 /* AppDelegate.m */,
 				C9884B7C1B8BA896001994EE /* Menu.h */,
 				C9884B7D1B8BA896001994EE /* Menu.m */,
+				C9EAA6291BA892C3008731F4 /* SignUP.h */,
+				C9EAA62A1BA892C3008731F4 /* SignUP.m */,
+				C9EAA6261BA8929F008731F4 /* Login.h */,
+				C9EAA6271BA8929F008731F4 /* Login.m */,
+				C9EAA62C1BAABA16008731F4 /* LeaderBoard.h */,
+				C9EAA62D1BAABA16008731F4 /* LeaderBoard.m */,
+				C9EAA62F1BAACD7F008731F4 /* LBData.h */,
+				C9EAA6301BAACD7F008731F4 /* LBData.m */,
+				C9EAA6321BAAD4D2008731F4 /* CustomCell.h */,
+				C9EAA6331BAAD4D2008731F4 /* CustomCell.m */,
 				C957653D1B98F8DA0058EDFB /* Levels.h */,
 				C957653E1B98F8DA0058EDFB /* Levels.m */,
 				C9FEA6191B70754100CE0E27 /* GameScene.h */,
@@ -243,8 +271,6 @@
 				C9C906331B834EE9000FFD03 /* GameOver.m */,
 				C98A1D421B8FB2C700B25607 /* Credits.h */,
 				C98A1D431B8FB2C700B25607 /* Credits.m */,
-				C9650E401BA62EB100AA0783 /* Leader.h */,
-				C9650E411BA62EB100AA0783 /* Leader.m */,
 				C9FEA61C1B70754100CE0E27 /* GameScene.sks */,
 				C9FEA61E1B70754100CE0E27 /* GameViewController.h */,
 				C9FEA61F1B70754100CE0E27 /* GameViewController.m */,
@@ -421,19 +447,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9EAA6281BA8929F008731F4 /* Login.m in Sources */,
-				C9650E421BA62EB100AA0783 /* Leader.m in Sources */,
 				C98A1CF71B8D324A00B25607 /* Bouncer.m in Sources */,
 				C9FEA6201B70754100CE0E27 /* GameViewController.m in Sources */,
+				C9EAA6311BAACD7F008731F4 /* LBData.m in Sources */,
 				C9884B7E1B8BA896001994EE /* Menu.m in Sources */,
 				C98A1CF11B8CFCD700B25607 /* PinkBricks.m in Sources */,
 				C957653F1B98F8DA0058EDFB /* Levels.m in Sources */,
 				C9FEA6181B70754100CE0E27 /* AppDelegate.m in Sources */,
+				C9EAA6341BAAD4D2008731F4 /* CustomCell.m in Sources */,
 				C98002AA1B7E715F0047DD4C /* Score.m in Sources */,
 				C9EAA62B1BA892C3008731F4 /* SignUP.m in Sources */,
 				C9C906341B834EE9000FFD03 /* GameOver.m in Sources */,
 				C98A1D441B8FB2C700B25607 /* Credits.m in Sources */,
 				C9FEA61B1B70754100CE0E27 /* GameScene.m in Sources */,
 				C9FEA6151B70754100CE0E27 /* main.m in Sources */,
+				C9EAA62E1BAABA16008731F4 /* LeaderBoard.m in Sources */,
 				C9884B871B8C0E13001994EE /* TableMaker.m in Sources */,
 				C98A1CFD1B8D4E7400B25607 /* BottomNode.m in Sources */,
 			);
@@ -565,6 +593,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/pinball",
+					"/Users/kristiesyda/Downloads/FacebookSDKs-iOS-20150910",
+					"/Users/kristiesyda/Downloads/FacebookSDKs-iOS-20150813",
+					"/Users/kristiesyda/Downloads/parse-library-1",
 				);
 				INFOPLIST_FILE = pinball/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -585,11 +616,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/pinball",
+					"/Users/kristiesyda/Downloads/FacebookSDKs-iOS-20150910",
+					"/Users/kristiesyda/Downloads/FacebookSDKs-iOS-20150813",
+					"/Users/kristiesyda/Downloads/parse-library-1",
 				);
 				INFOPLIST_FILE = pinball/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = pinball;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

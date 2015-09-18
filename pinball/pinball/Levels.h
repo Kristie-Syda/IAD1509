@@ -12,7 +12,6 @@
 
 {
     NSNumber *level;
-    BOOL unlocked;
     SKSpriteNode *star1;
     SKSpriteNode *star2;
     SKSpriteNode *star3;

@@ -28,5 +28,6 @@
     NSString *errorString;
 }
 
+@property(nonatomic,strong)PFGeoPoint *userLocation;
 
 @end

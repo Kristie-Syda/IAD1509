@@ -181,7 +181,7 @@
                        [saved dismissWithClickedButtonIndex:0 animated:YES];
                    });
 
-    //opens menu
+       //opens menu
     Menu *scene = [Menu sceneWithSize:self.size];
     SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
     
@@ -242,21 +242,30 @@
                     PFUser *current = [PFUser currentUser];
                     if (current) {
                         
-                        //add in game info to HighScore and pass current user data also
-                        PFObject *data = [PFObject objectWithClassName:@"HighScore"];
-                        data[@"Score"] = [NSNumber numberWithInt:0];
-                        data[@"Player"] = current;
-                        data[@"Level"] = [NSNumber numberWithInt:0];
-                        data[@"playerId"] = [current objectId];
-                        
-                        [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            NSLog(@"highscore object created");
+                        [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
+                            
+                            //make up imaginary locations for fake users -- debugging purposes
+                            //PFGeoPoint *makeUp = [PFGeoPoint geoPointWithLatitude:-89.42 longitude:67.5];
+                            
+                            //add in game info to HighScore and pass current user data also
+                            PFObject *data = [PFObject objectWithClassName:@"HighScore"];
+                            data[@"Score"] = [NSNumber numberWithInt:0];
+                            data[@"Player"] = current;
+                            data[@"Level"] = [NSNumber numberWithInt:0];
+                            data[@"playerId"] = [current objectId];
+                            data[@"Username"] = [current username];
+                            data[@"Location"] = point;
+                            
+                            [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                NSLog(@"highscore object created");
+                            }];
+
                         }];
                         
                     } else {
                         NSLog(@"highscore object Not created");
                     }
-                    
+                
                     [self SignedIn];
                     
                 } else {
@@ -269,9 +278,7 @@
                 }
             }];
         }
-        
     }
-    
 }
 
 

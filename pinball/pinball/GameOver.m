@@ -13,6 +13,8 @@
 #import <Parse/Parse.h>
 #import "Login.h"
 
+
+
 @implementation GameOver
 {
     SKLabelNode *lbl;
@@ -20,6 +22,49 @@
     NSNumber *level;
     NSNumber *totalScore;
     NSString *playerId;
+    FBSDKShareLinkContent *content;
+    NSNumber *previousScore;
+    NSNumber *previousLevel;
+    FBSDKShareButton *shareButton;
+}
+
+-(void)didMoveToView:(SKView *)view{
+    
+    PFUser *current = [PFUser currentUser];
+    
+    content = [[FBSDKShareLinkContent alloc] init];
+    content.contentURL = [NSURL
+                          URLWithString:@"https://developers.facebook.com/apps/988202167888514/"];
+    content.contentTitle = @"FlipBall";
+    content.contentDescription = [NSString stringWithFormat:@"%@ just earned a New HighScore of %@", current.username,totalScore];
+    
+    shareButton = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(self.size.width/2 - 35, self.size.height - 200, 100, 50)];
+    shareButton.shareContent = content;
+    
+    [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+                
+    [self.view addSubview:shareButton];
+
+}
+
+
+
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
+    
+}
+
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{
+    
+}
+
+- (void)sharerDidCancel:(id<FBSDKSharing>)sharer{
+    
+}
+
+-(void)share:(id)sender {
+    
+    [FBSDKShareDialog showFromViewController:self.view.window.rootViewController withContent:content delegate:self];
+    
 }
 
 //button creator
@@ -68,19 +113,20 @@
         
         SKSpriteNode *menu = [self button:@"Main Menu" pos:CGPointMake(again.position.x, again.position.y - 100)];
         menu.name = @"Main Menu";
-        
+
         [self addChild:background];
         [self addChild:lbl];
         [self addChild:again];
         [self addChild:menu];
         [self addChild:score];
+        
+        [self updateScore];
     }
     
     return self;
 }
 
 -(void)updateScore{
-    
     
     PFUser *currentUser = [PFUser currentUser];
     
@@ -99,21 +145,33 @@
                     
                     //store id 
                     playerId = [data objectId];
+                    previousScore = data[@"Score"];
+                    previousLevel = data[@"Level"];
                 }
-                
                 
                 //update info
                 PFQuery *data = [PFQuery queryWithClassName:@"HighScore"];
                 [data getObjectInBackgroundWithId:playerId block:^(PFObject *player, NSError *error) {
                     
-                    player[@"Score"] = totalScore;
-                    player[@"Level"] = level;
+                    //player beat old score
+                    if (previousScore < totalScore) {
+                        
+                        player[@"Score"] = totalScore;
+                    
+                    //player beat old level
+                    } else if (previousLevel < level) {
+                        
+                        player[@"Level"] = level;
+                    }
+                    
                     [player saveInBackground];
                     
                 }];
-                
             }
         }];
+        
+    } else if(!currentUser){
+        
     }
     
 }
@@ -125,6 +183,9 @@
     touched = [self nodeAtPoint:location];
     
     if ([touched.name isEqualToString:@"Try Again?"]) {
+        
+        [shareButton removeFromSuperview];
+        
         GameScene *scene = [[GameScene alloc]initWithSize:self.size level:[NSString stringWithFormat:@"%i", [Score shared].currentLevel]];
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
@@ -132,10 +193,12 @@
         
     } else if ([touched.name isEqualToString:@"Main Menu"]) {
         
-        [self updateScore];
+        [shareButton removeFromSuperview];
+        
         //go to menu
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
+        
         [self.view presentScene:scene transition:reveal];
     }
     
