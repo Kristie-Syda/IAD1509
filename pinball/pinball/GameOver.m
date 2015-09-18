@@ -36,7 +36,7 @@
     content.contentURL = [NSURL
                           URLWithString:@"https://developers.facebook.com/apps/988202167888514/"];
     content.contentTitle = @"FlipBall";
-    content.contentDescription = [NSString stringWithFormat:@"%@ just earned a New HighScore of %@", current.username,totalScore];
+    content.contentDescription = [NSString stringWithFormat:@"%@ just earned a score of %@ on FlipBall!", current.username,totalScore];
     
     shareButton = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(self.size.width/2 - 35, self.size.height - 200, 100, 50)];
     shareButton.shareContent = content;
@@ -99,16 +99,16 @@
 
         lbl = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
         lbl.text = @"Game Over";
-        lbl.position = CGPointMake(self.size.width/2, self.size.height - 200);
+        lbl.position = CGPointMake(self.size.width/2, self.size.height - 60);
         lbl.fontColor = [SKColor whiteColor];
         lbl.fontSize = 50;
         
         SKLabelNode *score = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
         score.text = [NSString stringWithFormat:@"Score: %i", [Score shared].totalScore];
-        score.position = CGPointMake(self.size.width/2, lbl.position.y - 40);
+        score.position = CGPointMake(self.size.width/2, lbl.position.y - 100);
         score.fontColor = [SKColor whiteColor];
         
-        SKSpriteNode *again = [self button:@"Try Again?" pos:CGPointMake(lbl.position.x, lbl.position.y - 120)];
+        SKSpriteNode *again = [self button:@"Try Again?" pos:CGPointMake(lbl.position.x, lbl.position.y - 220)];
         again.name = @"Try Again?";
         
         SKSpriteNode *menu = [self button:@"Main Menu" pos:CGPointMake(again.position.x, again.position.y - 100)];
@@ -157,6 +157,17 @@
                     if (previousScore < totalScore) {
                         
                         player[@"Score"] = totalScore;
+                        UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:@"New HighScore" message:@"updated on leaderboards" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+                        toastMsg.backgroundColor = [UIColor blackColor];
+                        [toastMsg show];
+                        
+                        int duration = 2;
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
+                                       ^{
+                                           [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
+                                       });
+
                     
                     //player beat old level
                     } else if (previousLevel < level) {
@@ -171,7 +182,7 @@
         }];
         
     } else if(!currentUser){
-        
+        //we dont save guest data
     }
     
 }

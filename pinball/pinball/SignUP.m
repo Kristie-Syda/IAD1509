@@ -16,7 +16,7 @@
 -(void)didMoveToView:(SKView *)view {
     
     //Firstname
-    firstName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 130, 130, 30)];
+    firstName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 155, 130, 30)];
     firstName.placeholder = @"First Name";
     firstName.clearButtonMode = UITextFieldViewModeWhileEditing;
     firstName.borderStyle = UITextBorderStyleRoundedRect;
@@ -26,7 +26,7 @@
     firstName.tag = 1;
     
     //Lastname
-    lastName = [[UITextField alloc]initWithFrame:CGRectMake(205, self.size.height/2 - 130, 120, 30)];
+    lastName = [[UITextField alloc]initWithFrame:CGRectMake(205, self.size.height/2 - 155, 120, 30)];
     lastName.placeholder = @"Last Name";
     lastName.clearButtonMode = UITextFieldViewModeWhileEditing;
     lastName.borderStyle = UITextBorderStyleRoundedRect;
@@ -35,7 +35,7 @@
     lastName.delegate = self;
     
     //Email
-    email = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 60, 250, 30)];
+    email = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 85, 250, 30)];
     email.placeholder = @"Email Address";
     email.clearButtonMode = UITextFieldViewModeWhileEditing;
     email.borderStyle = UITextBorderStyleRoundedRect;
@@ -44,7 +44,7 @@
     email.delegate = self;
     
     //Username
-    userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 10, 150, 30)];
+    userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 15, 150, 30)];
     userName.placeholder = @"UserName";
     userName.clearButtonMode = UITextFieldViewModeWhileEditing;
     userName.borderStyle = UITextBorderStyleRoundedRect;
@@ -53,7 +53,7 @@
     userName.delegate = self;
     
     //Password
-    password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 75, 150, 30)];
+    password = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 + 45, 150, 30)];
     password.placeholder = @"Password";
     password.clearButtonMode = UITextFieldViewModeWhileEditing;
     password.borderStyle = UITextBorderStyleRoundedRect;
@@ -121,15 +121,15 @@
         mainLabel.fontSize = 50;
         
         //Introduction label
-        intro = [self labelMaker:@"Please fill out form to register" position:CGPointMake(self.size.width/2, self.size.height - 145)];
+        intro = [self labelMaker:@"Please fill out form to register" position:CGPointMake(self.size.width/2, self.size.height - 135)];
         intro.fontSize = 20;
         
         //title labels
-        first = [self labelMaker:@"First Name:" position:CGPointMake(82, self.size.height/2 + 136)];
-        last = [self labelMaker:@"Last Name:" position:CGPointMake(242, self.size.height/2 + 136)];
-        emailLabel = [self labelMaker:@"Email:" position:CGPointMake(65, self.size.height/2 + 66)];
-        userLabel = [self labelMaker:@"Username:" position:CGPointMake(82, self.size.height/2 - 5)];
-        passwordLabel = [self labelMaker:@"Password:" position:CGPointMake(82, self.size.height/2 - 65)];
+        first = [self labelMaker:@"First Name:" position:CGPointMake(82, self.size.height/2 + 160)];
+        last = [self labelMaker:@"Last Name:" position:CGPointMake(242, self.size.height/2 + 160)];
+        emailLabel = [self labelMaker:@"Email:" position:CGPointMake(65, self.size.height/2 + 90)];
+        userLabel = [self labelMaker:@"Username:" position:CGPointMake(82, self.size.height/2 + 20)];
+        passwordLabel = [self labelMaker:@"Password:" position:CGPointMake(82, self.size.height/2 - 40)];
         
         //back button
         SKSpriteNode *back = [SKSpriteNode spriteNodeWithImageNamed:@"back.png"];
@@ -138,7 +138,7 @@
         
         //submit button
         SKSpriteNode *submit = [SKSpriteNode spriteNodeWithImageNamed:@"buttons.png"];
-        submit.position = CGPointMake(self.size.width/2, self.size.height/2 - 200);
+        submit.position = CGPointMake(self.size.width/2, self.size.height/2 - 180);
         submit.size = CGSizeMake(200, 65);
         submit.name = @"submit";
         
