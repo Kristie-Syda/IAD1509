@@ -13,3 +13,11 @@
 
     ** Dont press reset button, unless you want to reset the level progress **
 
+
+//LeaderBoards:(I used Parse.com) Create a username/password - keeps track of level/Score user is on.
+        
+    ** LeaderBoard Filter: Regional to Global by a switch -- I created 5 fake accounts to show 
+        the different locations. 
+
+    ** Social sharing to Facebook.
+
