@@ -19,12 +19,15 @@
 
 }
 
--(void)initCell:(NSString *)name score:(NSNumber *)score {
+-(void)initCell:(NSString *)name score:(NSNumber *)score rank:(int)rank {
     
     NSString *scoreString = [score stringValue];
     
+    NSString *rankString = [NSString stringWithFormat:@"%d",rank];
+    
     username.text = name;
     scoreLabel.text = scoreString;
+    rankLabel.text = rankString;
     
 }
 

@@ -31,23 +31,25 @@
 -(void)didMoveToView:(SKView *)view{
     
     PFUser *current = [PFUser currentUser];
-    
-    content = [[FBSDKShareLinkContent alloc] init];
-    content.contentURL = [NSURL
+    if(current){
+        content = [[FBSDKShareLinkContent alloc] init];
+        content.contentURL = [NSURL
                           URLWithString:@"https://developers.facebook.com/apps/988202167888514/"];
-    content.contentTitle = @"FlipBall";
-    content.contentDescription = [NSString stringWithFormat:@"%@ just earned a score of %@ on FlipBall!", current.username,totalScore];
+        content.contentTitle = @"FlipBall";
+        content.contentDescription = [NSString stringWithFormat:@"%@ just earned a score of %@ on FlipBall!", current.username,totalScore];
     
-    shareButton = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(self.size.width/2 - 35, self.size.height - 200, 100, 50)];
-    shareButton.shareContent = content;
+        shareButton = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(self.size.width/2 - 35, self.size.height - 200, 100, 50)];
+        shareButton.shareContent = content;
     
-    [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+        [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
                 
-    [self.view addSubview:shareButton];
+        [self.view addSubview:shareButton];
+        
+    } else {
+         //no share button for guest
+    }
 
 }
-
-
 
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
     

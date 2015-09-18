@@ -12,10 +12,11 @@
 {
     IBOutlet UILabel *username;
     IBOutlet UILabel *scoreLabel;
+    IBOutlet UILabel *rankLabel;
    
 }
 
 //custom method to populate custom cell
--(void)initCell:(NSString *)name score:(NSNumber *)score;
+-(void)initCell:(NSString *)name score:(NSNumber *)score rank:(int)rank;
 
 @end

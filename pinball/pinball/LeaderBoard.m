@@ -25,11 +25,22 @@
     //method call everytime switch changes
     [filter addTarget:self action:@selector(switched:) forControlEvents:UIControlEventValueChanged];
     
+    PFUser *current = [PFUser currentUser];
+    if(current){
+        
+        [self getPlayerData];
+        
+        [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+    
+    } else {
+        //no share button for guest
+    }
+
     //initial loading of the data
     [self grabData];
 }
 
-//switch method
+//switch method action
 -(void)switched:(id)sender {
     
     if ([sender isOn]) {
@@ -38,9 +49,29 @@
     } else {
         
         [self grabData];
-        
     }
 }
+
+//required share button methods
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
+    
+}
+
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{
+    
+}
+
+- (void)sharerDidCancel:(id<FBSDKSharing>)sharer{
+    
+}
+
+
+//share button action
+-(IBAction)share:(id)sender {
+    
+    [FBSDKShareDialog showFromViewController:self.view.window.rootViewController withContent:content delegate:self];
+}
+
 
 //grabs the correct data and loads into table
 -(void)grabData {
@@ -54,6 +85,8 @@
         PFQuery *query = [PFQuery queryWithClassName:@"HighScore"];
         [query orderByDescending:@"Score"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *allPlayers, NSError *error) {
+        
+            int i = 0;
             
                 //loop through data and create custom object
                 for (PFObject *player in allPlayers) {
@@ -64,7 +97,9 @@
                     data.level = player[@"Level"];
                     data.playerId = player[@"playerId"];
                     data.userLocation = player[@"Location"];
-                
+                    data.rank = ++i;
+                    
+                    NSLog(@"%d",data.rank);
                     //add to array
                     [dataArray addObject:data];
                 }
@@ -81,9 +116,11 @@
             [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
                     
                 PFGeoPoint *currentLocation = point;
-                [query whereKey:@"Location" nearGeoPoint:currentLocation withinMiles:10];
+                [query whereKey:@"Location" nearGeoPoint:currentLocation withinMiles:50];
                  NSArray *allLocations = [query findObjects];
-                    
+                
+                int i = 0;
+                
                 //loop through data and create custom object
                 for (PFObject *player in allLocations) {
                         
@@ -93,15 +130,58 @@
                     data.level = player[@"Level"];
                     data.playerId = player[@"playerId"];
                     data.userLocation = player[@"Location"];
+                    data.rank = ++i;
                         
                     //add to array
                     [dataArray addObject:data];
                 }
                 //reload data while in this method to finish loading
                 [myTable reloadData];
-                    
             }];
     }
+    
+}
+
+-(void)getPlayerData{
+    
+    PFUser *currentUser = [PFUser currentUser];
+    
+    //Find the player id that matches current user object id
+    PFQuery *query = [PFQuery queryWithClassName:@"HighScore"];
+    [query whereKey:@"playerId" equalTo:[currentUser objectId]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *players, NSError *error) {
+        if (!error) {
+            NSString *playerId;
+            
+            //grab the player's objectId
+            for (PFObject *data in players) {
+                
+                //store id
+                playerId = [data objectId];
+                playerScore = [data[@"Score"] intValue];
+            }
+            
+            PFQuery *data = [PFQuery queryWithClassName:@"HighScore"];
+            [data getObjectInBackgroundWithId:playerId block:^(PFObject *player, NSError *error) {
+                
+                playerScore = [player[@"Score"] intValue];
+                playerName = player[@"Username"];
+                
+                content = [[FBSDKShareLinkContent alloc] init];
+                content.contentURL = [NSURL
+                                      URLWithString:@"https://developers.facebook.com/apps/988202167888514/"];
+                content.contentTitle = @"FlipBall";
+                content.contentDescription = [NSString stringWithFormat:@"%@ has a score of %d on FlipBall!",playerName,playerScore];
+                
+                shareButton = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(30, 110, 110, 30)];
+                shareButton.shareContent = content;
+                [self.view addSubview:shareButton];
+                
+            }];
+
+        }
+    }];
     
 }
 
@@ -113,7 +193,7 @@
     {
         //fill in data with custom objects
         LBData *currentData = [dataArray objectAtIndex:indexPath.row];
-        [cell initCell:currentData.username score:currentData.score];
+        [cell initCell:currentData.username score:currentData.score rank:currentData.rank];
     }
     
     return cell;

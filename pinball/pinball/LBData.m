@@ -9,7 +9,7 @@
 #import "LBData.h"
 
 @implementation LBData
-@synthesize username,level,score,playerId,userLocation;
+@synthesize username,level,score,playerId,userLocation,rank;
 
 
     

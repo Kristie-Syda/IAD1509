@@ -8,16 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 
 
-@interface LeaderBoard : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface LeaderBoard : UIViewController <UITableViewDataSource, UITableViewDelegate,FBSDKSharingDelegate>
 {
     IBOutlet UITableView *myTable;
     NSMutableArray *dataArray;
     IBOutlet UISwitch *filter;
+    FBSDKShareLinkContent *content;
+    FBSDKShareButton *shareButton;
+    NSString *playerName;
+    int playerScore;
+    
 }
 
 -(IBAction)back:(id)sender;
+-(IBAction)share:(id)sender;
+
 
 @end
