@@ -29,7 +29,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     plungerNode.physicsBody.dynamic = NO;
     plungerNode.name = @"plunger";
     plungerNode.physicsBody.restitution = 1;
-    plungerNode.position = CGPointMake(375 - 16, 80);
+    plungerNode.position = CGPointMake(375 - 16, 60);
    
     self.plunger = plungerNode;
     
@@ -202,7 +202,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     SKSpriteNode *frame;
     frame = [SKSpriteNode spriteNodeWithImageNamed:@"frame.png"];
-    frame.position = CGPointMake(375 - 16, 80);
+    frame.position = CGPointMake(375 - 16,60);
 
     //add everything to table
     [table addChild:frame];

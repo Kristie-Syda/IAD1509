@@ -99,7 +99,6 @@
                     data.userLocation = player[@"Location"];
                     data.rank = ++i;
                     
-                    NSLog(@"%d",data.rank);
                     //add to array
                     [dataArray addObject:data];
                 }

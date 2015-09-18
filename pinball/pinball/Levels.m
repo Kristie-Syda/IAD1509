@@ -121,10 +121,10 @@
             
         //guest user
         } else if (!currentUser) {
-            NSLog(@"guest user");
+            
             
             NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-            level = [NSNumber numberWithFloat:[data integerForKey:@"passed"]];
+            level = [NSNumber numberWithInteger:[data integerForKey:@"passed"]];
             
             star1 = [self star:@"1" pos:CGPointMake(55, self.size.height - 150)];
             star2 = [self star:@"2" pos:CGPointMake(140, self.size.height - 150)];

@@ -90,10 +90,8 @@
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
-        
-        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-        
-        level = [NSNumber numberWithFloat:[data integerForKey:@"passed"]];
+                
+        level = [NSNumber numberWithInt:[Score shared].currentLevel];
         totalScore = [NSNumber numberWithInt:[Score shared].totalScore];
         
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"menuBg.png"];
@@ -155,6 +153,15 @@
                 PFQuery *data = [PFQuery queryWithClassName:@"HighScore"];
                 [data getObjectInBackgroundWithId:playerId block:^(PFObject *player, NSError *error) {
                     
+                    //player beat old level
+                    if (previousLevel < level) {
+                        
+                        player[@"Level"] = level;
+                        
+                    } else {
+                        
+                    }
+                    
                     //player beat old score
                     if (previousScore < totalScore) {
                         
@@ -171,11 +178,10 @@
                                        });
 
                     
-                    //player beat old level
-                    } else if (previousLevel < level) {
-                        
-                        player[@"Level"] = level;
+                    } else {
+                        //do nothing
                     }
+                    
                     
                     [player saveInBackground];
                     

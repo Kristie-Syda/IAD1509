@@ -15,6 +15,7 @@
 #import "Bouncer.h"
 #import "Levels.h"
 #import "Menu.h"
+#import <Parse/Parse.h>
 
 
 static const uint32_t ballCat = 0x1;
@@ -34,7 +35,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball.png"];
     ball.anchorPoint = CGPointMake(0.5, 0.5);
-    ball.position = CGPointMake(self.size.width - 18, 200);
+    ball.position = CGPointMake(self.size.width - 18, 160);
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.size.width/2];
     ball.physicsBody.dynamic = YES;
     ball.physicsBody.categoryBitMask = ballCat;
@@ -195,11 +196,29 @@ static const uint32_t leftFlip = 0x1 << 6;
 -(void)next {
     
     NSString *nextlvl = [NSString stringWithFormat:@"%i", lvl + 1];
+    NSNumber *lvlNumber = [NSNumber numberWithInt:lvl];
+    NSNumber *previousLevel;
     
-    //save level number to user defaults
-    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-    [data setInteger:lvl forKey:@"passed"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+    PFUser *user = [PFUser currentUser];
+    
+    //if not a user than save level to NSDefaults -- If level is higher than last level
+    if (!user) {
+        
+        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+        previousLevel = [NSNumber numberWithInteger:[data integerForKey:@"passed"]];
+        
+        if (previousLevel < lvlNumber) {
+            
+            //save level number to user defaults
+            NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+            [data setInteger:lvl forKey:@"passed"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+
+        } else {
+            //do nothing
+        }
+        
+    }
     
     //if next level is 11 got to menu bc there is no level 11
     if ([nextlvl isEqualToString:@"11"]) {
@@ -355,7 +374,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         gameOver = NO;
         nextLevel = NO;
         lvl = [lvlNum intValue];
-        [Score shared].currentLevel = lvl;
+        [Score shared].currentLevel = lvl - 1;
         
         //if first level get 3 balls
         if (lvl == 1) {
@@ -552,9 +571,9 @@ static const uint32_t leftFlip = 0x1 << 6;
         update = [(TableMaker *)importantContact.node collision:ball];
 
         ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
-        [self addBall];
         gateClose = NO;
         [gateImg runAction:openGate];
+        [self addBall];
         
     //right flipper
     } else if (importantContact.categoryBitMask == rightFlip){
