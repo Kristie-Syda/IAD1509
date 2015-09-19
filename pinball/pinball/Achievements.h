@@ -1,13 +1,13 @@
 //
-//  Credits.h
+//  Achievements.h
 //  pinball
 //
-//  Created by Kristie Syda on 8/27/15.
+//  Created by Kristie Syda on 9/18/15.
 //  Copyright (c) 2015 ___ksyda___. All rights reserved.
 //
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface Credits : SKScene
+@interface Achievements : SKScene
 
 @end

@@ -10,7 +10,7 @@
 #import "GameScene.h"
 #import "Score.h"
 #import "LeaderBoard.h"
-#import "Credits.h"
+#import "Achievements.h"
 #import "Levels.h"
 #import "SignUP.h"
 #import <Parse/Parse.h>
@@ -147,7 +147,7 @@
     //Credits transition
     } else if ([touched.name isEqualToString:@"Credits"]){
         
-        Credits *scene = [Credits sceneWithSize:self.size];
+        Achievements *scene = [Achievements sceneWithSize:self.size];
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         

@@ -1,28 +1,35 @@
 //
-//  Credits.m
+//  Achievements.m
 //  pinball
 //
-//  Created by Kristie Syda on 8/27/15.
+//  Created by Kristie Syda on 9/18/15.
 //  Copyright (c) 2015 ___ksyda___. All rights reserved.
 //
 
-#import "Credits.h"
+#import "Achievements.h"
 #import "Menu.h"
 
-@implementation Credits
-
+@implementation Achievements
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
         
-        SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"creditBg.png"];
+        SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"menuBg.png"];
         background.anchorPoint = CGPointMake(0, 0);
+        
+        SKLabelNode *lbl = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
+        lbl.text = @"Game Over";
+        lbl.position = CGPointMake(self.size.width/2, self.size.height - 60);
+        lbl.fontColor = [SKColor whiteColor];
+        lbl.fontSize = 50;
+
         
         SKSpriteNode *back = [SKSpriteNode spriteNodeWithImageNamed:@"back.png"];
         back.name = @"menu";
         back.position = CGPointMake(40, self.size.height-50);
         
         [self addChild:background];
+        [self addChild:lbl];
         [self addChild:back];
     }
     
@@ -46,6 +53,5 @@
     }
     
 }
-
 
 @end
