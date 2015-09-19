@@ -30,7 +30,6 @@ static const uint32_t leftFlip = 0x1 << 6;
 @implementation GameScene
 
 #pragma mark - Table sprites
-
 //ball
 - (void)addBall {
     
@@ -48,7 +47,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     [self addChild:ball];
 }
-
 //add top
 -(void)addTop{
     
@@ -65,7 +63,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:topImg];
     [self addChild:topCurve];
 }
-
+//gate
 -(void)addGate{
     
     gateImg = [SKSpriteNode spriteNodeWithImageNamed:@"gate.png"];
@@ -77,7 +75,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     [self addChild:gateImg];
 }
-
 //key image
 -(void)keyImg {
     
@@ -88,7 +85,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     [self addChild:key];
 }
-
 //create pink + purple bricks
 -(PinkBricks *)addBricks:(NSString*)type pos:(CGPoint)position {
     
@@ -116,7 +112,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     return bricks;
 }
-
 //create bouncers
 -(Bouncer *)createBouncer:(NSString *)type position:(CGPoint)pos {
     
@@ -154,7 +149,6 @@ static const uint32_t leftFlip = 0x1 << 6;
 }
 
 #pragma mark - Table Labels
-
 //adding score + scorelabel
 -(void)addScore {
     
@@ -174,7 +168,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:score];
     [self addChild:scoreLabel];
 }
-
 //ball count
 -(void)ballLabel {
     
@@ -194,21 +187,17 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:ballLabel];
     [self addChild:titleLabel];
 }
-
 //level label
 -(void)levelLabel {
-    
     SKLabelNode *lvlLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     lvlLabel.text = [NSString stringWithFormat: @"Level: %i",lvl];
     lvlLabel.fontColor = [SKColor whiteColor];
     lvlLabel.position = CGPointMake(self.size.width/2 - 20, self.size.height/3 - 140);
     lvlLabel.fontSize = 25;
-    
     [self addChild:lvlLabel];
 }
 
 #pragma mark - Pause
-
 //pause button
 -(void)addPause {
     
@@ -223,7 +212,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     [self addChild:pauseButton];
 }
-
 //pause game
 -(void)pauseGame {
     
@@ -240,7 +228,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         [self addChild:pauseButton];
     }
 }
-
 //Pause menu
 -(void)addMenu {
     
@@ -264,7 +251,6 @@ static const uint32_t leftFlip = 0x1 << 6;
 }
 
 #pragma mark - Game Over
-
 //gameOver Label
 -(void)addEndLabel {
     
@@ -276,7 +262,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     [self addChild:endLbl];
 }
-
 //Game OVer
 -(void)gameOver {
 
@@ -285,7 +270,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self.view presentScene:scene transition:close];
     [[Score shared]reset];
 }
-
 //next Level
 -(void)next {
     
@@ -332,7 +316,6 @@ static const uint32_t leftFlip = 0x1 << 6;
 }
 
 #pragma mark - Scene Setup
-
 //All SKActions
 -(void)actions {
     
@@ -370,7 +353,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     gateDrop = [SKAction moveTo:CGPointMake(348, 218) duration:0.5];
     openGate = [SKAction moveTo:CGPointMake(480, 218) duration:0.5];
 }
-
 //init
 -(id)initWithSize:(CGSize)size level:(NSString*)lvlNum {
     if (self = [super initWithSize:size]) {
@@ -454,7 +436,6 @@ static const uint32_t leftFlip = 0x1 << 6;
 }
 
 #pragma mark - Scene Methods
-
 //touches begin
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -524,7 +505,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         [self gameOver];
     }
 }
-
 //touches ended
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     
@@ -547,7 +527,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         plungerReleased = 0;
     }
 }
-
 //contacts
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     
@@ -654,15 +633,12 @@ static const uint32_t leftFlip = 0x1 << 6;
         }
     }
 }
-
 //update
 -(void)update:(CFTimeInterval)currentTime {
-  
     //spring goes down on plunger
     if ([plungBall isEqualToString:@"pressed"]) {
         
         if (plunger.size.height > 50) {
-            
             plunger.size = CGSizeMake(plunger.size.width, plunger.size.height - 0.8);
             plungerPressed = plungerReleased + 0.18;
             plungerReleased = plungerPressed;  
