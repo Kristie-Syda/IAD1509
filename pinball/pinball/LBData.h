@@ -10,15 +10,10 @@
 #import <Parse/Parse.h>
 
 @interface LBData : NSObject
-{
-    
-}
-
 @property(nonatomic, strong) NSNumber *score;
 @property(nonatomic, assign) NSString *playerId;
 @property(nonatomic, assign) NSNumber *level;
 @property(nonatomic, strong) NSString *username;
 @property (nonatomic, strong) PFGeoPoint *userLocation;
 @property(nonatomic, assign) int rank;
-
 @end

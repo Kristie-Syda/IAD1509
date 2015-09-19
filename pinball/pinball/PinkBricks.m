@@ -20,6 +20,8 @@
     if (self = [super init]) {
         
         brick = [SKAction playSoundFileNamed:@"brick.caf" waitForCompletion:NO];
+ 
+//TODO: Try to get animation to work on bricks
         
 //        //Explosion animation
 //        SKTextureAtlas *expAtlas = [SKTextureAtlas atlasNamed:@"explosion"];
@@ -39,6 +41,7 @@
 //        
 //        //explodes the child node then makes the whole node disappear
 //        explosion = [SKAction sequence:@[explosionChild,[SKAction removeFromParent]]];
+        
     }
     
     return self;

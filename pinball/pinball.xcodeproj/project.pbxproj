@@ -199,6 +199,163 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C96B0E281BAD3502008491EF /* Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				C9D2E9281B7CB81E008AE6F7 /* brick.caf */,
+				C9D2E9241B7CADA5008AE6F7 /* edge.caf */,
+				C9D2E9251B7CADA5008AE6F7 /* released.caf */,
+				C9D2E9221B7CA9ED008AE6F7 /* bouncer.caf */,
+				C912636E1B740567006F59FE /* spring.caf */,
+				C912636C1B71E4C1006F59FE /* bumpers.caf */,
+				C98358F71B7D482A005BF70E /* lose.caf */,
+				C98358F51B7D4396005BF70E /* target.caf */,
+			);
+			name = "Sound Effects";
+			sourceTree = "<group>";
+		};
+		C96B0E291BAD352D008491EF /* TableMaker */ = {
+			isa = PBXGroup;
+			children = (
+				C9884B851B8C0E13001994EE /* TableMaker.h */,
+				C9884B861B8C0E13001994EE /* TableMaker.m */,
+				C98A1CEF1B8CFCD700B25607 /* PinkBricks.h */,
+				C98A1CF01B8CFCD700B25607 /* PinkBricks.m */,
+				C98A1CF51B8D324A00B25607 /* Bouncer.h */,
+				C98A1CF61B8D324A00B25607 /* Bouncer.m */,
+				C98A1CFB1B8D4E7400B25607 /* BottomNode.h */,
+				C98A1CFC1B8D4E7400B25607 /* BottomNode.m */,
+			);
+			name = TableMaker;
+			sourceTree = "<group>";
+		};
+		C96B0E2A1BAD3570008491EF /* Level List */ = {
+			isa = PBXGroup;
+			children = (
+				C95765441B9A5F030058EDFB /* 1.plist */,
+				C95765451B9A5F030058EDFB /* 2.plist */,
+				C9E3472A1BA0197C0094EE00 /* 3.plist */,
+				C9BEC66F1BA159CD00AD4441 /* 4.plist */,
+				C9B73E9B1BA22DDD00F1FF13 /* 5.plist */,
+				C9B73E9D1BA2468A00F1FF13 /* 6.plist */,
+				C908CB6D1BA3A794001D47E6 /* 7.plist */,
+				C908CB6F1BA3B13F001D47E6 /* 8.plist */,
+				C908CB711BA3CCC4001D47E6 /* 9.plist */,
+				C908CB731BA3FB40001D47E6 /* 10.plist */,
+			);
+			name = "Level List";
+			sourceTree = "<group>";
+		};
+		C96B0E2B1BAD35D7008491EF /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				C9884B7C1B8BA896001994EE /* Menu.h */,
+				C9884B7D1B8BA896001994EE /* Menu.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		C96B0E2C1BAD361F008491EF /* LeaderBoards */ = {
+			isa = PBXGroup;
+			children = (
+				C9EAA62C1BAABA16008731F4 /* LeaderBoard.h */,
+				C9EAA62D1BAABA16008731F4 /* LeaderBoard.m */,
+				C9EAA62F1BAACD7F008731F4 /* LBData.h */,
+				C9EAA6301BAACD7F008731F4 /* LBData.m */,
+				C9EAA6321BAAD4D2008731F4 /* CustomCell.h */,
+				C9EAA6331BAAD4D2008731F4 /* CustomCell.m */,
+			);
+			name = LeaderBoards;
+			sourceTree = "<group>";
+		};
+		C96B0E2D1BAD3673008491EF /* Menu options */ = {
+			isa = PBXGroup;
+			children = (
+				C96B0E2B1BAD35D7008491EF /* Menu */,
+				C96B0E2E1BAD368F008491EF /* SignUp */,
+				C96B0E2F1BAD36A0008491EF /* Login */,
+				C96B0E311BAD36DD008491EF /* Levels */,
+				C96B0E2C1BAD361F008491EF /* LeaderBoards */,
+				C96B0E301BAD36C2008491EF /* Achievements */,
+			);
+			name = "Menu options";
+			sourceTree = "<group>";
+		};
+		C96B0E2E1BAD368F008491EF /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C9EAA6291BA892C3008731F4 /* SignUP.h */,
+				C9EAA62A1BA892C3008731F4 /* SignUP.m */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
+		C96B0E2F1BAD36A0008491EF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C9EAA6261BA8929F008731F4 /* Login.h */,
+				C9EAA6271BA8929F008731F4 /* Login.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		C96B0E301BAD36C2008491EF /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				C96B0E251BACE383008491EF /* Achievements.h */,
+				C96B0E261BACE383008491EF /* Achievements.m */,
+			);
+			name = Achievements;
+			sourceTree = "<group>";
+		};
+		C96B0E311BAD36DD008491EF /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				C96B0E2A1BAD3570008491EF /* Level List */,
+				C957653D1B98F8DA0058EDFB /* Levels.h */,
+				C957653E1B98F8DA0058EDFB /* Levels.m */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
+		C96B0E321BAD3797008491EF /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				C96B0E331BAD37A2008491EF /* GameScene */,
+				C96B0E291BAD352D008491EF /* TableMaker */,
+				C96B0E351BAD37C1008491EF /* GameOver */,
+				C96B0E341BAD37B0008491EF /* Score */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		C96B0E331BAD37A2008491EF /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				C9FEA6191B70754100CE0E27 /* GameScene.h */,
+				C9FEA61A1B70754100CE0E27 /* GameScene.m */,
+			);
+			name = GameScene;
+			sourceTree = "<group>";
+		};
+		C96B0E341BAD37B0008491EF /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				C98002A81B7E715F0047DD4C /* Score.h */,
+				C98002A91B7E715F0047DD4C /* Score.m */,
+			);
+			name = Score;
+			sourceTree = "<group>";
+		};
+		C96B0E351BAD37C1008491EF /* GameOver */ = {
+			isa = PBXGroup;
+			children = (
+				C9C906321B834EE9000FFD03 /* GameOver.h */,
+				C9C906331B834EE9000FFD03 /* GameOver.m */,
+			);
+			name = GameOver;
+			sourceTree = "<group>";
+		};
 		C9FEA6061B70754000CE0E27 = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +389,9 @@
 		C9FEA6111B70754100CE0E27 /* pinball */ = {
 			isa = PBXGroup;
 			children = (
+				C96B0E321BAD3797008491EF /* Game */,
+				C96B0E2D1BAD3673008491EF /* Menu options */,
+				C96B0E281BAD3502008491EF /* Sound Effects */,
 				C9EAA6411BAB9318008731F4 /* ParseFacebookUtilsV4.framework */,
 				C9EAA63F1BAB85B1008731F4 /* FBSDKShareKit.framework */,
 				C9EAA63B1BAB85A4008731F4 /* FBSDKCoreKit.framework */,
@@ -239,38 +399,8 @@
 				C9650E611BA6619E00AA0783 /* Bolts.framework */,
 				C9650E621BA6619E00AA0783 /* Parse.framework */,
 				C948BEF11B89020600821C79 /* explosion.atlas */,
-				C98358F71B7D482A005BF70E /* lose.caf */,
-				C98358F51B7D4396005BF70E /* target.caf */,
-				C9D2E9281B7CB81E008AE6F7 /* brick.caf */,
-				C9D2E9241B7CADA5008AE6F7 /* edge.caf */,
-				C9D2E9251B7CADA5008AE6F7 /* released.caf */,
-				C9D2E9221B7CA9ED008AE6F7 /* bouncer.caf */,
-				C912636E1B740567006F59FE /* spring.caf */,
-				C912636C1B71E4C1006F59FE /* bumpers.caf */,
 				C9FEA6161B70754100CE0E27 /* AppDelegate.h */,
 				C9FEA6171B70754100CE0E27 /* AppDelegate.m */,
-				C9884B7C1B8BA896001994EE /* Menu.h */,
-				C9884B7D1B8BA896001994EE /* Menu.m */,
-				C9EAA6291BA892C3008731F4 /* SignUP.h */,
-				C9EAA62A1BA892C3008731F4 /* SignUP.m */,
-				C9EAA6261BA8929F008731F4 /* Login.h */,
-				C9EAA6271BA8929F008731F4 /* Login.m */,
-				C9EAA62C1BAABA16008731F4 /* LeaderBoard.h */,
-				C9EAA62D1BAABA16008731F4 /* LeaderBoard.m */,
-				C9EAA62F1BAACD7F008731F4 /* LBData.h */,
-				C9EAA6301BAACD7F008731F4 /* LBData.m */,
-				C9EAA6321BAAD4D2008731F4 /* CustomCell.h */,
-				C9EAA6331BAAD4D2008731F4 /* CustomCell.m */,
-				C96B0E251BACE383008491EF /* Achievements.h */,
-				C96B0E261BACE383008491EF /* Achievements.m */,
-				C957653D1B98F8DA0058EDFB /* Levels.h */,
-				C957653E1B98F8DA0058EDFB /* Levels.m */,
-				C9FEA6191B70754100CE0E27 /* GameScene.h */,
-				C9FEA61A1B70754100CE0E27 /* GameScene.m */,
-				C98002A81B7E715F0047DD4C /* Score.h */,
-				C98002A91B7E715F0047DD4C /* Score.m */,
-				C9C906321B834EE9000FFD03 /* GameOver.h */,
-				C9C906331B834EE9000FFD03 /* GameOver.m */,
 				C9FEA61C1B70754100CE0E27 /* GameScene.sks */,
 				C9FEA61E1B70754100CE0E27 /* GameViewController.h */,
 				C9FEA61F1B70754100CE0E27 /* GameViewController.m */,
@@ -278,24 +408,6 @@
 				C9FEA6241B70754100CE0E27 /* Images.xcassets */,
 				C9FEA6261B70754100CE0E27 /* LaunchScreen.xib */,
 				C9FEA6121B70754100CE0E27 /* Supporting Files */,
-				C9884B851B8C0E13001994EE /* TableMaker.h */,
-				C9884B861B8C0E13001994EE /* TableMaker.m */,
-				C98A1CEF1B8CFCD700B25607 /* PinkBricks.h */,
-				C98A1CF01B8CFCD700B25607 /* PinkBricks.m */,
-				C98A1CF51B8D324A00B25607 /* Bouncer.h */,
-				C98A1CF61B8D324A00B25607 /* Bouncer.m */,
-				C98A1CFB1B8D4E7400B25607 /* BottomNode.h */,
-				C98A1CFC1B8D4E7400B25607 /* BottomNode.m */,
-				C95765441B9A5F030058EDFB /* 1.plist */,
-				C95765451B9A5F030058EDFB /* 2.plist */,
-				C9E3472A1BA0197C0094EE00 /* 3.plist */,
-				C9BEC66F1BA159CD00AD4441 /* 4.plist */,
-				C9B73E9B1BA22DDD00F1FF13 /* 5.plist */,
-				C9B73E9D1BA2468A00F1FF13 /* 6.plist */,
-				C908CB6D1BA3A794001D47E6 /* 7.plist */,
-				C908CB6F1BA3B13F001D47E6 /* 8.plist */,
-				C908CB711BA3CCC4001D47E6 /* 9.plist */,
-				C908CB731BA3FB40001D47E6 /* 10.plist */,
 			);
 			path = pinball;
 			sourceTree = "<group>";

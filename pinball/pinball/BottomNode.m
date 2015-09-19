@@ -18,10 +18,8 @@
         //sound effect
         SFX = [SKAction playSoundFileNamed:@"lose.caf" waitForCompletion:NO];
     }
-    
     return self;
 }
-
 
 - (BOOL) collision:(SKNode *)ball {
     

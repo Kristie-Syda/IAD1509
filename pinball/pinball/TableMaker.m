@@ -19,6 +19,7 @@ static const uint32_t leftFlip = 0x1 << 6;
 @implementation TableMaker
 @synthesize plunger,RFlipper,LFlipper;
 
+#pragma mark - Table Sprites
 
 ////plunger
 -(SKSpriteNode *)addPlunger {
@@ -188,11 +189,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     return bottomNode;
 }
 
-//method is used in subclasses
-- (BOOL)collision:(SKNode *)ball{
-    return NO;
-}
-
+#pragma mark - Create Table Method
 
 //Create Table
 -(SKNode *)createTable {
@@ -217,5 +214,11 @@ static const uint32_t leftFlip = 0x1 << 6;
     return table;
 }
 
+#pragma mark - Subclass Method
+
+//method is used in subclasses
+- (BOOL)collision:(SKNode *)ball{
+    return NO;
+}
 
 @end

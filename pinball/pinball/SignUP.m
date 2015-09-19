@@ -13,6 +13,9 @@
 
 @implementation SignUP
 
+#pragma mark - UITextfields
+
+//have to put UITextfields here because they dont show up on SKScenes
 -(void)didMoveToView:(SKView *)view {
     
     //Firstname
@@ -72,6 +75,7 @@
     
 }
 
+//textfields methods for keyboard
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
@@ -81,11 +85,10 @@
 -(BOOL) textFieldShouldReturn: (UITextField *) textField
 {
     [textField resignFirstResponder];
-    
     return YES;
 }
 
-
+//removes the textfields off view when done
 -(void)resetView {
     
     [firstName removeFromSuperview];
@@ -95,6 +98,9 @@
     [password removeFromSuperview];
 }
 
+#pragma mark - SKScene Setup
+
+//label maker
 -(SKLabelNode *)labelMaker:(NSString *)title position:(CGPoint)pos {
     
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
@@ -106,6 +112,7 @@
     return label;
 }
 
+//init
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -163,50 +170,43 @@
         [self addChild:userLabel];
         [self addChild:passwordLabel];
     }
-    
     return self;
 }
 
+#pragma mark SKScene Methods
+
 //player is signed up and ready to use account
 -(void)SignedIn{
-    
+    //saved alert and dialog
     saved = [[UIAlertView alloc]initWithTitle:@"Information Saved!" message:@"You can now use your Flipball account" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     saved.backgroundColor = [UIColor blackColor];
     [saved show];
-    
     int duration = 3;
-    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
                    ^{
                        [saved dismissWithClickedButtonIndex:0 animated:YES];
                    });
-
-       //opens menu
+    //opens menu
     Menu *scene = [Menu sceneWithSize:self.size];
     SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
-    
-    [self resetView];
     [self.view presentScene:scene transition:reveal];
+    [self resetView];
 }
 
-
+//Touches began -- back and submit button
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
     
-    
     //menu transition
     if ([touched.name isEqualToString:@"menu"]) {
-        
-        Menu *scene = [Menu sceneWithSize:self.size];
-        
         //reset view
         [self resetView];
         
+        Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:0.5];
-        
         [self.view presentScene:scene transition:reveal];
     
     //submit button pressed
@@ -214,21 +214,14 @@
         
         //checking for blanks
         if ([firstName.text isEqualToString:@""]) {
-           
             [alertView show];
-         
         } else if ([email.text isEqualToString:@""]) {
-            
             [alertView show];
-        
         } else if ([password.text isEqualToString:@""]){
-            
             [alertView show];
-        
         } else {
-            
+            //creating User
             PFUser *player = [PFUser user];
-            
             player[@"First"] = firstName.text;
             player[@"Last"] = lastName.text;
             player.username = userName.text;
@@ -238,12 +231,15 @@
             [player signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     
+                    PFObject *data= [PFObject objectWithClassName:@"HighScore"];
+                    [data setObject:[PFUser currentUser] forKey:@"Player"];
+                    
                     //create highscore object for new user
                     PFUser *current = [PFUser currentUser];
                     if (current) {
                         
                         [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
-                            
+
                             //make up imaginary locations for fake users -- debugging purposes
                             //PFGeoPoint *makeUp = [PFGeoPoint geoPointWithLatitude:-89.42 longitude:67.5];
                             
@@ -255,25 +251,20 @@
                             data[@"playerId"] = [current objectId];
                             data[@"Username"] = [current username];
                             data[@"Location"] = point;
-                            
+
                             [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                 NSLog(@"highscore object created");
                             }];
-
                         }];
-                        
                     } else {
                         NSLog(@"highscore object Not created");
                     }
-                
+                    //sign in method
                     [self SignedIn];
-                    
                 } else {
-                    
+                    //error msg
                     errorString = [error userInfo][@"error"];
-                   
                     errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:errorString delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-
                     [errorMsg show];
                 }
             }];

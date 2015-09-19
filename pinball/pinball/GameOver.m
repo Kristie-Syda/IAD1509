@@ -16,18 +16,10 @@
 
 
 @implementation GameOver
-{
-    SKLabelNode *lbl;
-    SKNode *touched;
-    NSNumber *level;
-    NSNumber *totalScore;
-    NSString *playerId;
-    FBSDKShareLinkContent *content;
-    NSNumber *previousScore;
-    NSNumber *previousLevel;
-    FBSDKShareButton *shareButton;
-}
 
+#pragma mark - Facebook Share Button
+
+//Facebook Sharebutton does not work on SKScene
 -(void)didMoveToView:(SKView *)view{
     
     PFUser *current = [PFUser currentUser];
@@ -51,6 +43,7 @@
 
 }
 
+//Facebook required methods
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
     
 }
@@ -68,6 +61,8 @@
     [FBSDKShareDialog showFromViewController:self.view.window.rootViewController withContent:content delegate:self];
     
 }
+
+#pragma mark - SKScene setup
 
 //button creator
 -(SKSpriteNode *)button:(NSString*)title pos:(CGPoint)position {
@@ -87,10 +82,11 @@
     return nodeImg;
 }
 
+//init
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
-                
+       
         level = [NSNumber numberWithInt:[Score shared].currentLevel];
         totalScore = [NSNumber numberWithInt:[Score shared].totalScore];
         
@@ -122,10 +118,12 @@
         
         [self updateScore];
     }
-    
     return self;
 }
 
+#pragma mark - Scene Methods
+
+//UpDate Score: figures out if user has beat their old score/level
 -(void)updateScore{
     
     PFUser *currentUser = [PFUser currentUser];
@@ -162,29 +160,22 @@
                         
                     }
                     
-                    //player beat old score
+                    //player beat old score -- sends out toast msg
                     if (previousScore < totalScore) {
                         
                         player[@"Score"] = totalScore;
                         UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:@"New HighScore" message:@"updated on leaderboards" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
                         toastMsg.backgroundColor = [UIColor blackColor];
                         [toastMsg show];
-                        
                         int duration = 2;
-                        
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
                                        ^{
                                            [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
                                        });
-
-                    
                     } else {
                         //do nothing
                     }
-                    
-                    
                     [player saveInBackground];
-                    
                 }];
             }
         }];
@@ -192,9 +183,9 @@
     } else if(!currentUser){
         //we dont save guest data
     }
-    
 }
 
+//touches began
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -204,7 +195,6 @@
     if ([touched.name isEqualToString:@"Try Again?"]) {
         
         [shareButton removeFromSuperview];
-        
         GameScene *scene = [[GameScene alloc]initWithSize:self.size level:[NSString stringWithFormat:@"%i", [Score shared].currentLevel]];
         
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
@@ -220,7 +210,6 @@
         
         [self.view presentScene:scene transition:reveal];
     }
-    
 }
 
 @end

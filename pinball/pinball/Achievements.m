@@ -18,15 +18,15 @@
         background.anchorPoint = CGPointMake(0, 0);
         
         SKLabelNode *lbl = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
-        lbl.text = @"Game Over";
-        lbl.position = CGPointMake(self.size.width/2, self.size.height - 60);
+        lbl.text = @"Achievements";
+        lbl.position = CGPointMake(self.size.width/2 + 20, self.size.height - 55);
         lbl.fontColor = [SKColor whiteColor];
-        lbl.fontSize = 50;
+        lbl.fontSize = 38;
 
         
         SKSpriteNode *back = [SKSpriteNode spriteNodeWithImageNamed:@"back.png"];
         back.name = @"menu";
-        back.position = CGPointMake(40, self.size.height-50);
+        back.position = CGPointMake(40, self.size.height-45);
         
         [self addChild:background];
         [self addChild:lbl];

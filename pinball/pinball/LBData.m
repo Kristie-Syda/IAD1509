@@ -10,11 +10,4 @@
 
 @implementation LBData
 @synthesize username,level,score,playerId,userLocation,rank;
-
-
-    
-
-
-
-
 @end

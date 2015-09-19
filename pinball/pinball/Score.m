@@ -31,7 +31,9 @@
         totalScore = 0;
         currentScore = 0;
         ball = 1;
-    }
+        currentLevel = 1;
+        
+}
     
     return self;
 }

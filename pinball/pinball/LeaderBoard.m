@@ -18,6 +18,8 @@
 
 @implementation LeaderBoard
 
+#pragma mark - UIVewController
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -25,53 +27,39 @@
     //method call everytime switch changes
     [filter addTarget:self action:@selector(switched:) forControlEvents:UIControlEventValueChanged];
     
+    //if user grab player data and add share button to view
     PFUser *current = [PFUser currentUser];
     if(current){
-        
         [self getPlayerData];
-        
         [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
-    
     } else {
-        //no share button for guest
+        //no share button for guest or player data to grab
     }
-
     //initial loading of the data
     [self grabData];
 }
-
-//switch method action
--(void)switched:(id)sender {
-    
-    if ([sender isOn]) {
-        [self grabData];
-        
-    } else {
-        
-        [self grabData];
-    }
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Share button methods
 
 //required share button methods
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
     
 }
-
 - (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{
     
 }
-
 - (void)sharerDidCancel:(id<FBSDKSharing>)sharer{
     
 }
 
-
-//share button action
--(IBAction)share:(id)sender {
-    
-    [FBSDKShareDialog showFromViewController:self.view.window.rootViewController withContent:content delegate:self];
-}
-
+#pragma mark - grabbing data methods
 
 //grabs the correct data and loads into table
 -(void)grabData {
@@ -140,7 +128,6 @@
     }
     
 }
-
 -(void)getPlayerData{
     
     PFUser *currentUser = [PFUser currentUser];
@@ -184,6 +171,7 @@
     
 }
 
+#pragma mark - TableView methods
 
 - (CustomCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -197,25 +185,30 @@
     
     return cell;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return [dataArray count];
 }
 
+#pragma mark - IBActions
+
+//switch method action
+-(IBAction)switched:(id)sender {
+    
+    if ([sender isOn]) {
+        [self grabData];
+    } else {
+        [self grabData];
+    }
+}
+//share button action
+-(IBAction)share:(id)sender {
+    [FBSDKShareDialog showFromViewController:self.view.window.rootViewController withContent:content delegate:self];
+}
 //back button
 -(IBAction)back:(id)sender {
     
     [self dismissViewControllerAnimated:true completion:nil];
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

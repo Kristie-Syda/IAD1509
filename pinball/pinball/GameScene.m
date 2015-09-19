@@ -29,6 +29,7 @@ static const uint32_t leftFlip = 0x1 << 6;
 
 @implementation GameScene
 
+#pragma mark - Table sprites
 
 //ball
 - (void)addBall {
@@ -77,7 +78,84 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:gateImg];
 }
 
-//adding score
+//key image
+-(void)keyImg {
+    
+    key = [SKSpriteNode spriteNodeWithImageNamed:@"key.png"];
+    key.name = @"key";
+    
+    key.position = CGPointMake(self.size.width/2 - 20, self.size.height - 50);
+    
+    [self addChild:key];
+}
+
+//create pink + purple bricks
+-(PinkBricks *)addBricks:(NSString*)type pos:(CGPoint)position {
+    
+    PinkBricks *bricks = [PinkBricks node];
+    
+    SKSpriteNode *pink;
+    pink.name = @"child_pink";
+    
+    if ([type isEqualToString:@"pink"]) {
+        
+        pink = [SKSpriteNode spriteNodeWithImageNamed:@"hotPink.png"];
+        
+    } else {
+        
+        pink = [SKSpriteNode spriteNodeWithImageNamed:@"purple.png"];
+        
+    }
+    
+    [bricks addChild:pink];
+    
+    bricks.position = position;
+    bricks.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pink.size];
+    bricks.physicsBody.dynamic = NO;
+    bricks.physicsBody.categoryBitMask = pinkCat;
+    
+    return bricks;
+}
+
+//create bouncers
+-(Bouncer *)createBouncer:(NSString *)type position:(CGPoint)pos {
+    
+    Bouncer *bouncerNode = [Bouncer node];
+    
+    
+    SKSpriteNode *bouncer;
+    
+    
+    if ([type isEqualToString:@"bouncer1"]) {
+        
+        bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer.png"];
+        
+    } else if ([type isEqualToString:@"bouncer2"]){
+        
+        bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer1.png"];
+        
+    } else if ([type isEqualToString:@"bouncer3"]){
+        
+        bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer3.png"];
+        
+    }
+    
+    bouncer.size = CGSizeMake(40, 40);
+    bouncer.name = @"child_bouncer";
+    
+    [bouncerNode addChild:bouncer];
+    [bouncerNode setPosition:pos];
+    bouncerNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:bouncer.size.width/2];
+    bouncerNode.physicsBody.dynamic = NO;
+    bouncerNode.physicsBody.restitution = 1;
+    bouncerNode.physicsBody.categoryBitMask = bounceCat;
+    
+    return bouncerNode;
+}
+
+#pragma mark - Table Labels
+
+//adding score + scorelabel
 -(void)addScore {
     
     //Score label
@@ -117,6 +195,20 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:titleLabel];
 }
 
+//level label
+-(void)levelLabel {
+    
+    SKLabelNode *lvlLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
+    lvlLabel.text = [NSString stringWithFormat: @"Level: %i",lvl];
+    lvlLabel.fontColor = [SKColor whiteColor];
+    lvlLabel.position = CGPointMake(self.size.width/2 - 20, self.size.height/3 - 140);
+    lvlLabel.fontSize = 25;
+    
+    [self addChild:lvlLabel];
+}
+
+#pragma mark - Pause
+
 //pause button
 -(void)addPause {
     
@@ -130,6 +222,23 @@ static const uint32_t leftFlip = 0x1 << 6;
     playBtn.position = CGPointMake(self.size.width - 45, self.size.height - 40);
     
     [self addChild:pauseButton];
+}
+
+//pause game
+-(void)pauseGame {
+    
+    self.paused = !self.scene.paused;
+    
+    if (self.scene.paused == YES) {
+        [self addMenu];
+        [pauseButton removeFromParent];
+        [self addChild:playBtn];
+        
+    } else if (self.scene.paused == NO) {
+        [menuNode removeFromParent];
+        [playBtn removeFromParent];
+        [self addChild:pauseButton];
+    }
 }
 
 //Pause menu
@@ -154,22 +263,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:menuNode];
 }
 
-//pause game
--(void)pauseGame {
-    
-    self.paused = !self.scene.paused;
-    
-    if (self.scene.paused == YES) {
-        [self addMenu];
-        [pauseButton removeFromParent];
-        [self addChild:playBtn];
-        
-    } else if (self.scene.paused == NO) {
-        [menuNode removeFromParent];
-        [playBtn removeFromParent];
-        [self addChild:pauseButton];
-    }
-}
+#pragma mark - Game Over
 
 //gameOver Label
 -(void)addEndLabel {
@@ -237,28 +331,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     }
 }
 
-//level label
--(void)levelLabel {
-    
-    SKLabelNode *lvlLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
-    lvlLabel.text = [NSString stringWithFormat: @"Level: %i",lvl];
-    lvlLabel.fontColor = [SKColor whiteColor];
-    lvlLabel.position = CGPointMake(self.size.width/2 - 20, self.size.height/3 - 140);
-    lvlLabel.fontSize = 25;
-    
-    [self addChild:lvlLabel];
-}
-
-//key image
--(void)keyImg {
-    
-    key = [SKSpriteNode spriteNodeWithImageNamed:@"key.png"];
-    key.name = @"key";
-    
-    key.position = CGPointMake(self.size.width/2 - 20, self.size.height - 50);
-    
-    [self addChild:key];
-}
+#pragma mark - Scene Setup
 
 //All SKActions
 -(void)actions {
@@ -298,70 +371,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     openGate = [SKAction moveTo:CGPointMake(480, 218) duration:0.5];
 }
 
-//create pink + purple bricks
--(PinkBricks *)addBricks:(NSString*)type pos:(CGPoint)position {
-    
-    PinkBricks *bricks = [PinkBricks node];
-    
-    SKSpriteNode *pink;
-    pink.name = @"child_pink";
-    
-    if ([type isEqualToString:@"pink"]) {
-        
-        pink = [SKSpriteNode spriteNodeWithImageNamed:@"hotPink.png"];
-        
-    } else {
-        
-        pink = [SKSpriteNode spriteNodeWithImageNamed:@"purple.png"];
-        
-    }
-    
-    [bricks addChild:pink];
-    
-    bricks.position = position;
-    bricks.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pink.size];
-    bricks.physicsBody.dynamic = NO;
-    bricks.physicsBody.categoryBitMask = pinkCat;
-    
-    return bricks;
-}
-
-//create bouncers
--(Bouncer *)createBouncer:(NSString *)type position:(CGPoint)pos {
-
-    Bouncer *bouncerNode = [Bouncer node];
-    
-
-    SKSpriteNode *bouncer;
-    
-
-    if ([type isEqualToString:@"bouncer1"]) {
-
-        bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer.png"];
-        
-    } else if ([type isEqualToString:@"bouncer2"]){
-
-        bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer1.png"];
-    
-    } else if ([type isEqualToString:@"bouncer3"]){
-
-        bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer3.png"];
-        
-    }
-
-        bouncer.size = CGSizeMake(40, 40);
-        bouncer.name = @"child_bouncer";
-
-    [bouncerNode addChild:bouncer];
-    [bouncerNode setPosition:pos];
-     bouncerNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:bouncer.size.width/2];
-     bouncerNode.physicsBody.dynamic = NO;
-     bouncerNode.physicsBody.restitution = 1;
-     bouncerNode.physicsBody.categoryBitMask = bounceCat;
-
-     return bouncerNode;
-}
-
 //init
 -(id)initWithSize:(CGSize)size level:(NSString*)lvlNum {
     if (self = [super initWithSize:size]) {
@@ -374,7 +383,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         gameOver = NO;
         nextLevel = NO;
         lvl = [lvlNum intValue];
-        [Score shared].currentLevel = lvl - 1;
+        [Score shared].currentLevel = lvl;
         
         //if first level get 3 balls
         if (lvl == 1) {
@@ -443,6 +452,8 @@ static const uint32_t leftFlip = 0x1 << 6;
     }
     return self;
 }
+
+#pragma mark - Scene Methods
 
 //touches begin
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

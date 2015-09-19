@@ -13,7 +13,7 @@
 {
     SKSpriteNode *play;
     SKSpriteNode *leader;
-    SKSpriteNode *credits;
+    SKSpriteNode *achieve;
     SKSpriteNode *levels;
     PFUser *currentUser;
 }

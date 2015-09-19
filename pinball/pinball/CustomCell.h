@@ -13,7 +13,6 @@
     IBOutlet UILabel *username;
     IBOutlet UILabel *scoreLabel;
     IBOutlet UILabel *rankLabel;
-   
 }
 
 //custom method to populate custom cell

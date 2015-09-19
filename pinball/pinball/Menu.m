@@ -18,7 +18,7 @@
 
 @implementation Menu
 
-
+#pragma mark - Scene Setup
 
 //button creator
 -(SKSpriteNode *)button:(NSString*)title pos:(CGPoint)position {
@@ -38,6 +38,7 @@
     return nodeImg;
 }
 
+//init
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -70,16 +71,16 @@
              leader = [self button:@"LeaderBoards" pos:CGPointMake(levels.position.x, levels.position.y - 100)];
              leader.name = @"LeaderBoards";
              
-             //credits button
-             credits = [self button:@"Credits" pos:CGPointMake(leader.position.x, leader.position.y - 100)];
-             credits.name = @"Credits";
+             //achievement button
+              achieve = [self button:@"Achievements" pos:CGPointMake(leader.position.x, leader.position.y - 100)];
+             achieve.name = @"Achievements";
         
         [self addChild:background];
         [self addChild:mainLabel];
         [self addChild:play];
         [self addChild:levels];
         [self addChild:leader];
-        [self addChild:credits];
+        [self addChild:achieve];
         
         currentUser = [PFUser currentUser];
        
@@ -108,10 +109,12 @@
             [self addChild:signUp];
         }
     }
-    
     return self;
 }
 
+#pragma mark - scene methods
+
+//touches Began
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -122,66 +125,50 @@
     if ([touched.name isEqualToString:@"Play Game"]) {
         
         GameScene *scene = [[GameScene alloc]initWithSize:self.size level:@"1"];
-        
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-        
         [self.view presentScene:scene transition:reveal];
     
     //Levels transition
     } else if ([touched.name isEqualToString:@"Levels"]){
         
         Levels *scene = [Levels sceneWithSize:self.size];
-        
         SKTransition *trans = [SKTransition doorsOpenHorizontalWithDuration:2];
-        
         [self.view presentScene:scene transition:trans];
         
     //LeaderBoard transition
     } else if ([touched.name isEqualToString:@"LeaderBoards"]){
-        
 
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         LeaderBoard *vc = [storyboard instantiateViewControllerWithIdentifier:@"Leader"];
         [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
 
-    //Credits transition
-    } else if ([touched.name isEqualToString:@"Credits"]){
+    //Achievements transition
+    } else if ([touched.name isEqualToString:@"Achievements"]){
         
         Achievements *scene = [Achievements sceneWithSize:self.size];
-        
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-        
         [self.view presentScene:scene transition:reveal];
         
     //Sign Up
     } else if ([touched.name isEqualToString:@"signUp"]){
         
         SignUP *scene = [SignUP sceneWithSize:self.size];
-        
         SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
-        
         [self.view presentScene:scene transition:reveal];
   
     } else if ([touched.name isEqualToString:@"login"]){
         
         Login *scene = [Login sceneWithSize:self.size];
-        
         SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
-        
         [self.view presentScene:scene transition:reveal];
         
     } else if ([touched.name isEqualToString:@"logOff"]){
         
         [PFUser logOut];
-        
         currentUser = [PFUser currentUser];
-        
         Menu *scene = [Menu sceneWithSize:self.size];
-        
         SKTransition *reveal = [SKTransition doorsOpenVerticalWithDuration:0.5];
-        
         [self.view presentScene:scene transition:reveal];
-       
     }
 }
 

@@ -14,10 +14,10 @@
 @implementation Login
 
 
+#pragma mark - UITextfields
 
 -(void)didMoveToView:(SKView *)view {
     
-   
     //Username
     userName = [[UITextField alloc]initWithFrame:CGRectMake(45, self.size.height/2 - 60, 150, 30)];
     userName.placeholder = @"UserName";
@@ -40,9 +40,29 @@
 
     [self.view addSubview:userName];
     [self.view addSubview:password];
+}
+
+//textfield methods for keyboard
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
     
 }
 
+-(BOOL) textFieldShouldReturn: (UITextField *) textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+//Removes textfields off scene when done
+-(void)resetView {
+    
+    [userName removeFromSuperview];
+    [password removeFromSuperview];
+}
+
+#pragma mark - SKScene SetUp
 
 //label maker
 -(SKLabelNode *)labelMaker:(NSString *)title position:(CGPoint)pos {
@@ -56,35 +76,7 @@
     return label;
 }
 
-//clear view
--(void)resetView {
-    
-    [userName removeFromSuperview];
-    [password removeFromSuperview];
-}
-
-//loggin in method
--(void)loggedIn{
-    
-    //shows a pop up alert thats lets user know they are logging in
-    UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:nil message:@"Logging in..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    toastMsg.backgroundColor = [UIColor blackColor];
-    [toastMsg show];
-    
-    int duration = 1;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
-                   ^{
-                       [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
-                   });
-    //opens menu
-    Menu *scene = [Menu sceneWithSize:self.size];
-    SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
-    
-    [self resetView];
-    [self.view presentScene:scene transition:reveal];
-}
-
+//init
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -135,37 +127,41 @@
         [self addChild:userLabel];
         [self addChild:passwordLabel];
     }
-    
     return self;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+#pragma mark SKScene Methods
+
+//loggin in method
+-(void)loggedIn{
     
+    //shows a pop up alert thats lets user know they are logging in
+    UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:nil message:@"Logging in..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    toastMsg.backgroundColor = [UIColor blackColor];
+    [toastMsg show];
+    int duration = 1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
+                   ^{
+                       [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
+                   });
+    //opens menu
+    Menu *scene = [Menu sceneWithSize:self.size];
+    SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
+    [self.view presentScene:scene transition:reveal];
+    [self resetView];
 }
 
--(BOOL) textFieldShouldReturn: (UITextField *) textField
-{
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-
+//touches began
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
-    
+
     if ([touched.name isEqualToString:@"menu"]) {
-    
         [self resetView];
-        
         Menu *scene = [Menu sceneWithSize:self.size];
-        
         SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
-        
         [self.view presentScene:scene transition:reveal];
         
     } else if ([touched.name isEqualToString:@"submit"]){
@@ -200,6 +196,5 @@
     }
     
 }
-
 
 @end

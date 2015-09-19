@@ -14,6 +14,8 @@
 
 @implementation Levels
 
+#pragma mark - Scene Setup
+
 //star creator
 -(SKSpriteNode *)star:(NSString*)title pos:(CGPoint)position {
    
@@ -30,7 +32,6 @@
     
 /* if the level number is greater than the saved level
     in userdefaults/user account than its not unlocked */
-
     if (levelNum > (savedlevel + 1)) {
 
         nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star2.png"];
@@ -49,11 +50,10 @@
     return nodeImg;
 }
 
-
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
-        
+
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:size];
         background.anchorPoint = CGPointMake(0, 0);
         
@@ -78,13 +78,17 @@
             [queryId findObjectsInBackgroundWithBlock:^(NSArray *players, NSError *error) {
                 if (!error) {
                     
+                    int lvl = 0;
+                    
                     //grab the player's objectId
                     for (PFObject *data in players) {
                         
                         //store id and level
                         playerId = [data objectId];
-                        level = data[@"Level"];
+                        lvl = [data[@"Level"]intValue];
                     }
+                    
+                    level = [NSNumber numberWithInt:lvl - 1];
                     
                     //add stars to scene -- have to add code to completion block
                     star1 = [self star:@"1" pos:CGPointMake(55, self.size.height - 150)];

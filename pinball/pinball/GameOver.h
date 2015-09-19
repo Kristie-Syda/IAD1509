@@ -13,7 +13,16 @@
 
 @interface GameOver : SKScene <FBSDKSharingDelegate>
 {
-    
+    SKLabelNode *lbl;
+    SKNode *touched;
+    NSNumber *level;
+    NSNumber *totalScore;
+    NSString *playerId;
+    FBSDKShareLinkContent *content;
+    NSNumber *previousScore;
+    NSNumber *previousLevel;
+    FBSDKShareButton *shareButton;
 }
+
 
 @end
