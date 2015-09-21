@@ -147,7 +147,7 @@
                     previousLevel = data[@"Level"];
                 }
                 
-                //update info
+                //update info-- diff is getObjectsInBackground to save data
                 PFQuery *data = [PFQuery queryWithClassName:@"HighScore"];
                 [data getObjectInBackgroundWithId:playerId block:^(PFObject *player, NSError *error) {
                     

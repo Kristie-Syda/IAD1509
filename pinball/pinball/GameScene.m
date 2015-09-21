@@ -15,8 +15,8 @@
 #import "Bouncer.h"
 #import "Levels.h"
 #import "Menu.h"
+#import "Achieve.h"
 #import <Parse/Parse.h>
-
 
 static const uint32_t ballCat = 0x1;
 static const uint32_t pinkCat = 0x1 << 1;
@@ -615,12 +615,10 @@ static const uint32_t leftFlip = 0x1 << 6;
             [self keyImg];
             [key runAction:keyDrop];
         
-        //when score hits 5000, player gets extra life
-        } else if([Score shared].currentScore == 5000) {
+        
+        } else if([Score shared].currentScore == 1000) {
             
-            [Score shared].ball += 1;
-            ballLabel.text = [NSString stringWithFormat:@"%i",[Score shared].ball];
-            NSLog(@"extra life!");
+            [[Achieve shared]saveAch:@"ach2"];
         
         //if the ball is over 200 then close the gate
         } else if (ball.position.y > 250){

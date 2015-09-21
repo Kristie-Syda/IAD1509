@@ -15,6 +15,8 @@
     IBOutlet UIImageView *starImg;
     
     NSMutableArray *dataArray;
+    NSNumber *data1;
+    NSNumber *data2;
 }
 
 -(IBAction)back:(id)sender;

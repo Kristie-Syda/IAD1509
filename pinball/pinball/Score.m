@@ -8,6 +8,7 @@
 
 #import "Score.h"
 #import <Parse/Parse.h>
+#import "Achieve.h"
 
 @implementation Score
 @synthesize currentScore,ball,totalScore,pinkCount,currentLevel;
@@ -32,9 +33,7 @@
         currentScore = 0;
         ball = 1;
         currentLevel = 1;
-        
 }
-    
     return self;
 }
 

@@ -260,6 +260,7 @@
                             PFObject *info = [PFObject objectWithClassName:@"Achievements"];
                             [info setObject:[PFUser currentUser] forKey:@"Player"];
                             
+                            info[@"PlayerId"] = [current objectId];
                             info[@"ach1"] = [NSNumber numberWithBool:NO];
                             info[@"ach2"] = [NSNumber numberWithBool:NO];
                             

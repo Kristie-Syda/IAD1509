@@ -88,7 +88,12 @@
                         lvl = [data[@"Level"]intValue];
                     }
                     
-                    level = [NSNumber numberWithInt:lvl - 1];
+                    if (lvl == 0){
+                        level = [NSNumber numberWithInt:lvl];
+                        
+                    } else {
+                         level = [NSNumber numberWithInt:lvl - 1];
+                    }
                     
                     //add stars to scene -- have to add code to completion block
                     star1 = [self star:@"1" pos:CGPointMake(55, self.size.height - 150)];

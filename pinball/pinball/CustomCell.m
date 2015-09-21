@@ -15,8 +15,8 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    
     [super setSelected:selected animated:animated];
-
 }
 
 //custom init method for tableview
@@ -28,6 +28,21 @@
     username.text = name;
     scoreLabel.text = scoreString;
     rankLabel.text = rankString;
+}
+
+-(void)initWith:(NSString *)title unlocked:(NSNumber *)number {
+    
+    titleLabel.text = title;
+    select = number;
+   
+    //if achievement is unlocked image is a yellow star
+    if ([number isEqualToNumber:[NSNumber numberWithInt:1]]){
+        starImg.image = [UIImage imageNamed:@"star.png"];
+    } else {
+        starImg.image = [UIImage imageNamed:@"star2.png"];
+        //self.view = [UIColor lightGrayColor];
+        self.cellBack.backgroundColor = [UIColor darkGrayColor];
+    }
 }
 
 @end

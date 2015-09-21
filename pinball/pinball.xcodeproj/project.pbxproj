@@ -44,6 +44,7 @@
 		C9BEC6701BA159CD00AD4441 /* 4.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9BEC66F1BA159CD00AD4441 /* 4.plist */; };
 		C9C8CB3A1BAFAC4800779D31 /* Achievements.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8CB391BAFAC4800779D31 /* Achievements.m */; };
 		C9C8CB3D1BAFBC6F00779D31 /* AchieveData.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8CB3C1BAFBC6F00779D31 /* AchieveData.m */; };
+		C9C8CB401BB0A59C00779D31 /* Achieve.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8CB3F1BB0A59C00779D31 /* Achieve.m */; };
 		C9C906341B834EE9000FFD03 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C906331B834EE9000FFD03 /* GameOver.m */; };
 		C9D2E9231B7CA9ED008AE6F7 /* bouncer.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9221B7CA9ED008AE6F7 /* bouncer.caf */; };
 		C9D2E9261B7CADA5008AE6F7 /* edge.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9241B7CADA5008AE6F7 /* edge.caf */; };
@@ -127,6 +128,8 @@
 		C9C8CB391BAFAC4800779D31 /* Achievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievements.m; sourceTree = "<group>"; };
 		C9C8CB3B1BAFBC6F00779D31 /* AchieveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchieveData.h; sourceTree = "<group>"; };
 		C9C8CB3C1BAFBC6F00779D31 /* AchieveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchieveData.m; sourceTree = "<group>"; };
+		C9C8CB3E1BB0A59C00779D31 /* Achieve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achieve.h; sourceTree = "<group>"; };
+		C9C8CB3F1BB0A59C00779D31 /* Achieve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achieve.m; sourceTree = "<group>"; };
 		C9C906321B834EE9000FFD03 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
 		C9C906331B834EE9000FFD03 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
 		C9D2E9221B7CA9ED008AE6F7 /* bouncer.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = bouncer.caf; path = ../bouncer.caf; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				C9C8CB391BAFAC4800779D31 /* Achievements.m */,
 				C9C8CB3B1BAFBC6F00779D31 /* AchieveData.h */,
 				C9C8CB3C1BAFBC6F00779D31 /* AchieveData.m */,
+				C9C8CB3E1BB0A59C00779D31 /* Achieve.h */,
+				C9C8CB3F1BB0A59C00779D31 /* Achieve.m */,
 			);
 			name = Achievements;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 				C9FEA6151B70754100CE0E27 /* main.m in Sources */,
 				C9EAA62E1BAABA16008731F4 /* LeaderBoard.m in Sources */,
 				C9884B871B8C0E13001994EE /* TableMaker.m in Sources */,
+				C9C8CB401BB0A59C00779D31 /* Achieve.m in Sources */,
 				C98A1CFD1B8D4E7400B25607 /* BottomNode.m in Sources */,
 				C9C8CB3A1BAFAC4800779D31 /* Achievements.m in Sources */,
 			);

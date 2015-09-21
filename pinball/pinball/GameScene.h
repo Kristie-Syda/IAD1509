@@ -31,20 +31,16 @@
     SKAction *done;
     SKAction *flippedLeft;
     SKAction *flippedRight;
-    SKAction *movingTarget;
     SKAction *keepFlashing;
     SKAction *keyDrop;
     SKAction *gateDrop;
     SKAction *openGate;
     CGFloat plungerPressed;
     CGFloat plungerReleased;
-    NSTimeInterval current;
-    NSTimeInterval previous;
     SKLabelNode *score;
     SKLabelNode *ballLabel;
     SKPhysicsBody *importantContact;
     int lvl;
-    
     BOOL gameOver;
     BOOL nextLevel;
     BOOL ballTouch;
