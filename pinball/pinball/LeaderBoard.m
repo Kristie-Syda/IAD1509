@@ -59,7 +59,7 @@
     
 }
 
-#pragma mark - grabbing data methods
+#pragma mark - Grabbing data methods
 
 //grabs the correct data and loads into table
 -(void)grabData {
@@ -104,7 +104,7 @@
                     
                 PFGeoPoint *currentLocation = point;
                 [query whereKey:@"Location" nearGeoPoint:currentLocation withinMiles:50];
-                 NSArray *allLocations = [query findObjects];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *allLocations, NSError *error) {
                 
                 int i = 0;
                 
@@ -125,6 +125,7 @@
                 //reload data while in this method to finish loading
                 [myTable reloadData];
             }];
+        }];
     }
     
 }

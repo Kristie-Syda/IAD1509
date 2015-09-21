@@ -255,6 +255,16 @@
                             [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                 NSLog(@"highscore object created");
                             }];
+                            
+                            //create achievement objects
+                            PFObject *info = [PFObject objectWithClassName:@"Achievements"];
+                            [info setObject:[PFUser currentUser] forKey:@"Player"];
+                            
+                            info[@"ach1"] = [NSNumber numberWithBool:NO];
+                            info[@"ach2"] = [NSNumber numberWithBool:NO];
+                            
+                            [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            }];
                         }];
                     } else {
                         NSLog(@"highscore object Not created");

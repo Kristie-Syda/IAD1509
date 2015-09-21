@@ -145,9 +145,9 @@
     //Achievements transition
     } else if ([touched.name isEqualToString:@"Achievements"]){
         
-        Achievements *scene = [Achievements sceneWithSize:self.size];
-        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-        [self.view presentScene:scene transition:reveal];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        Achievements *vc = [storyboard instantiateViewControllerWithIdentifier:@"achieve"];
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
         
     //Sign Up
     } else if ([touched.name isEqualToString:@"signUp"]){

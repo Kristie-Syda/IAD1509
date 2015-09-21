@@ -31,7 +31,6 @@
 		C9650E781BA6626400AA0783 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E771BA6626400AA0783 /* libsqlite3.dylib */; };
 		C9650E7A1BA6627300AA0783 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E791BA6627300AA0783 /* libz.dylib */; };
 		C9650E7C1BA6628200AA0783 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9650E7B1BA6628200AA0783 /* Security.framework */; };
-		C96B0E271BACE383008491EF /* Achievements.m in Sources */ = {isa = PBXBuildFile; fileRef = C96B0E261BACE383008491EF /* Achievements.m */; };
 		C98002AA1B7E715F0047DD4C /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = C98002A91B7E715F0047DD4C /* Score.m */; };
 		C98358F61B7D4396005BF70E /* target.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F51B7D4396005BF70E /* target.caf */; };
 		C98358F81B7D482A005BF70E /* lose.caf in Resources */ = {isa = PBXBuildFile; fileRef = C98358F71B7D482A005BF70E /* lose.caf */; };
@@ -43,6 +42,8 @@
 		C9B73E9C1BA22DDD00F1FF13 /* 5.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B73E9B1BA22DDD00F1FF13 /* 5.plist */; };
 		C9B73E9E1BA2468A00F1FF13 /* 6.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B73E9D1BA2468A00F1FF13 /* 6.plist */; };
 		C9BEC6701BA159CD00AD4441 /* 4.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9BEC66F1BA159CD00AD4441 /* 4.plist */; };
+		C9C8CB3A1BAFAC4800779D31 /* Achievements.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8CB391BAFAC4800779D31 /* Achievements.m */; };
+		C9C8CB3D1BAFBC6F00779D31 /* AchieveData.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8CB3C1BAFBC6F00779D31 /* AchieveData.m */; };
 		C9C906341B834EE9000FFD03 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C906331B834EE9000FFD03 /* GameOver.m */; };
 		C9D2E9231B7CA9ED008AE6F7 /* bouncer.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9221B7CA9ED008AE6F7 /* bouncer.caf */; };
 		C9D2E9261B7CADA5008AE6F7 /* edge.caf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2E9241B7CADA5008AE6F7 /* edge.caf */; };
@@ -105,8 +106,6 @@
 		C9650E771BA6626400AA0783 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C9650E791BA6627300AA0783 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C9650E7B1BA6628200AA0783 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C96B0E251BACE383008491EF /* Achievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievements.h; sourceTree = "<group>"; };
-		C96B0E261BACE383008491EF /* Achievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievements.m; sourceTree = "<group>"; };
 		C98002A81B7E715F0047DD4C /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		C98002A91B7E715F0047DD4C /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		C98358F51B7D4396005BF70E /* target.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = target.caf; sourceTree = "<group>"; };
@@ -124,6 +123,10 @@
 		C9B73E9B1BA22DDD00F1FF13 /* 5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 5.plist; sourceTree = "<group>"; };
 		C9B73E9D1BA2468A00F1FF13 /* 6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 6.plist; sourceTree = "<group>"; };
 		C9BEC66F1BA159CD00AD4441 /* 4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 4.plist; sourceTree = "<group>"; };
+		C9C8CB381BAFAC4800779D31 /* Achievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievements.h; sourceTree = "<group>"; };
+		C9C8CB391BAFAC4800779D31 /* Achievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievements.m; sourceTree = "<group>"; };
+		C9C8CB3B1BAFBC6F00779D31 /* AchieveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchieveData.h; sourceTree = "<group>"; };
+		C9C8CB3C1BAFBC6F00779D31 /* AchieveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchieveData.m; sourceTree = "<group>"; };
 		C9C906321B834EE9000FFD03 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
 		C9C906331B834EE9000FFD03 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
 		C9D2E9221B7CA9ED008AE6F7 /* bouncer.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = bouncer.caf; path = ../bouncer.caf; sourceTree = "<group>"; };
@@ -302,8 +305,10 @@
 		C96B0E301BAD36C2008491EF /* Achievements */ = {
 			isa = PBXGroup;
 			children = (
-				C96B0E251BACE383008491EF /* Achievements.h */,
-				C96B0E261BACE383008491EF /* Achievements.m */,
+				C9C8CB381BAFAC4800779D31 /* Achievements.h */,
+				C9C8CB391BAFAC4800779D31 /* Achievements.m */,
+				C9C8CB3B1BAFBC6F00779D31 /* AchieveData.h */,
+				C9C8CB3C1BAFBC6F00779D31 /* AchieveData.m */,
 			);
 			name = Achievements;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				C9FEA6181B70754100CE0E27 /* AppDelegate.m in Sources */,
 				C9EAA6341BAAD4D2008731F4 /* CustomCell.m in Sources */,
 				C98002AA1B7E715F0047DD4C /* Score.m in Sources */,
+				C9C8CB3D1BAFBC6F00779D31 /* AchieveData.m in Sources */,
 				C9EAA62B1BA892C3008731F4 /* SignUP.m in Sources */,
 				C9C906341B834EE9000FFD03 /* GameOver.m in Sources */,
 				C9FEA61B1B70754100CE0E27 /* GameScene.m in Sources */,
@@ -575,7 +581,7 @@
 				C9EAA62E1BAABA16008731F4 /* LeaderBoard.m in Sources */,
 				C9884B871B8C0E13001994EE /* TableMaker.m in Sources */,
 				C98A1CFD1B8D4E7400B25607 /* BottomNode.m in Sources */,
-				C96B0E271BACE383008491EF /* Achievements.m in Sources */,
+				C9C8CB3A1BAFAC4800779D31 /* Achievements.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
