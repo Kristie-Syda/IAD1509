@@ -17,6 +17,9 @@
     NSMutableArray *dataArray;
     NSNumber *data1;
     NSNumber *data2;
+    NSNumber *data3;
+    NSNumber *data4;
+    NSNumber *data5;
 }
 
 -(IBAction)back:(id)sender;

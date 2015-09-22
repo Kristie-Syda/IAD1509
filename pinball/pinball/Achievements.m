@@ -46,27 +46,41 @@
                 for (PFObject *data in everything) { 
                     data1 = data[@"ach1"];
                     data2 = data[@"ach2"];
+                    data3 = data[@"ach3"];
+                    data4 = data[@"ach4"];
+                    data5 = data[@"ach5"];
                 }
         
                 AchieveData *ach1 = [[AchieveData alloc]init];
                 ach1.title = @"Not even one";
-                ach1.details = @"Dieing without hitting one brick";
+                ach1.details = @"Die without hitting one brick";
                 ach1.unlocked = data1;
                 
                 AchieveData *ach2 = [[AchieveData alloc]init];
                 ach2.title = @"First Kilo";
-                ach2.details = @"Getting your first score of 1,000";
+                ach2.details = @"Get your first score of 1,000";
                 ach2.unlocked = data2;
+                
+                AchieveData *ach3 = [[AchieveData alloc]init];
+                ach3.title = @"3g's on board";
+                ach3.details = @"Score 3,000 with one ball";
+                ach3.unlocked = data3;
+                
+                AchieveData *ach4 = [[AchieveData alloc]init];
+                ach4.title = @"6g's on board";
+                ach4.details = @"Score 6,000 with same ball";
+                ach4.unlocked = data4;
+                
+                AchieveData *ach5 = [[AchieveData alloc]init];
+                ach5.title = @"Halfway there";
+                ach5.details = @"Beat 5 levels";
+                ach5.unlocked = data5;
 
-                dataArray = [[NSMutableArray alloc]initWithObjects:ach1,ach2,nil];
+                dataArray = [[NSMutableArray alloc]initWithObjects:ach1,ach2,ach3,ach4,ach5,nil];
             }
             [myTable reloadData];
-
         }];
-        
     }
-    
-    
 }
 
 #pragma mark - TableView methods

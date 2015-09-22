@@ -94,17 +94,12 @@ static const uint32_t leftFlip = 0x1 << 6;
     pink.name = @"child_pink";
     
     if ([type isEqualToString:@"pink"]) {
-        
         pink = [SKSpriteNode spriteNodeWithImageNamed:@"hotPink.png"];
-        
     } else {
-        
         pink = [SKSpriteNode spriteNodeWithImageNamed:@"purple.png"];
-        
     }
     
     [bricks addChild:pink];
-    
     bricks.position = position;
     bricks.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pink.size];
     bricks.physicsBody.dynamic = NO;
@@ -116,23 +111,14 @@ static const uint32_t leftFlip = 0x1 << 6;
 -(Bouncer *)createBouncer:(NSString *)type position:(CGPoint)pos {
     
     Bouncer *bouncerNode = [Bouncer node];
-    
-    
     SKSpriteNode *bouncer;
     
-    
     if ([type isEqualToString:@"bouncer1"]) {
-        
         bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer.png"];
-        
     } else if ([type isEqualToString:@"bouncer2"]){
-        
         bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer1.png"];
-        
     } else if ([type isEqualToString:@"bouncer3"]){
-        
         bouncer = [SKSpriteNode spriteNodeWithImageNamed:@"bouncer3.png"];
-        
     }
     
     bouncer.size = CGSizeMake(40, 40);
@@ -240,13 +226,13 @@ static const uint32_t leftFlip = 0x1 << 6;
     resume.position = CGPointMake(0, 20);
     resume.name = @"resume";
     
-    SKSpriteNode *menu = [SKSpriteNode spriteNodeWithImageNamed:@"menuBtn.png"];
-    menu.name = @"menu";
-    menu.position = CGPointMake(0, -50);
+    SKSpriteNode *quit = [SKSpriteNode spriteNodeWithImageNamed:@"menuBtn.png"];
+    quit.name = @"quit";
+    quit.position = CGPointMake(0, -50);
     
     [menuNode addChild:menuImg];
     [menuNode addChild:resume];
-    [menuNode addChild:menu];
+    [menuNode addChild:quit];
     [self addChild:menuNode];
 }
 
@@ -281,32 +267,31 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     //if not a user than save level to NSDefaults -- If level is higher than last level
     if (!user) {
-        
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         previousLevel = [NSNumber numberWithInteger:[data integerForKey:@"passed"]];
-        
         if (previousLevel < lvlNumber) {
-            
-            //save level number to user defaults
             NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
             [data setInteger:lvl forKey:@"passed"];
             [[NSUserDefaults standardUserDefaults]synchronize];
-
         } else {
             //do nothing
         }
     }
     
-    //if next level is 11 got to menu bc there is no level 11
+    //if beat the 5th level unlock achievement
+    if (lvl + 1 == 6) {
+        [[Achieve shared]saveAch:@"ach5" title:@"Halfway there"];
+    } else {
+        //do nothing
+    }
+    
+    //if next level is 11 got to menu bc there is no level 11/Else go to next level
     if ([nextlvl isEqualToString:@"11"]) {
-        
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         [self.view presentScene:scene transition:reveal];
         [[Score shared]reset];
-        
     } else {
-        
         //load in game scene with next level
         SKTransition *close= [SKTransition doorsCloseHorizontalWithDuration:2];
         GameScene *scene = [[GameScene alloc]initWithSize:self.size level:nextlvl];
@@ -330,7 +315,6 @@ static const uint32_t leftFlip = 0x1 << 6;
     SKAction *Right = [SKAction rotateByAngle:-1.2 duration:0.2];
     SKAction *ballHit = [SKAction runBlock:^{
         if (ballTouch == YES) {
-            
             [ball.physicsBody applyImpulse:CGVectorMake(0, 10)];
             ballTouch = NO;
         }
@@ -360,11 +344,14 @@ static const uint32_t leftFlip = 0x1 << 6;
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:size];
         background.anchorPoint = CGPointMake(0, 0);
         
-        //reset game
+        //reset game values
         gameOver = NO;
         nextLevel = NO;
         lvl = [lvlNum intValue];
         [Score shared].currentLevel = lvl;
+        ach2 = false;
+        ach3 = false;
+        ach4 = false;
         
         //if first level get 3 balls
         if (lvl == 1) {
@@ -400,10 +387,8 @@ static const uint32_t leftFlip = 0x1 << 6;
         
         //After table is set up.....load in plist level
         NSString *pList = [[NSBundle mainBundle] pathForResource:lvlNum ofType:@"plist"];
-        
         //make a dictionary of all the contents in the plist
         NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:pList];
-        
         //store the brick count
         [Score shared].pinkCount = [data[@"brickCount"]intValue];
         
@@ -413,7 +398,6 @@ static const uint32_t leftFlip = 0x1 << 6;
              NSString *type = info[@"type"];
              CGFloat x = [info[@"x"] floatValue];
              CGFloat y = [info[@"y"] floatValue];
-            
             //add bouncers to scene
             Bouncer *bouncer = [self createBouncer:type position:CGPointMake(x, y)];
             [self addChild:bouncer];
@@ -425,7 +409,6 @@ static const uint32_t leftFlip = 0x1 << 6;
              NSString *type = info[@"type"];
              CGFloat x = [info[@"x"] floatValue];
              CGFloat y = [info[@"y"] floatValue];
-  
             //add bricks to scene
             PinkBricks *brick = [self addBricks:type pos:CGPointMake(x, y)];
             [self addChild:brick];
@@ -467,7 +450,7 @@ static const uint32_t leftFlip = 0x1 << 6;
                 [self runAction:bumpers];
                 [rightBump runAction:flippedRight];
                 
-            //pause button
+            //pause button touched
             } else if ([touched.name isEqualToString:@"pause"]){
                 
                 [self pauseGame];
@@ -486,15 +469,13 @@ static const uint32_t leftFlip = 0x1 << 6;
                 
                 [self pauseGame];
             
-            //menu button is pressed
-            } else if ([touched.name isEqualToString:@"menu"]) {
-                
-                Menu *scene = [Menu sceneWithSize:self.size];
-                
-                SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-                
-                [self.view presentScene:scene transition:reveal];
-                [[Score shared]reset];
+            //quit button is pressed - go to gameover screen + reset game stats
+            } else if ([touched.name isEqualToString:@"quit"]) {
+                //Adds current score to total
+                [[Score shared] add:[Score shared].currentScore];
+                //resets current score
+                [Score shared].currentScore = 0;
+                [self gameOver];
             }
         }
     //The game is over
@@ -617,11 +598,6 @@ static const uint32_t leftFlip = 0x1 << 6;
             [self keyImg];
             [key runAction:keyDrop];
         
-        
-        } else if([Score shared].currentScore == 1000) {
-            
-            [[Achieve shared]saveAch:@"ach2" title:@"First Kilo"];
-        
         //if the ball is over 200 then close the gate
         } else if (ball.position.y > 250){
             
@@ -647,6 +623,33 @@ static const uint32_t leftFlip = 0x1 << 6;
             //plunger do nothing
         }
     }
+    
+    //if player scores 1000 unlock achievement
+    if([Score shared].currentScore > 1000) {
+        
+        if (ach2 == false) {
+            [[Achieve shared]saveAch:@"ach2" title:@"First Kilo"];
+            ach2 = true;
+        }
+    }
+    //if player scores 3,000 unlock achievement
+    if([Score shared].currentScore > 3000) {
+     
+        if (ach3 == false) {
+            [[Achieve shared]saveAch:@"ach3" title:@"3g's on board"];
+            ach3 = true;
+        }
+    }
+        
+    //if player scores 6,000 unlock achievement
+    if([Score shared].currentScore > 6000) {
+        
+        if (ach4 == false) {
+            [[Achieve shared]saveAch:@"ach4" title:@"6g's on board"];
+            ach4 = true;
+        }
+    }
+    
 }
 
 @end

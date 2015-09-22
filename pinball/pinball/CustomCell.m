@@ -41,7 +41,6 @@
         starImg.image = [UIImage imageNamed:@"star.png"];
     } else {
         starImg.image = [UIImage imageNamed:@"star2.png"];
-        //self.view = [UIColor lightGrayColor];
         self.cellBack.backgroundColor = [UIColor darkGrayColor];
     }
 }

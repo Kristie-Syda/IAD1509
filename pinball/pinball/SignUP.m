@@ -263,6 +263,9 @@
                             info[@"PlayerId"] = [current objectId];
                             info[@"ach1"] = [NSNumber numberWithBool:NO];
                             info[@"ach2"] = [NSNumber numberWithBool:NO];
+                            info[@"ach3"] = [NSNumber numberWithBool:NO];
+                            info[@"ach4"] = [NSNumber numberWithBool:NO];
+                            info[@"ach5"] = [NSNumber numberWithBool:NO];
                             
                             [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             }];
