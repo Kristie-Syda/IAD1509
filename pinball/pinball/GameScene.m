@@ -598,7 +598,7 @@ static const uint32_t leftFlip = 0x1 << 6;
             gameOver = YES;
             
             if ([Score shared].brickHit == 0) {
-                [[Achieve shared]saveAch:@"ach1"];
+                [[Achieve shared]saveAch:@"ach1" title:@"Not even one"];
             } else {
                 
             }
@@ -620,7 +620,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         
         } else if([Score shared].currentScore == 1000) {
             
-            [[Achieve shared]saveAch:@"ach2"];
+            [[Achieve shared]saveAch:@"ach2" title:@"First Kilo"];
         
         //if the ball is over 200 then close the gate
         } else if (ball.position.y > 250){

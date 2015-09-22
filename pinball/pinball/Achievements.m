@@ -43,8 +43,7 @@
             if (!error) {
                 
                 //grab the player's objectId
-                for (PFObject *data in everything) {
-                    
+                for (PFObject *data in everything) { 
                     data1 = data[@"ach1"];
                     data2 = data[@"ach2"];
                 }
@@ -79,7 +78,7 @@
     {
         //fill in data with custom objects
         AchieveData *currentData = [dataArray objectAtIndex:indexPath.row];
-        [cell initWith:currentData.title unlocked:currentData.unlocked];
+        [cell initWith:currentData.title unlocked:currentData.unlocked details:currentData.details];
     }    
     return cell;
 }

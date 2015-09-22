@@ -11,10 +11,11 @@
 @interface Achieve : NSObject{
     NSNumber *achNum;
     NSString *playerId;
+    NSString *titleName;
 }
 
 + (instancetype)shared;
 
--(void)saveAch:(NSString *)name;
+-(void)saveAch:(NSString *)name title:(NSString *)title;
 
 @end

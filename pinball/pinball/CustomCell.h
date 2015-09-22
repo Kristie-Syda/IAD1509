@@ -19,6 +19,7 @@
     IBOutlet UILabel *titleLabel;
     IBOutlet UIImageView *starImg;
     IBOutlet UIView *view;
+    IBOutlet UILabel *detailLabel;
     NSNumber *select;
 }
 
@@ -26,5 +27,5 @@
 
 //custom methods to populate custom cella - LeaderBoard & Achievements
 -(void)initCell:(NSString *)name score:(NSNumber *)score rank:(int)rank;
--(void)initWith:(NSString *)title unlocked:(NSNumber *)number;
+-(void)initWith:(NSString *)title unlocked:(NSNumber *)number details:(NSString *)details;
 @end

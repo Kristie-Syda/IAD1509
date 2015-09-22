@@ -30,9 +30,10 @@
     rankLabel.text = rankString;
 }
 
--(void)initWith:(NSString *)title unlocked:(NSNumber *)number {
+-(void)initWith:(NSString *)title unlocked:(NSNumber *)number details:(NSString *)details {
     
     titleLabel.text = title;
+    detailLabel.text = details;
     select = number;
    
     //if achievement is unlocked image is a yellow star

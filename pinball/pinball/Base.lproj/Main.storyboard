@@ -207,9 +207,15 @@
                                                     <rect key="frame" x="8" y="8" width="329" height="65"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPG-5l-tf9">
-                                                            <rect key="frame" x="15" y="8" width="202" height="45"/>
+                                                            <rect key="frame" x="15" y="8" width="202" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFD-kG-fHc">
+                                                            <rect key="frame" x="15" y="36" width="224" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vJD-kW-vwS">
@@ -230,6 +236,7 @@
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="cellBack" destination="BDe-a1-jU3" id="glz-Pf-68n"/>
+                                            <outlet property="detailLabel" destination="FFD-kG-fHc" id="xgJ-Fg-FFT"/>
                                             <outlet property="starImg" destination="vJD-kW-vwS" id="mzG-yp-6Lm"/>
                                             <outlet property="titleLabel" destination="dPG-5l-tf9" id="K6X-wB-7Cb"/>
                                         </connections>

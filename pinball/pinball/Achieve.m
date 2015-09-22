@@ -34,7 +34,7 @@ return shared;
     return self;
 }
 
--(void)saveAch:(NSString *)name {
+-(void)saveAch:(NSString *)name title:(NSString *)title {
     
     PFUser *current = [PFUser currentUser];
     
@@ -63,10 +63,10 @@ return shared;
                         ach[name] = [NSNumber numberWithBool:true];
                 
                         //shows a pop up alert thats lets user know they earned achievement
-                        UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:nil message:@"Achievement Earned" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+                        UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:title message:@"Achievement Earned" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
                         toastMsg.backgroundColor = [UIColor blackColor];
                         [toastMsg show];
-                        int duration = 1;
+                        int duration = 1.5;
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
                             ^{
                                 [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
