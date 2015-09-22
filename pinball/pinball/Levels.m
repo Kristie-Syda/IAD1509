@@ -126,11 +126,9 @@
                     NSLog(@"Error");
                 }
             }];
-            
-            
+   
         //guest user
         } else if (!currentUser) {
-            
             
             NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
             level = [NSNumber numberWithInteger:[data integerForKey:@"passed"]];

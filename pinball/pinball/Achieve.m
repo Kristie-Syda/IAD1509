@@ -29,6 +29,14 @@ return shared;
     
     if (self = [super init]) {
         
+        //set achievements for device
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:@"ach1"];
+        [defaults setBool:NO forKey:@"ach2"];
+        [defaults setBool:NO forKey:@"ach3"];
+        [defaults setBool:NO forKey:@"ach4"];
+        [defaults setBool:NO forKey:@"ach5"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
     }
     
     return self;
@@ -85,7 +93,28 @@ return shared;
         }];
 
     } else {
-        //guest user
+        //guest user -- goes through NSDefaults
+        BOOL unlocked;
+        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+        unlocked = [data boolForKey:name];
+        
+        if(unlocked == false){
+            
+            [data setBool:true forKey:name];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            //shows a pop up alert thats lets user know they earned achievement
+            UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:title message:@"Achievement Earned" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+            toastMsg.backgroundColor = [UIColor blackColor];
+            [toastMsg show];
+            int duration = 1.5;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
+                           ^{
+                               [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
+                           });
+        } else {
+            //do nothing because achievement already true
+        }
     }
 
 }

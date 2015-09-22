@@ -34,7 +34,8 @@
         ball = 1;
         currentLevel = 1;
         brickHit = 0;
-}
+        
+    }
     return self;
 }
 

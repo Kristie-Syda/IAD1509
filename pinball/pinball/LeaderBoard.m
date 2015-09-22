@@ -234,7 +234,6 @@
         //pass data to detail view controller
         LBData *current = [dataArray objectAtIndex:indexPath.row];
         vc.data = current;
-        NSLog(@"%@",current);
     }
 }
 @end

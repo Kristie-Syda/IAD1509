@@ -80,6 +80,43 @@
             }
             [myTable reloadData];
         }];
+        
+    } else if(!current) {
+        //guest user - device achievements
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSNumber *a1 = [NSNumber numberWithBool:[defaults boolForKey:@"ach1"]];
+        NSNumber *a2 = [NSNumber numberWithBool:[defaults boolForKey:@"ach2"]];
+        NSNumber *a3 = [NSNumber numberWithBool:[defaults boolForKey:@"ach3"]];
+        NSNumber *a4 = [NSNumber numberWithBool:[defaults boolForKey:@"ach4"]];
+        NSNumber *a5 = [NSNumber numberWithBool:[defaults boolForKey:@"ach5"]];
+        
+        AchieveData *ach1 = [[AchieveData alloc]init];
+        ach1.title = @"Not even one";
+        ach1.details = @"Die without hitting one brick";
+        ach1.unlocked = a1;
+        
+        AchieveData *ach2 = [[AchieveData alloc]init];
+        ach2.title = @"First Kilo";
+        ach2.details = @"Get your first score of 1,000";
+        ach2.unlocked = a2;
+        
+        AchieveData *ach3 = [[AchieveData alloc]init];
+        ach3.title = @"3g's on board";
+        ach3.details = @"Score 3,000 with one ball";
+        ach3.unlocked = a3;
+        
+        AchieveData *ach4 = [[AchieveData alloc]init];
+        ach4.title = @"6g's on board";
+        ach4.details = @"Score 6,000 with same ball";
+        ach4.unlocked = a4;
+        
+        AchieveData *ach5 = [[AchieveData alloc]init];
+        ach5.title = @"Halfway there";
+        ach5.details = @"Beat 5 levels";
+        ach5.unlocked = a5;
+        
+        dataArray = [[NSMutableArray alloc]initWithObjects:ach1,ach2,ach3,ach4,ach5,nil];
+        [myTable reloadData];
     }
 }
 
