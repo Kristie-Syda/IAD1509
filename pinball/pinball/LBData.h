@@ -16,4 +16,5 @@
 @property(nonatomic, strong) NSString *username;
 @property(nonatomic, strong) PFGeoPoint *userLocation;
 @property(nonatomic, assign) int rank;
+
 @end

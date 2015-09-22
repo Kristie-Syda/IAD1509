@@ -11,8 +11,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
-
-
+#import "LBData.h"
 
 @interface LeaderBoard : UIViewController <UITableViewDataSource, UITableViewDelegate,FBSDKSharingDelegate>
 {
@@ -23,7 +22,6 @@
     FBSDKShareButton *shareButton;
     NSString *playerName;
     int playerScore;
-    
 }
 
 -(IBAction)back:(id)sender;

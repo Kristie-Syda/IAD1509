@@ -253,7 +253,6 @@
                             data[@"Location"] = point;
 
                             [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                                NSLog(@"highscore object created");
                             }];
                             
                             //create achievement objects
@@ -261,6 +260,7 @@
                             [info setObject:[PFUser currentUser] forKey:@"Player"];
                             
                             info[@"PlayerId"] = [current objectId];
+                            info[@"Username"] = userName.text;
                             info[@"ach1"] = [NSNumber numberWithBool:NO];
                             info[@"ach2"] = [NSNumber numberWithBool:NO];
                             info[@"ach3"] = [NSNumber numberWithBool:NO];

@@ -43,6 +43,7 @@
         starImg.image = [UIImage imageNamed:@"star2.png"];
         self.cellBack.backgroundColor = [UIColor darkGrayColor];
     }
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 @end

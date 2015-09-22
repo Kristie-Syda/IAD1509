@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "LBData.h"
 #import "CustomCell.h"
+#import "DetailViewController.h"
 
 
 @interface LeaderBoard ()
@@ -211,5 +212,29 @@
     
     [self dismissViewControllerAnimated:true completion:nil];
 }
+//unwind
+- (IBAction)unwind:(UIStoryboardSegue *)unwindSegue {
+    
+}
 
+#pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"mySelection"])
+    {
+        // Get reference to the destination view controller
+        DetailViewController *vc = [segue destinationViewController]; 
+        
+        //grab indexpath
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [myTable indexPathForCell:cell];
+        
+        //pass data to detail view controller
+        LBData *current = [dataArray objectAtIndex:indexPath.row];
+        vc.data = current;
+        NSLog(@"%@",current);
+    }
+}
 @end
