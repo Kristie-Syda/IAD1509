@@ -61,6 +61,7 @@
   
     //update pink brick count
     [Score shared].pinkCount -= 1;
+    [Score shared].brickHit += 1;
   
     return YES;
 }

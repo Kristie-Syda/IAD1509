@@ -11,7 +11,7 @@
 #import "Achieve.h"
 
 @implementation Score
-@synthesize currentScore,ball,totalScore,pinkCount,currentLevel;
+@synthesize currentScore,ball,totalScore,pinkCount,currentLevel,brickHit;
 
 +(instancetype)shared {
     
@@ -33,6 +33,7 @@
         currentScore = 0;
         ball = 1;
         currentLevel = 1;
+        brickHit = 0;
 }
     return self;
 }
@@ -46,7 +47,8 @@
 -(void)reset {
     ball = 1;
     totalScore = 0;
-    currentScore = 0;    
+    currentScore = 0;
+    brickHit = 0;
 }
 
 @end

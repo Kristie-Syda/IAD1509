@@ -29,8 +29,6 @@ return shared;
     
     if (self = [super init]) {
         
-        
-        
     }
     
     return self;

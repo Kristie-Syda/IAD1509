@@ -295,7 +295,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         } else {
             //do nothing
         }
-        
     }
     
     //if next level is 11 got to menu bc there is no level 11
@@ -498,7 +497,6 @@ static const uint32_t leftFlip = 0x1 << 6;
                 [[Score shared]reset];
             }
         }
-    
     //The game is over
     } else if(gameOver == YES) {
     
@@ -521,7 +519,6 @@ static const uint32_t leftFlip = 0x1 << 6;
         if (plungerReleased > 15){
             
             [self runAction:released];
-            
         }
         //resets plunger
         plungerReleased = 0;
@@ -599,7 +596,12 @@ static const uint32_t leftFlip = 0x1 << 6;
             [score runAction:keepFlashing];
             [scoreLabel runAction:keepFlashing];
             gameOver = YES;
-        
+            
+            if ([Score shared].brickHit == 0) {
+                [[Achieve shared]saveAch:@"ach1"];
+            } else {
+                
+            }
         //when all bricks are gone
         } else if([Score shared].pinkCount == 0) {
             
