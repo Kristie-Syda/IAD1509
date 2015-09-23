@@ -162,7 +162,6 @@
                     } else {
                         
                     }
-                    
                     //player beat old score -- sends out toast msg
                     if (previousScore < totalScore) {
                         

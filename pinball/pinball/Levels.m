@@ -16,7 +16,17 @@
 
 #pragma mark - Scene Setup
 
-//star creator
+// Star creator
+//
+//  Depending on the level number user is on decides
+//  which star image to use.
+//
+//  If the level number is greater than the saved level
+//  in userdefaults/user account than its not unlocked
+//
+//  Example: level 5 > saved level 6 = level 5 is unlocked
+//  star image should be yellow and available to be clicked on.
+//
 -(SKSpriteNode *)star:(NSString*)title pos:(CGPoint)position {
    
     //title is the level number
@@ -24,32 +34,27 @@
     int savedlevel = [level intValue];
     
     SKSpriteNode *nodeImg;
-    
     SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     titleLabel.text = title;
     titleLabel.fontColor = [SKColor blackColor];
     titleLabel.position = CGPointMake(0, -15);
-    
-/* if the level number is greater than the saved level
-    in userdefaults/user account than its not unlocked */
-    if (levelNum > (savedlevel + 1)) {
 
+/*  Example: level 5 > saved level 6 = level 5 is unlocked
+    star image should be yellow and available to be clicked on. */
+    if (levelNum > (savedlevel)) {
         nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star2.png"];
-
     } else {
-        
         nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"star.png"];
         nodeImg.name = title;
         titleLabel.name = title;
     }
-    
     nodeImg.size = CGSizeMake(75, 75);
     [nodeImg addChild:titleLabel];
     [nodeImg setPosition:position];
-
     return nodeImg;
 }
 
+// init Method
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -88,11 +93,12 @@
                         lvl = [data[@"Level"]intValue];
                     }
                     
+                /* If level is 0, add 1 so when creating the stars
+                    the first level will be unlocked */
                     if (lvl == 0){
-                        level = [NSNumber numberWithInt:lvl];
-                        
+                        level = [NSNumber numberWithInt:lvl + 1];
                     } else {
-                         level = [NSNumber numberWithInt:lvl - 1];
+                         level = [NSNumber numberWithInt:lvl];
                     }
                     
                     //add stars to scene -- have to add code to completion block
@@ -122,14 +128,13 @@
                     [self addChild:star10];
                     
                 } else {
-                    
                     NSLog(@"Error");
                 }
             }];
    
         //guest user
         } else if (!currentUser) {
-            
+            // Grabs level for device
             NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
             level = [NSNumber numberWithInteger:[data integerForKey:@"passed"]];
             
@@ -159,7 +164,6 @@
             [self addChild:star10];
         }
     }
-    
     return self;
 }
 
@@ -173,64 +177,41 @@
   
     //Menu
     if ([touched.name isEqualToString:@"menu"]) {
-        
         Menu *scene = [Menu sceneWithSize:self.size];
         [self.view presentScene:scene transition:reveal];
-    
     //Level 1
     } else if ([touched.name isEqualToString:@"1"]){
-        
         [self.view presentScene:game transition:reveal];
-    
     //Level 2
     } else if ([touched.name isEqualToString:@"2"]){
-        
         [self.view presentScene:game transition:reveal];
-    
     //Level 3
     } else if ([touched.name isEqualToString:@"3"]){
-        
         [self.view presentScene:game transition:reveal];
-    
     //Level 4
     } else if([touched.name isEqualToString:@"4"]){
-        
          [self.view presentScene:game transition:reveal];
-    
     //lLevel 5
     } else if([touched.name isEqualToString:@"5"]){
-    
         [self.view presentScene:game transition:reveal];
-        
     //Level 6
     } else if([touched.name isEqualToString:@"6"]){
-    
         [self.view presentScene:game transition:reveal];
-    
     //Level 7
     } else if([touched.name isEqualToString:@"7"]){
-        
         [self.view presentScene:game transition:reveal];
-        
     //Level 8
     } else if([touched.name isEqualToString:@"8"]){
-        
         [self.view presentScene:game transition:reveal];
-        
     //Level 9
     } else if([touched.name isEqualToString:@"9"]){
-        
         [self.view presentScene:game transition:reveal];
-        
     //Level 10
     } else if([touched.name isEqualToString:@"10"]){
-        
         [self.view presentScene:game transition:reveal];
-        
     } else {
         NSLog(@"Locked!");
     }
-    
 }
 
 

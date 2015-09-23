@@ -49,7 +49,7 @@
 
 #pragma mark - Share button methods
 
-//required share button methods
+// Required FB share button methods
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
     
 }
@@ -62,7 +62,11 @@
 
 #pragma mark - Grabbing data methods
 
-//grabs the correct data and loads into table
+// Grab all data Method - All Users info/scores
+//
+// Depending on location & if not a score of 0
+// Grabs the correct data and loads into table
+//
 -(void)grabData {
     
     //initialize array
@@ -98,7 +102,7 @@
         
     } else if(filter.on == FALSE) {
         
-        //get all data from highscore database
+        // Get all data from highscore database
         PFQuery *query = [PFQuery queryWithClassName:@"HighScore"];
         [query orderByDescending:@"Score"];
         [query whereKey:@"Score" greaterThan:@0];
@@ -130,8 +134,14 @@
             }];
         }];
     }
-    
 }
+
+
+// Grab player data
+//
+// Grabs current user's info
+// to be able to share on Facebook
+//
 -(void)getPlayerData{
     
     PFUser *currentUser = [PFUser currentUser];
@@ -167,12 +177,9 @@
                 shareButton = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(30, 110, 110, 30)];
                 shareButton.shareContent = content;
                 [self.view addSubview:shareButton];
-                
             }];
-
         }
     }];
-    
 }
 
 #pragma mark - TableView methods
@@ -190,7 +197,6 @@
     return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return [dataArray count];
 }
 
@@ -214,14 +220,9 @@
     
     [self dismissViewControllerAnimated:true completion:nil];
 }
-//unwind
-- (IBAction)unwind:(UIStoryboardSegue *)unwindSegue {
-    
-}
 
 #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"mySelection"])
@@ -238,4 +239,10 @@
         vc.data = current;
     }
 }
+//unwind
+- (IBAction)unwind:(UIStoryboardSegue *)unwindSegue {
+    
+}
+
+
 @end

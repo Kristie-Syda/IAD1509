@@ -31,6 +31,12 @@
     [super didReceiveMemoryWarning];
 }
 
+
+// Grab Data Method
+//
+// Puts all achievement data into custom objects
+// and reminds table to reload
+//
 -(void)grabData{
     
     PFUser *current = [PFUser currentUser];

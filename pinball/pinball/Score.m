@@ -35,13 +35,15 @@
         currentLevel = 1;
         brickHit = 0;
         
+        NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+        [data setInteger:1 forKey:@"passed"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
     }
     return self;
 }
 
 //store currentscore in totalScore for that round
 -(void)add:(int)score {
-    
     totalScore += currentScore;
 }
 

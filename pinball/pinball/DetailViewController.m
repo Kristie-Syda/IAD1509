@@ -28,7 +28,6 @@
     scoreLabel.text = [score stringValue];
  
     [self grabData];
-    
 }
 - (BOOL)prefersStatusBarHidden {
     return YES;
@@ -39,6 +38,12 @@
 }
 
 #pragma mark - Grabbing data method
+
+// Grab Data Method
+//
+// Puts all Users achievement data into custom objects
+// and reminds table to reload
+//
 -(void)grabData{
     
     PFQuery *query = [PFQuery queryWithClassName:@"Achievements"];
@@ -85,8 +90,6 @@
         }
         [myTable reloadData];
     }];
-
-    
 }
 
 #pragma mark - TableView methods

@@ -26,7 +26,7 @@ return shared;
     
 }
 
-
+// init Method
 -(id)init {
     
     if (self = [super init]) {
@@ -44,8 +44,13 @@ return shared;
     return self;
 }
 
+
+// Show UIAlertController Method
+//
+// Shows a pop up alert thats lets user know they earned achievement
+//
 -(void)alertShow:(NSString *)title {
-    //shows a pop up alert thats lets user know they earned achievement
+    
     UIAlertController *toastMsg = [UIAlertController alertControllerWithTitle:title message:@"Achievement Earned!" preferredStyle:UIAlertControllerStyleAlert];
     
     //Positions the alert box to the bottom of the screen
@@ -70,6 +75,11 @@ return shared;
                    });
 }
 
+// Save Achievement Method
+//
+// Finds Users & device achievements
+// If achievement is locked unlock it & ignore if already unlocked
+//
 -(void)saveAch:(NSString *)name title:(NSString *)title {
     
     PFUser *current = [PFUser currentUser];
@@ -85,11 +95,9 @@ return shared;
                 
                 //grab the player's objectId
                 for (PFObject *title in achievements) {
-                    
-                    achNum = title[name];
-                    playerId = [title objectId];
+                     achNum = title[name];
+                     playerId = [title objectId];
                 }
-                
                 PFQuery *data = [PFQuery queryWithClassName:@"Achievements"];
                 [data getObjectInBackgroundWithId:playerId block:^(PFObject *ach, NSError *error) {
                     
@@ -103,12 +111,10 @@ return shared;
                     }
                      [ach saveInBackground];
                 }];
-
             } else {
                 //error
             }
         }];
-
     } else {
         //guest user -- goes through NSDefaults
         BOOL unlocked;
@@ -116,7 +122,6 @@ return shared;
         unlocked = [data boolForKey:name];
         
         if(unlocked == false){
-            
             [data setBool:true forKey:name];
             [[NSUserDefaults standardUserDefaults]synchronize];
             [self alertShow:title];

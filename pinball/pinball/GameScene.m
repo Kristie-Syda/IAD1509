@@ -293,7 +293,7 @@ static const uint32_t leftFlip = 0x1 << 6;
 -(void)next {
     
     NSString *nextlvl = [NSString stringWithFormat:@"%i", lvl + 1];
-    NSNumber *lvlNumber = [NSNumber numberWithInt:lvl];
+    NSNumber *lvlNumber = [NSNumber numberWithInt:lvl + 1];
     NSNumber *previousLevel;
     
     PFUser *user = [PFUser currentUser];
@@ -304,7 +304,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         previousLevel = [NSNumber numberWithInteger:[data integerForKey:@"passed"]];
         if (previousLevel < lvlNumber) {
             NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-            [data setInteger:lvl forKey:@"passed"];
+            [data setInteger:lvl+1 forKey:@"passed"];
             [[NSUserDefaults standardUserDefaults]synchronize];
         } else {
             //do nothing

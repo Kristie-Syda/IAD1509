@@ -19,7 +19,7 @@
     [super setSelected:selected animated:animated];
 }
 
-//custom init method for tableview
+// custom init method for leaderboard cell
 -(void)initCell:(NSString *)name score:(NSNumber *)score rank:(int)rank {
 
     NSString *scoreString = [score stringValue];
@@ -30,6 +30,7 @@
     rankLabel.text = rankString;
 }
 
+// custom init method for achievement cell
 -(void)initWith:(NSString *)title unlocked:(NSNumber *)number details:(NSString *)details {
     
     titleLabel.text = title;
@@ -43,6 +44,7 @@
         starImg.image = [UIImage imageNamed:@"star2.png"];
         self.cellBack.backgroundColor = [UIColor darkGrayColor];
     }
+    //achievement cells are unselectable
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
