@@ -8,6 +8,8 @@
 
 #import "Achieve.h"
 #import <Parse/Parse.h>
+#import "GameScene.h"
+#import "GameViewController.h"
 
 @implementation Achieve
 
@@ -42,6 +44,32 @@ return shared;
     return self;
 }
 
+-(void)alertShow:(NSString *)title {
+    //shows a pop up alert thats lets user know they earned achievement
+    UIAlertController *toastMsg = [UIAlertController alertControllerWithTitle:title message:@"Achievement Earned!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    //Positions the alert box to the bottom of the screen
+    CGAffineTransform transformDown = (CGAffineTransformMakeTranslation(0, 290));
+    CGAffineTransform transformScale = (CGAffineTransformMakeScale(0.9, 0.8));
+    CGAffineTransform transform = CGAffineTransformConcat(transformDown, transformScale);
+    UIView * firstView = toastMsg.view.subviews.firstObject;
+    firstView.transform = transform;
+    
+    //showing alertController with no view
+    id rootViewController=[UIApplication sharedApplication].delegate.window.rootViewController;
+    if([rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        rootViewController=[((UINavigationController *)rootViewController).viewControllers objectAtIndex:0];
+    }
+    [rootViewController presentViewController:toastMsg animated:YES completion:nil];
+    
+    int duration = 1.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
+                   ^{
+                       [toastMsg dismissViewControllerAnimated:YES completion:nil];
+                   });
+}
+
 -(void)saveAch:(NSString *)name title:(NSString *)title {
     
     PFUser *current = [PFUser currentUser];
@@ -69,17 +97,7 @@ return shared;
                    if ([achNum isEqualToNumber:[NSNumber numberWithInt:0]]) {
                         //turn achievement to true
                         ach[name] = [NSNumber numberWithBool:true];
-                
-                        //shows a pop up alert thats lets user know they earned achievement
-                        UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:title message:@"Achievement Earned" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-                        toastMsg.backgroundColor = [UIColor blackColor];
-                        [toastMsg show];
-                        int duration = 1.5;
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
-                            ^{
-                                [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
-                            });
-                
+                       [self alertShow:title];
                     } else {
                         //do nothing because achievement already true
                     }
@@ -89,7 +107,6 @@ return shared;
             } else {
                 //error
             }
-
         }];
 
     } else {
@@ -102,21 +119,11 @@ return shared;
             
             [data setBool:true forKey:name];
             [[NSUserDefaults standardUserDefaults]synchronize];
-            
-            //shows a pop up alert thats lets user know they earned achievement
-            UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:title message:@"Achievement Earned" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-            toastMsg.backgroundColor = [UIColor blackColor];
-            [toastMsg show];
-            int duration = 1.5;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
-                           ^{
-                               [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
-                           });
+            [self alertShow:title];
         } else {
             //do nothing because achievement already true
         }
     }
-
 }
 
 @end

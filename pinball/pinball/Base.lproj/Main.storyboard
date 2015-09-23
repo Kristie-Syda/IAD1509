@@ -9,8 +9,8 @@
             <objects>
                 <viewController storyboardIdentifier="main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6o6-Qs-YIw"/>
-                        <viewControllerLayoutGuide type="bottom" id="xFq-PY-wty"/>
+                        <viewControllerLayoutGuide type="top" id="vkF-Jx-EFn"/>
+                        <viewControllerLayoutGuide type="bottom" id="vBZ-HF-vK2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -27,8 +27,8 @@
             <objects>
                 <viewController restorationIdentifier="Leader" storyboardIdentifier="Leader" id="Bi0-Uz-1aY" customClass="LeaderBoard" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FOf-Fn-f2C"/>
-                        <viewControllerLayoutGuide type="bottom" id="xU9-VZ-hIN"/>
+                        <viewControllerLayoutGuide type="top" id="Y62-4j-15r"/>
+                        <viewControllerLayoutGuide type="bottom" id="bHM-BC-EW7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ofN-Ho-qgz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -159,8 +159,8 @@
             <objects>
                 <viewController storyboardIdentifier="achieve" id="cjg-AL-2CN" customClass="Achievements" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P3K-wd-VJ5"/>
-                        <viewControllerLayoutGuide type="bottom" id="Mdu-BU-Nx0"/>
+                        <viewControllerLayoutGuide type="top" id="hhJ-q3-nLs"/>
+                        <viewControllerLayoutGuide type="bottom" id="pA5-Py-f6k"/>
                     </layoutGuides>
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="CG6-9e-eVD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -266,8 +266,8 @@
             <objects>
                 <viewController id="fFZ-XY-7mP" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2We-6Y-4cR"/>
-                        <viewControllerLayoutGuide type="bottom" id="VK6-mv-fZj"/>
+                        <viewControllerLayoutGuide type="top" id="cu5-io-zNa"/>
+                        <viewControllerLayoutGuide type="bottom" id="jyu-rr-g2V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OjL-RC-g0h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>

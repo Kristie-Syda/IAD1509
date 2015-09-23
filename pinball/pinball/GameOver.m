@@ -19,7 +19,7 @@
 
 #pragma mark - Facebook Share Button
 
-//Facebook Sharebutton does not work on SKScene
+// Facebook Sharebutton does not work on SKScene
 -(void)didMoveToView:(SKView *)view{
     
     PFUser *current = [PFUser currentUser];
@@ -43,46 +43,43 @@
 
 }
 
-//Facebook required methods
+// Facebook required methods
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
     
 }
-
 - (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{
     
 }
-
 - (void)sharerDidCancel:(id<FBSDKSharing>)sharer{
     
 }
 
--(void)share:(id)sender {
-    
+// share IBaction - shows fb alert dialog box
+- (void)share:(id)sender {
     [FBSDKShareDialog showFromViewController:self.view.window.rootViewController withContent:content delegate:self];
-    
 }
+
 
 #pragma mark - SKScene setup
 
-//button creator
+// Button creator:
+//
+// adds button sprite & label on button
+//
 -(SKSpriteNode *)button:(NSString*)title pos:(CGPoint)position {
-    
     SKSpriteNode *nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"buttons"];
-    
     SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     titleLabel.text = title;
     titleLabel.fontColor = [SKColor whiteColor];
     titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     titleLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
     titleLabel.name = title;
-    
     [nodeImg addChild:titleLabel];
     [nodeImg setPosition:position];
-    
     return nodeImg;
 }
 
-//init
+// init Method
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -121,9 +118,15 @@
     return self;
 }
 
+
 #pragma mark - Scene Methods
 
-//UpDate Score: figures out if user has beat their old score/level
+// UpDate Score:
+//
+// Figures out if user has beat their old score/level
+//
+// IF User did beat old score/level - Updates to leaderboard & shows alert
+//
 -(void)updateScore{
     
     PFUser *currentUser = [PFUser currentUser];
@@ -164,13 +167,14 @@
                     if (previousScore < totalScore) {
                         
                         player[@"Score"] = totalScore;
-                        UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:@"New HighScore" message:@"updated on leaderboards" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-                        toastMsg.backgroundColor = [UIColor blackColor];
-                        [toastMsg show];
+
+                        UIAlertController *toastMsg = [UIAlertController alertControllerWithTitle:@"New HighScore" message:@"updated on leaderboards" preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        [self.view.window.rootViewController presentViewController:toastMsg animated:YES completion:nil];
                         int duration = 2;
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
                                        ^{
-                                           [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
+                                           [toastMsg dismissViewControllerAnimated:YES completion:nil];
                                        });
                     } else {
                         //do nothing
@@ -185,7 +189,13 @@
     }
 }
 
-//touches began
+
+// Touches began:
+//
+// For "Try again" & menu button
+//
+// If "Try again" - presents same level game
+//
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -204,10 +214,8 @@
         
         [shareButton removeFromSuperview];
         
-        //go to menu
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
-        
         [self.view presentScene:scene transition:reveal];
     }
 }

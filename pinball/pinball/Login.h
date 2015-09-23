@@ -16,7 +16,6 @@
     UITextField *email;
     UITextField *userName;
     UITextField *password;
-    UIAlertView * alertView;
     SKLabelNode *emailLabel;
     SKLabelNode *userLabel;
     SKLabelNode *passwordLabel;

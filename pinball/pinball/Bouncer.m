@@ -22,12 +22,9 @@
         //light up animation
         SKAction *light = [SKAction sequence:@[[SKAction colorizeWithColor:[SKColor greenColor] colorBlendFactor:2.0 duration:0.15],[SKAction colorizeWithColorBlendFactor:0.0 duration:0.1]]];
         lightUp = [SKAction runAction:light onChildWithName:@"child_bouncer"];
-   
     }
-    
     return self;
 }
-
 
 - (BOOL) collision:(SKNode *)ball {
     

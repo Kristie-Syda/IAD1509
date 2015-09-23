@@ -11,11 +11,16 @@
 #import <Parse/Parse.h>
 #import "Score.h"
 
+
 @implementation Login
 
 
 #pragma mark - UITextfields
 
+// didMoveToView
+//
+// textfields cant be added to a SKScene
+//
 -(void)didMoveToView:(SKView *)view {
     
     //Username
@@ -36,18 +41,19 @@
     password.textColor = [UIColor blackColor];
     password.delegate = self;
     
-    alertView = [[UIAlertView alloc] initWithTitle:@"Please leave no blank boxess" message:@"Your message is this message" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-
     [self.view addSubview:userName];
     [self.view addSubview:password];
 }
 
-//textfield methods for keyboard
+
+// textfield methods for keyboard
+//
+// So the return key will close keyboard
+//
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
 }
-
 -(BOOL) textFieldShouldReturn: (UITextField *) textField
 {
     [textField resignFirstResponder];
@@ -57,26 +63,27 @@
 
 //Removes textfields off scene when done
 -(void)resetView {
-    
     [userName removeFromSuperview];
     [password removeFromSuperview];
 }
 
+
 #pragma mark - SKScene SetUp
 
-//label maker
+// label maker
+//
+// creates all the labels above the textfields
+//
 -(SKLabelNode *)labelMaker:(NSString *)title position:(CGPoint)pos {
-    
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
-    label.text = title;
-    label.position = pos;
-    label.fontColor = [SKColor whiteColor];
-    label.fontSize = 14;
-    
-    return label;
+        label.text = title;
+        label.position = pos;
+        label.fontColor = [SKColor whiteColor];
+        label.fontSize = 14;
+        return label;
 }
 
-//init
+// init Method
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -130,20 +137,23 @@
     return self;
 }
 
+
 #pragma mark SKScene Methods
 
-//loggin in method
+// logging in method
+//
+// shows a pop up alert & Exits to menu
+// Had to be a UIAlertController VS UIAlertView -- UIAlertView is deprecated in iOS 8
+//
 -(void)loggedIn{
-    
-    //shows a pop up alert thats lets user know they are logging in
-    UIAlertView *toastMsg = [[UIAlertView alloc]initWithTitle:nil message:@"Logging in..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    toastMsg.backgroundColor = [UIColor blackColor];
-    [toastMsg show];
-    int duration = 1;
+    UIAlertController *toastMsg = [UIAlertController alertControllerWithTitle:@"Please wait" message:@"Logging in..." preferredStyle:UIAlertControllerStyleAlert];
+   
+    [self.view.window.rootViewController presentViewController:toastMsg animated:YES completion:nil];
+    int duration = 2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
-                   ^{
-                       [toastMsg dismissWithClickedButtonIndex:0 animated:YES];
-                   });
+                ^{
+                    [toastMsg dismissViewControllerAnimated:YES completion:nil];
+                });
     //opens menu
     Menu *scene = [Menu sceneWithSize:self.size];
     SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
@@ -151,50 +161,53 @@
     [self resetView];
 }
 
-//touches began
+
+// touches began
+//
+// For the buttons - Menu & Submit
+//
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
-
+    
+    //Menu
     if ([touched.name isEqualToString:@"menu"]) {
         [self resetView];
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:2];
         [self.view presentScene:scene transition:reveal];
         
+    //log in
     } else if ([touched.name isEqualToString:@"submit"]){
-       
-        //log in
         [PFUser logInWithUsernameInBackground:userName.text password:password.text
                 block:^(PFUser *player, NSError *error) {
-                    
                     if (player) {
-                        
                         //set current user
                         [PFUser becomeInBackground:[player sessionToken] block:^(PFUser *user, NSError *error) {
                             if (error) {
-                                    
-                                UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:[error userInfo][@"error"] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-                                    
-                                [errorMsg show];
-                                    
+                                // UIAlertController with action added to GameViewController
+                                UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error!" message:[error userInfo][@"error"] preferredStyle:UIAlertControllerStyleAlert];
+                                UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleCancel handler:nil];
+                                [errorAlert addAction: defaultAction];
+                                [self.view.window.rootViewController presentViewController:errorAlert animated:YES completion:nil];
+
                             } else {
-                                
                                 [self loggedIn];
                             }
                         }];
                             
                     } else {
-                                
-                        UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"wrong username or password, please try again" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-                                
-                        [errorMsg show];
+            
+                        // UIAlertController with action added to GameViewController
+                        UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error!" message:@"wrong username or password, please try again" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleCancel handler:nil];
+                        [errorAlert addAction: defaultAction];
+                        [self.view.window.rootViewController presentViewController:errorAlert animated:YES completion:nil];
                     }
         }];
     }
-    
 }
 
 @end

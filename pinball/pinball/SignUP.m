@@ -13,9 +13,13 @@
 
 @implementation SignUP
 
+
 #pragma mark - UITextfields
 
-//have to put UITextfields here because they dont show up on SKScenes
+// didMoveToView
+//
+// textfields cant be added to a SKScene
+//
 -(void)didMoveToView:(SKView *)view {
     
     //Firstname
@@ -65,23 +69,23 @@
     password.delegate = self;
     password.tag = 5;
 
-    alertView = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Please leave no boxes empty" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    
     [self.view addSubview:firstName];
     [self.view addSubview:lastName];
     [self.view addSubview:email];
     [self.view addSubview:userName];
     [self.view addSubview:password];
-    
 }
 
-//textfields methods for keyboard
+
+// textfield methods for keyboard
+//
+// So the return key will close keyboard
+//
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
     
 }
-
 -(BOOL) textFieldShouldReturn: (UITextField *) textField
 {
     [textField resignFirstResponder];
@@ -90,7 +94,6 @@
 
 //removes the textfields off view when done
 -(void)resetView {
-    
     [firstName removeFromSuperview];
     [lastName removeFromSuperview];
     [email removeFromSuperview];
@@ -98,9 +101,13 @@
     [password removeFromSuperview];
 }
 
+
 #pragma mark - SKScene Setup
 
-//label maker
+// label maker
+//
+// creates all the labels above the textfields
+//
 -(SKLabelNode *)labelMaker:(NSString *)title position:(CGPoint)pos {
     
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
@@ -112,7 +119,7 @@
     return label;
 }
 
-//init
+// init Method
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -173,18 +180,37 @@
     return self;
 }
 
+
 #pragma mark SKScene Methods
 
-//player is signed up and ready to use account
+// Alert Method 
+//
+// easier to present UIAlertController
+//
+-(void)alertShow {
+    
+    // UIAlertController with action added to GameViewController
+    alert = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Please leave no empty boxes" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction: defaultAction];
+
+    [self.view.window.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
+
+// SignIn Method
+//
+// Informs user of account created & goes to menu
+// Had to be a UIAlertController VS UIAlertView -- UIAlertView is deprecated in iOS 8
+//
 -(void)SignedIn{
-    //saved alert and dialog
-    saved = [[UIAlertView alloc]initWithTitle:@"Information Saved!" message:@"You can now use your Flipball account" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    saved.backgroundColor = [UIColor blackColor];
-    [saved show];
-    int duration = 3;
+    UIAlertController *saved = [UIAlertController alertControllerWithTitle:@"Information Saved!" message:@"You can now use your Flipball account" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self.view.window.rootViewController presentViewController:saved animated:YES completion:nil];
+    int duration = 2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(),
                    ^{
-                       [saved dismissWithClickedButtonIndex:0 animated:YES];
+                       [saved dismissViewControllerAnimated:YES completion:nil];
                    });
     //opens menu
     Menu *scene = [Menu sceneWithSize:self.size];
@@ -193,7 +219,11 @@
     [self resetView];
 }
 
-//Touches began -- back and submit button
+
+// touches began
+//
+// For the buttons - Menu & Submit
+//
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -204,7 +234,6 @@
     if ([touched.name isEqualToString:@"menu"]) {
         //reset view
         [self resetView];
-        
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsCloseHorizontalWithDuration:0.5];
         [self.view presentScene:scene transition:reveal];
@@ -214,11 +243,11 @@
         
         //checking for blanks
         if ([firstName.text isEqualToString:@""]) {
-            [alertView show];
+            [self alertShow];
         } else if ([email.text isEqualToString:@""]) {
-            [alertView show];
+            [self alertShow];
         } else if ([password.text isEqualToString:@""]){
-            [alertView show];
+            [self alertShow];
         } else {
             //creating User
             PFUser *player = [PFUser user];
@@ -241,7 +270,7 @@
                         [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
 
                             //make up imaginary locations for fake users -- debugging purposes
-                            //PFGeoPoint *makeUp = [PFGeoPoint geoPointWithLatitude:-89.42 longitude:67.5];
+                            //PFGeoPoint *makeUp = [PFGeoPoint geoPointWithLatitude:-37.785834 longitude:-122.406417];
                             
                             //add in game info to HighScore and pass current user data also
                             PFObject *data = [PFObject objectWithClassName:@"HighScore"];
@@ -251,7 +280,6 @@
                             data[@"playerId"] = [current objectId];
                             data[@"Username"] = [current username];
                             data[@"Location"] = point;
-
                             [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             }];
                             
@@ -266,7 +294,6 @@
                             info[@"ach3"] = [NSNumber numberWithBool:NO];
                             info[@"ach4"] = [NSNumber numberWithBool:NO];
                             info[@"ach5"] = [NSNumber numberWithBool:NO];
-                            
                             [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             }];
                         }];
@@ -275,11 +302,15 @@
                     }
                     //sign in method
                     [self SignedIn];
+                    
+                //Error for [player signUpInBackgroundWithBlock]
                 } else {
-                    //error msg
-                    errorString = [error userInfo][@"error"];
-                    errorMsg = [[UIAlertView alloc]initWithTitle:@"Error!" message:errorString delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-                    [errorMsg show];
+                    
+                    // UIAlertController with action added to GameViewController
+                    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error!" message:[error userInfo][@"error"] preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleCancel handler:nil];
+                    [errorAlert addAction: defaultAction];
+                    [self.view.window.rootViewController presentViewController:errorAlert animated:YES completion:nil];
                 }
             }];
         }

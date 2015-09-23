@@ -20,7 +20,10 @@
 
 #pragma mark - Scene Setup
 
-//button creator
+// Button creator:
+//
+// adds button sprite & label on button
+//
 -(SKSpriteNode *)button:(NSString*)title pos:(CGPoint)position {
 
     SKSpriteNode *nodeImg = [SKSpriteNode spriteNodeWithImageNamed:@"buttons"];
@@ -38,7 +41,7 @@
     return nodeImg;
 }
 
-//init
+// init method
 -(instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
@@ -112,9 +115,10 @@
     return self;
 }
 
+
 #pragma mark - scene methods
 
-//touches Began
+// touches Began
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];

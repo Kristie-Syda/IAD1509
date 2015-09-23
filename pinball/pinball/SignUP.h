@@ -16,16 +16,13 @@
     UITextField *email;
     UITextField *userName;
     UITextField *password;
-    UIAlertView * alertView;
     SKLabelNode *intro;
     SKLabelNode *first;
     SKLabelNode *last;
     SKLabelNode *emailLabel;
     SKLabelNode *userLabel;
     SKLabelNode *passwordLabel;
-    UIAlertView *saved;
-    UIAlertView *errorMsg;
-    NSString *errorString;
+    UIAlertController *alert;
 }
 
 @property(nonatomic,strong)PFGeoPoint *userLocation;

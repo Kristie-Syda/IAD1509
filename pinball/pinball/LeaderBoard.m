@@ -73,6 +73,7 @@
         //get all data from highscore database
         PFQuery *query = [PFQuery queryWithClassName:@"HighScore"];
         [query orderByDescending:@"Score"];
+        [query whereKey:@"Score" greaterThan:@0];
         [query findObjectsInBackgroundWithBlock:^(NSArray *allPlayers, NSError *error) {
         
             int i = 0;
@@ -100,6 +101,7 @@
         //get all data from highscore database
         PFQuery *query = [PFQuery queryWithClassName:@"HighScore"];
         [query orderByDescending:@"Score"];
+        [query whereKey:@"Score" greaterThan:@0];
                 
             [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
                     

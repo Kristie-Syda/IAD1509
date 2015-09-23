@@ -57,7 +57,7 @@
     [self removeFromParent];
 
     //update score
-    [Score shared].currentScore += 50;
+    [Score shared].currentScore += 500;
   
     //update pink brick count
     [Score shared].pinkCount -= 1;

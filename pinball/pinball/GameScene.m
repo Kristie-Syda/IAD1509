@@ -29,10 +29,11 @@ static const uint32_t leftFlip = 0x1 << 6;
 
 @implementation GameScene
 
+
 #pragma mark - Table sprites
-//ball
+
+// ball sprite & physic body
 - (void)addBall {
-    
     ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball.png"];
     ball.anchorPoint = CGPointMake(0.5, 0.5);
     ball.position = CGPointMake(self.size.width - 18, 160);
@@ -44,48 +45,46 @@ static const uint32_t leftFlip = 0x1 << 6;
     ball.physicsBody.friction = 0.0;
     ball.physicsBody.restitution = 0.5;
     ball.name = @"ball";
-    
     [self addChild:ball];
 }
-//add top
+
+// top sprite & physic body
 -(void)addTop{
     
     SKSpriteNode *topImg = [SKSpriteNode spriteNodeWithImageNamed:@"top.png"];
     topImg.position = CGPointMake(188, 667-42);
-    
     CGPoint A = CGPointMake(-25, 20);
     CGPoint B = CGPointMake(50, -50);
-    
     SKSpriteNode *topCurve = [SKSpriteNode spriteNodeWithImageNamed:@"deflectorTop.png"];
     topCurve.position = CGPointMake(350, 667-105);
     topCurve.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:A toPoint:B];
-
     [self addChild:topImg];
     [self addChild:topCurve];
 }
-//gate
+
+// Gate sprite & physic body
 -(void)addGate{
-    
     gateImg = [SKSpriteNode spriteNodeWithImageNamed:@"gate.png"];
     gateImg.position = CGPointMake(480, 218);
-    
     CGPoint A = CGPointMake(60, gateImg.size.height);
     CGPoint B = CGPointMake(-35, -40);
     gateImg.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:A toPoint:B];
-    
     [self addChild:gateImg];
 }
-//key image
+
+// key image sprite
 -(void)keyImg {
-    
     key = [SKSpriteNode spriteNodeWithImageNamed:@"key.png"];
     key.name = @"key";
-    
     key.position = CGPointMake(self.size.width/2 - 20, self.size.height - 50);
-    
     [self addChild:key];
 }
-//create pink + purple bricks
+
+
+// Create pink + purple bricks
+//
+// From the data filled in from the init method & property list
+//
 -(PinkBricks *)addBricks:(NSString*)type pos:(CGPoint)position {
     
     PinkBricks *bricks = [PinkBricks node];
@@ -107,7 +106,12 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     return bricks;
 }
-//create bouncers
+
+
+// Create bouncers
+//
+// From the data filled in from the init method & property list
+//
 -(Bouncer *)createBouncer:(NSString *)type position:(CGPoint)pos {
     
     Bouncer *bouncerNode = [Bouncer node];
@@ -134,7 +138,9 @@ static const uint32_t leftFlip = 0x1 << 6;
     return bouncerNode;
 }
 
+
 #pragma mark - Table Labels
+
 //adding score + scorelabel
 -(void)addScore {
     
@@ -154,7 +160,8 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:score];
     [self addChild:scoreLabel];
 }
-//ball count
+
+// ball count label
 -(void)ballLabel {
     
     ballLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
@@ -173,7 +180,8 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:ballLabel];
     [self addChild:titleLabel];
 }
-//level label
+
+// level label
 -(void)levelLabel {
     SKLabelNode *lvlLabel = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     lvlLabel.text = [NSString stringWithFormat: @"Level: %i",lvl];
@@ -183,8 +191,10 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:lvlLabel];
 }
 
+
 #pragma mark - Pause
-//pause button
+
+// Pause button init
 -(void)addPause {
     
     pauseButton = [SKSpriteNode spriteNodeWithImageNamed:@"pause.png"];
@@ -198,7 +208,16 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     [self addChild:pauseButton];
 }
-//pause game
+
+
+// Pause game Method
+//
+// If game is paused, remove pause button & show pause menu
+// show play button
+//
+// If game is unpaused, remove pause menu & play btn
+// show pause button again
+//
 -(void)pauseGame {
     
     self.paused = !self.scene.paused;
@@ -214,7 +233,8 @@ static const uint32_t leftFlip = 0x1 << 6;
         [self addChild:pauseButton];
     }
 }
-//Pause menu
+
+// Pause Menu
 -(void)addMenu {
     
     menuNode = [SKNode node];
@@ -236,27 +256,40 @@ static const uint32_t leftFlip = 0x1 << 6;
     [self addChild:menuNode];
 }
 
+
 #pragma mark - Game Over
-//gameOver Label
+
+// GameOver Label
 -(void)addEndLabel {
-    
     SKLabelNode *endLbl = [SKLabelNode labelNodeWithFontNamed:@"AmericanTypeWriter"];
     endLbl.text = @"Game Over";
     endLbl.fontColor = [SKColor whiteColor];
     endLbl.position = CGPointMake(self.size.width/2, self.size.height/3);
     endLbl.fontSize = 25;
-    
     [self addChild:endLbl];
 }
-//Game OVer
--(void)gameOver {
 
+
+// Game Over Method
+//
+// Game is over, presents Game over screen & resets score
+//
+-(void)gameOver {
     SKTransition *close= [SKTransition doorsCloseHorizontalWithDuration:2];
     GameOver *scene = [GameOver sceneWithSize:self.size];
     [self.view presentScene:scene transition:close];
     [[Score shared]reset];
 }
-//next Level
+
+
+// Next Level Method
+//
+// presents next level & saves data for non users in NSUserDefaults
+//
+// If next level is level "6" achievement unlocked - "Halfway there"
+//
+// Prevents from going past level 10
+//
 -(void)next {
     
     NSString *nextlvl = [NSString stringWithFormat:@"%i", lvl + 1];
@@ -299,7 +332,9 @@ static const uint32_t leftFlip = 0x1 << 6;
     }
 }
 
+
 #pragma mark - Scene Setup
+
 //All SKActions
 -(void)actions {
     
@@ -336,7 +371,8 @@ static const uint32_t leftFlip = 0x1 << 6;
     gateDrop = [SKAction moveTo:CGPointMake(348, 218) duration:0.5];
     openGate = [SKAction moveTo:CGPointMake(480, 218) duration:0.5];
 }
-//init
+
+// init Method
 -(id)initWithSize:(CGSize)size level:(NSString*)lvlNum {
     if (self = [super initWithSize:size]) {
         
@@ -417,8 +453,10 @@ static const uint32_t leftFlip = 0x1 << 6;
     return self;
 }
 
+
 #pragma mark - Scene Methods
-//touches begin
+
+// touches begin
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
@@ -460,7 +498,6 @@ static const uint32_t leftFlip = 0x1 << 6;
                 
                 [self next];
             }
-            
         //game is paused
         } else if (self.scene.paused == YES) {
             
@@ -484,7 +521,12 @@ static const uint32_t leftFlip = 0x1 << 6;
         [self gameOver];
     }
 }
-//touches ended
+
+
+// touches ended
+//
+// To see when plunger was let go
+//
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     
     //plunger was released
@@ -505,6 +547,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         plungerReleased = 0;
     }
 }
+
 //contacts
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     
@@ -550,11 +593,8 @@ static const uint32_t leftFlip = 0x1 << 6;
         
     //left flipper
     } else if (importantContact.categoryBitMask == leftFlip){
-        
         ballTouch = YES;
-        
     } else {
-        
         ballTouch = NO;
     }
 
@@ -578,6 +618,7 @@ static const uint32_t leftFlip = 0x1 << 6;
             [scoreLabel runAction:keepFlashing];
             gameOver = YES;
             
+            //checks if achievement was unlocked
             if ([Score shared].brickHit == 0) {
                 [[Achieve shared]saveAch:@"ach1" title:@"Not even one"];
             } else {
@@ -609,6 +650,7 @@ static const uint32_t leftFlip = 0x1 << 6;
         }
     }
 }
+
 //update
 -(void)update:(CFTimeInterval)currentTime {
     //spring goes down on plunger
@@ -640,7 +682,6 @@ static const uint32_t leftFlip = 0x1 << 6;
             ach3 = true;
         }
     }
-        
     //if player scores 6,000 unlock achievement
     if([Score shared].currentScore > 6000) {
         
@@ -649,7 +690,6 @@ static const uint32_t leftFlip = 0x1 << 6;
             ach4 = true;
         }
     }
-    
 }
 
 @end
