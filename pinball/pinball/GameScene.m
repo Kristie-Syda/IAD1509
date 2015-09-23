@@ -287,13 +287,14 @@ static const uint32_t leftFlip = 0x1 << 6;
 // presents next level & saves data for non users in NSUserDefaults
 //
 // If next level is level "6" achievement unlocked - "Halfway there"
+// If next level is level "11" achievement unlocked = "Veteran Status"
 //
 // Prevents from going past level 10
 //
 -(void)next {
     
     NSString *nextlvl = [NSString stringWithFormat:@"%i", lvl + 1];
-    NSNumber *lvlNumber = [NSNumber numberWithInt:lvl + 1];
+    NSNumber *lvlNumber = [NSNumber numberWithInt:lvl];
     NSNumber *previousLevel;
     
     PFUser *user = [PFUser currentUser];
@@ -313,13 +314,14 @@ static const uint32_t leftFlip = 0x1 << 6;
     
     //if beat the 5th level unlock achievement
     if (lvl + 1 == 6) {
-        [[Achieve shared]saveAch:@"ach5" title:@"Halfway there"];
+        [[Achieve shared]saveAch:@"ach6" title:@"Halfway there"];
     } else {
         //do nothing
     }
     
     //if next level is 11 got to menu bc there is no level 11/Else go to next level
     if ([nextlvl isEqualToString:@"11"]) {
+        [[Achieve shared]saveAch:@"ach7" title:@"Veteran Status"];
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         [self.view presentScene:scene transition:reveal];
@@ -688,6 +690,14 @@ static const uint32_t leftFlip = 0x1 << 6;
         if (ach4 == false) {
             [[Achieve shared]saveAch:@"ach4" title:@"6g's on board"];
             ach4 = true;
+        }
+    }
+    //if player scores 10,000 unlock achievement
+    if([Score shared].currentScore > 10000) {
+        
+        if (ach5 == false) {
+            [[Achieve shared]saveAch:@"ach5" title:@"10g's on board"];
+            ach5 = true;
         }
     }
 }

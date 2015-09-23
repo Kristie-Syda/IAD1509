@@ -224,6 +224,8 @@
 //
 // For the buttons - Menu & Submit
 //
+// Submit button - Creates all parse objects (User, Highscore and Achievements)
+//
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -294,6 +296,8 @@
                             info[@"ach3"] = [NSNumber numberWithBool:NO];
                             info[@"ach4"] = [NSNumber numberWithBool:NO];
                             info[@"ach5"] = [NSNumber numberWithBool:NO];
+                            info[@"ach6"] = [NSNumber numberWithBool:NO];
+                            info[@"ach7"] = [NSNumber numberWithBool:NO];
                             [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             }];
                         }];
