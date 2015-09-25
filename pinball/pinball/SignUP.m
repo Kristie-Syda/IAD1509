@@ -272,7 +272,7 @@
                         [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
 
                             //make up imaginary locations for fake users -- debugging purposes
-                            //PFGeoPoint *makeUp = [PFGeoPoint geoPointWithLatitude:-10 longitude:-10];
+                            //PFGeoPoint *makeUp = [PFGeoPoint geoPointWithLatitude:37.785834 longitude:122.406417];
                             
                             //add in game info to HighScore and pass current user data also
                             PFObject *data = [PFObject objectWithClassName:@"HighScore"];

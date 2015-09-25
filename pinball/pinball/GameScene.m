@@ -588,6 +588,13 @@ static const uint32_t leftFlip = 0x1 << 6;
     //ball hits bottom
     } else if (importantContact.categoryBitMask == bottomCat){
         
+        //checks if achievement was unlocked
+        if ([Score shared].brickHit == 0) {
+            [[Achieve shared]saveAch:@"ach5" title:@"Not even one"];
+        } else {
+            
+        }
+        
         [ball removeFromParent];
         update = [(TableMaker *)importantContact.node collision:ball];
 
@@ -628,12 +635,6 @@ static const uint32_t leftFlip = 0x1 << 6;
             [scoreLabel runAction:keepFlashing];
             gameOver = YES;
             
-            //checks if achievement was unlocked
-            if ([Score shared].brickHit == 0) {
-                [[Achieve shared]saveAch:@"ach5" title:@"Not even one"];
-            } else {
-                
-            }
         //when all bricks are gone
         } else if([Score shared].pinkCount == 0) {
             
