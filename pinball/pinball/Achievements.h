@@ -13,6 +13,7 @@
     IBOutlet UITableView *myTable;
     IBOutlet UILabel *titleLabel;
     IBOutlet UIImageView *starImg;
+    IBOutlet UILabel *count;
     
     NSMutableArray *dataArray;
     NSNumber *data1;
@@ -22,8 +23,12 @@
     NSNumber *data5;
     NSNumber *data6;
     NSNumber *data7;
+    NSNumber *data8;
+    NSNumber *data9;
+    NSNumber *data10;
 }
 
+@property(nonatomic,assign)int achieveCount;
 -(IBAction)back:(id)sender;
 
 @end

@@ -16,6 +16,7 @@
 @property(nonatomic,assign)int pinkCount;
 @property(nonatomic,assign)int brickHit;
 @property(nonatomic,assign)int currentLevel;
+@property(nonatomic,assign)int levelStreak;
 
 
 + (instancetype)shared;

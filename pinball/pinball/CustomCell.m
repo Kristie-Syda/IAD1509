@@ -30,17 +30,19 @@
     rankLabel.text = rankString;
 }
 
-// custom init method for achievement cell
+// custom init method for achievement cell & detail view controller cell
 -(void)initWith:(NSString *)title unlocked:(NSNumber *)number details:(NSString *)details {
     
     titleLabel.text = title;
     detailLabel.text = details;
     select = number;
    
-    //if achievement is unlocked image is a yellow star
+    //if achievement is unlocked, image is a yellow star
     if ([number isEqualToNumber:[NSNumber numberWithInt:1]]){
         starImg.image = [UIImage imageNamed:@"star.png"];
-    } else {
+        self.cellBack.backgroundColor = [UIColor blackColor];
+    
+    } else if ([number isEqualToNumber:[NSNumber numberWithInt:0]])  {
         starImg.image = [UIImage imageNamed:@"star2.png"];
         self.cellBack.backgroundColor = [UIColor darkGrayColor];
     }

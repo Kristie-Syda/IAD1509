@@ -45,10 +45,10 @@
     BOOL nextLevel;
     BOOL ballTouch;
     BOOL gateClose;
+    BOOL ach1;
     BOOL ach2;
     BOOL ach3;
     BOOL ach4;
-    BOOL ach5;
 }
 
 -(id)initWithSize:(CGSize)size level:(NSString*)lvlNum;

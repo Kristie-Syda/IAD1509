@@ -11,7 +11,7 @@
 #import "Achieve.h"
 
 @implementation Score
-@synthesize currentScore,ball,totalScore,pinkCount,currentLevel,brickHit;
+@synthesize currentScore,ball,totalScore,pinkCount,currentLevel,brickHit,levelStreak;
 
 +(instancetype)shared {
     
@@ -34,6 +34,7 @@
         ball = 1;
         currentLevel = 1;
         brickHit = 0;
+        levelStreak = 0;
         
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         [data setInteger:1 forKey:@"passed"];
@@ -52,6 +53,7 @@
     totalScore = 0;
     currentScore = 0;
     brickHit = 0;
+    levelStreak = 0;
 }
 
 @end

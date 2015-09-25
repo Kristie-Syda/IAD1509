@@ -296,6 +296,7 @@ static const uint32_t leftFlip = 0x1 << 6;
     NSString *nextlvl = [NSString stringWithFormat:@"%i", lvl + 1];
     NSNumber *lvlNumber = [NSNumber numberWithInt:lvl];
     NSNumber *previousLevel;
+    [Score shared].levelStreak += 1;
     
     PFUser *user = [PFUser currentUser];
     
@@ -312,16 +313,26 @@ static const uint32_t leftFlip = 0x1 << 6;
         }
     }
     
+    // if beat first level unlock achievement
+    if (lvl == 1) {
+        [[Achieve shared]saveAch:@"ach6" title:@"Getting Started"];
+    }
     //if beat the 5th level unlock achievement
-    if (lvl + 1 == 6) {
-        [[Achieve shared]saveAch:@"ach6" title:@"Halfway there"];
+    else if (lvl == 5) {
+        [[Achieve shared]saveAch:@"ach7" title:@"Halfway there"];
     } else {
         //do nothing
     }
     
+    if ([Score shared].levelStreak == 3) {
+        [[Achieve shared]saveAch:@"ach9" title:@"3 in a row"];
+    } else if ([Score shared].levelStreak == 10) {
+        [[Achieve shared]saveAch:@"ach10" title:@"The Real MVP"];
+    }
+    
     //if next level is 11 got to menu bc there is no level 11/Else go to next level
     if ([nextlvl isEqualToString:@"11"]) {
-        [[Achieve shared]saveAch:@"ach7" title:@"Veteran Status"];
+        [[Achieve shared]saveAch:@"ach8" title:@"Veteran Status"];
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:2];
         [self.view presentScene:scene transition:reveal];
@@ -440,7 +451,6 @@ static const uint32_t leftFlip = 0x1 << 6;
             Bouncer *bouncer = [self createBouncer:type position:CGPointMake(x, y)];
             [self addChild:bouncer];
         }
-        
         //grab the pink brick info from plist
         NSArray *brickArray = data[@"PinkBricks"];
         for (NSDictionary *info in brickArray) {
@@ -512,8 +522,6 @@ static const uint32_t leftFlip = 0x1 << 6;
             } else if ([touched.name isEqualToString:@"quit"]) {
                 //Adds current score to total
                 [[Score shared] add:[Score shared].currentScore];
-                //resets current score
-                [Score shared].currentScore = 0;
                 [self gameOver];
             }
         }
@@ -622,7 +630,7 @@ static const uint32_t leftFlip = 0x1 << 6;
             
             //checks if achievement was unlocked
             if ([Score shared].brickHit == 0) {
-                [[Achieve shared]saveAch:@"ach1" title:@"Not even one"];
+                [[Achieve shared]saveAch:@"ach5" title:@"Not even one"];
             } else {
                 
             }
@@ -671,33 +679,30 @@ static const uint32_t leftFlip = 0x1 << 6;
     //if player scores 1000 unlock achievement
     if([Score shared].currentScore > 1000) {
         
-        if (ach2 == false) {
-            [[Achieve shared]saveAch:@"ach2" title:@"First Kilo"];
-            ach2 = true;
+        if (ach1 == false) {
+            [[Achieve shared]saveAch:@"ach1" title:@"First Kilo"];
+            ach1 = true;
         }
     }
     //if player scores 3,000 unlock achievement
     if([Score shared].currentScore > 3000) {
-     
-        if (ach3 == false) {
-            [[Achieve shared]saveAch:@"ach3" title:@"3g's on board"];
-            ach3 = true;
+        if (ach2 == false) {
+            [[Achieve shared]saveAch:@"ach2" title:@"3g's on board"];
+            ach2 = true;
         }
     }
     //if player scores 6,000 unlock achievement
     if([Score shared].currentScore > 6000) {
-        
-        if (ach4 == false) {
-            [[Achieve shared]saveAch:@"ach4" title:@"6g's on board"];
-            ach4 = true;
+        if (ach3 == false) {
+            [[Achieve shared]saveAch:@"ach3" title:@"6g's on board"];
+            ach3 = true;
         }
     }
     //if player scores 10,000 unlock achievement
     if([Score shared].currentScore > 10000) {
-        
-        if (ach5 == false) {
-            [[Achieve shared]saveAch:@"ach5" title:@"10g's on board"];
-            ach5 = true;
+        if (ach4 == false) {
+            [[Achieve shared]saveAch:@"ach4" title:@"10g's on board"];
+            ach4 = true;
         }
     }
 }

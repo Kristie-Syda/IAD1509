@@ -61,52 +61,85 @@
                 data5 = objects[@"ach5"];
                 data6 = objects[@"ach6"];
                 data7 = objects[@"ach7"];
+                data8 = objects[@"ach8"];
+                data9 = objects[@"ach9"];
+                data10 = objects[@"ach10"];
             }
             
             AchieveData *ach1 = [[AchieveData alloc]init];
-            ach1.title = @"Not even one";
-            ach1.details = @"Die without hitting one brick";
+            ach1.title = @"First Kilo";
+            ach1.details = @"Get your first score of 1,000";
             ach1.unlocked = data1;
             
             AchieveData *ach2 = [[AchieveData alloc]init];
-            ach2.title = @"First Kilo";
-            ach2.details = @"Get your first score of 1,000";
+            ach2.title = @"3g's on board";
+            ach2.details = @"Score 3,000 with one ball";
             ach2.unlocked = data2;
             
             AchieveData *ach3 = [[AchieveData alloc]init];
-            ach3.title = @"3g's on board";
-            ach3.details = @"Score 3,000 with one ball";
+            ach3.title = @"6g's on board";
+            ach3.details = @"Score 6,000 with same ball";
             ach3.unlocked = data3;
             
             AchieveData *ach4 = [[AchieveData alloc]init];
-            ach4.title = @"6g's on board";
-            ach4.details = @"Score 6,000 with same ball";
+            ach4.title = @"10g's on board";
+            ach4.details = @"Score 10,000 on score board";
             ach4.unlocked = data4;
             
             AchieveData *ach5 = [[AchieveData alloc]init];
-            ach5.title = @"10g's on board";
-            ach5.details = @"Score 10,000 on score board";
+            ach5.title = @"Not even one";
+            ach5.details = @"Die without hitting one brick";
             ach5.unlocked = data5;
             
             AchieveData *ach6 = [[AchieveData alloc]init];
-            ach6.title = @"Halfway there";
-            ach6.details = @"Beat 5 levels";
+            ach6.title = @"Getting Started";
+            ach6.details = @"Beat level 1";
             ach6.unlocked = data6;
             
             AchieveData *ach7 = [[AchieveData alloc]init];
-            ach7.title = @"Veteran Status";
-            ach7.details = @"Beat all 10 levels";
+            ach7.title = @"Halfway there";
+            ach7.details = @"Beat level 5";
             ach7.unlocked = data7;
-
-            dataArray = [[NSMutableArray alloc]initWithObjects:ach1,ach2,ach3,ach4,ach5,ach6,ach7,nil];
+            
+            AchieveData *ach8 = [[AchieveData alloc]init];
+            ach8.title = @"Veteran Status";
+            ach8.details = @"Beat all 10 levels";
+            ach8.unlocked = data8;
+            
+            AchieveData *ach9 = [[AchieveData alloc]init];
+            ach9.title = @"3 in a row";
+            ach9.details = @"Beat any 3 levels without a gameover";
+            ach9.unlocked = data9;
+            
+            AchieveData *ach10 = [[AchieveData alloc]init];
+            ach10.title = @"The Real MVP";
+            ach10.details = @"Beat all 10 levels without a gameover";
+            ach10.unlocked = data10;
+            
+            dataArray = [[NSMutableArray alloc]initWithObjects:ach1,ach2,ach3,ach4,ach5,ach6,ach7,ach8,ach9,ach10,nil];
         }
+        [self grabCount];
         [myTable reloadData];
     }];
 }
 
+// Grab Count Method
+//
+// Grabs the count of all completed
+// achievements from the user and sets the label
+//
+-(void)grabCount {
+    for (AchieveData *dataCount in dataArray) {
+        if ([dataCount.unlocked isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            self.achieveCount += 1;
+        }
+    }
+    count.text = [NSString stringWithFormat:@"%i/10",self.achieveCount];
+}
+
 #pragma mark - TableView methods
 
-- (CustomCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell"];
     if(cell != nil)
