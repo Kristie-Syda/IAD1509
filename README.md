@@ -21,3 +21,13 @@
 
     ** Social sharing to Facebook.
 
+
+//Achievements:(Parse.com) You can also view players achievements through leaderboard
+
+    ** Measurement - first kilo - getting 1,000 on scoreboard
+
+    ** Incremental - 3g's, 6g's and 10g's on board
+
+    ** Completion - Half way there - beating level 5
+
+    ** Negative - Not even one - die without hitting one brick

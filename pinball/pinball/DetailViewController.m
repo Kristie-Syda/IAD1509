@@ -37,7 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Grabbing data method
+#pragma mark - Grabbing data methods
 
 // Grab Data Method
 //
