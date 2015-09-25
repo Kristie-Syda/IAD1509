@@ -198,7 +198,6 @@
         if ([dataCount.unlocked isEqualToNumber:[NSNumber numberWithInt:1]]) {
             self.achieveCount += 1;
         }
-        NSLog(@"%i",self.achieveCount);
     }
     count.text = [NSString stringWithFormat:@"Completed: %i/10",self.achieveCount];
 }
